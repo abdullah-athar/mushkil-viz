@@ -28,8 +28,15 @@ class FinancialVisualizer(BaseVisualizer):
         if not spending_patterns.get("monthly_spending"):
             return None
             
-        # Extract monthly spending data
+        # Extract monthly spending data and create proper datetime index
         monthly_data = pd.DataFrame(spending_patterns["monthly_spending"])
+        
+        # Convert tuple index (year, month) to datetime
+        monthly_data.index = pd.to_datetime([f"{year}-{month:02d}-01" 
+                                           for year, month in monthly_data.index])
+        
+        # Sort by date
+        monthly_data = monthly_data.sort_index()
         
         fig = make_subplots(
             rows=2, cols=1,
@@ -56,6 +63,18 @@ class FinancialVisualizer(BaseVisualizer):
                 mode="lines+markers",
                 name="Total Spending"
             ),
+            row=2, col=1
+        )
+        
+        # Update x-axis to show formatted dates
+        fig.update_xaxes(
+            tickformat="%b %Y",
+            tickangle=45,
+            row=1, col=1
+        )
+        fig.update_xaxes(
+            tickformat="%b %Y",
+            tickangle=45,
             row=2, col=1
         )
         
@@ -173,30 +192,67 @@ class FinancialVisualizer(BaseVisualizer):
             return None
             
         # Extract recurring transaction data
-        recurring_data = pd.DataFrame(recurring_transactions["recurring_transactions"])
+        recurring_data = recurring_transactions["recurring_transactions"]
         
-        # Create scatter plot
+        # Convert dictionary to DataFrame
+        data_list = []
+        for key, value in recurring_data.items():
+            # Split the combined key into merchant and category
+            identifiers = key.split('_')
+            merchant = identifiers[0] if len(identifiers) > 0 else ''
+            category = identifiers[1] if len(identifiers) > 1 else ''
+            
+            row = {
+                'merchant': merchant,
+                'category': category,
+                'frequency': value['frequency'],
+                'avg_amount': value['avg_amount'],
+                'std_amount': value['std_amount']
+            }
+            data_list.append(row)
+        
+        df = pd.DataFrame(data_list)
+        
+        # Create hover text based on available information
+        hover_texts = []
+        for _, row in df.iterrows():
+            hover_parts = []
+            if row['merchant']:
+                hover_parts.append(f"Merchant: {row['merchant']}")
+            if row['category']:
+                hover_parts.append(f"Category: {row['category']}")
+            hover_parts.extend([
+                f"Frequency: {row['frequency']}",
+                f"Avg Amount: ${row['avg_amount']:.2f}",
+                f"Std Dev: ${row['std_amount']:.2f}"
+            ])
+            hover_texts.append("<br>".join(hover_parts))
+        
+        # Create bubble chart
         fig = go.Figure(go.Scatter(
-            x=recurring_data["amount"],
-            y=recurring_data["date"],
-            mode="markers",
+            x=df['avg_amount'],
+            y=df['frequency'],
+            mode='markers',
             marker=dict(
-                size=recurring_data["date"] * 2,  # Size based on frequency
-                color=recurring_data["amount"],
-                colorscale="Viridis",
-                showscale=True
+                size=df['frequency'] * 3,  # Size based on frequency
+                sizemode='area',
+                sizeref=2.*max(df['frequency'])/(40.**2),
+                color=df['std_amount'],  # Color based on variability
+                colorscale='Viridis',
+                showscale=True,
+                colorbar=dict(title='Amount Variability')
             ),
-            text=[f"Amount: {amt:.2f}<br>Frequency: {freq}" 
-                  for amt, freq in zip(recurring_data["amount"], recurring_data["date"])],
-            hoverinfo="text"
+            text=hover_texts,
+            hoverinfo='text'
         ))
         
         fig.update_layout(
             title="Recurring Transaction Patterns",
-            xaxis_title="Transaction Amount",
-            yaxis_title="Frequency",
+            xaxis_title="Average Transaction Amount ($)",
+            yaxis_title="Frequency (Number of Transactions)",
             template="plotly_white",
-            height=600
+            height=600,
+            showlegend=False
         )
         
         return fig

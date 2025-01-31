@@ -127,7 +127,6 @@ def analyze(
         task = progress.add_task("Processing dataset...", total=None)
         #try:
         results = engine.process_dataset(input_file, domain=domain)
-        console.print(f"[blue]Detected domain: {results['domain']}[/blue]")  # Debug logging
         # except Exception as e:
         #     progress.remove_task(task)
         #     console.print(f"[red]Error processing dataset: {str(e)}[/red]")

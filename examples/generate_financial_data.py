@@ -49,7 +49,7 @@ CATEGORIES = {
         'is_income': False
     },
     'Housing': {
-        'merchants': ['Landlord', 'Property Management', 'Mortgage Co.'],
+        'merchants': ['Property Management', 'Mortgage Co.'],
         'amount_range': (800, 2500),
         'is_income': False
     },
@@ -65,7 +65,7 @@ def get_last_day_of_month(date):
 
 def generate_monthly_salary(date):
     """Generate a fixed monthly salary transaction."""
-    salary_amount = 3000.00  # Fixed monthly salary
+    salary_amount = 18000.00  # Fixed monthly salary
     return [date.strftime('%Y-%m-%d'), f'{salary_amount:.2f}', 'Employer Inc', 'Income', 'Monthly Salary']
 
 def generate_transaction(date, exclude_employer_income=False):
@@ -98,7 +98,7 @@ def generate_transaction(date, exclude_employer_income=False):
         
         return [date.strftime('%Y-%m-%d'), f'{amount:.2f}', merchant, category, description]
 
-def generate_financial_data(num_days=180):
+def generate_financial_data(num_days=365):
     transactions = []
     start_date = datetime.now() - timedelta(days=num_days)
     
@@ -130,6 +130,6 @@ def save_to_csv(transactions, filename='financial_data.csv'):
 
 if __name__ == '__main__':
     # Generate 90 days of financial data
-    transactions = generate_financial_data(180)
+    transactions = generate_financial_data(365)
     save_to_csv(transactions, 'examples/financial_data.csv')
     print("Generated new financial_data.csv with dummy transactions.") 

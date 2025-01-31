@@ -44,21 +44,25 @@ class FinancialAnalyzer(BaseAnalyzer):
             
         main_amount_col = self.transaction_columns[0]
         
+        # Filter for spending only (negative values)
+        spending_df = df[df[main_amount_col] < 0].copy()
+        spending_df[main_amount_col] = spending_df[main_amount_col].abs()  # Convert to positive for easier analysis
+        
         # Temporal analysis if date column exists
         if self.date_columns:
             date_col = self.date_columns[0]
-            df[date_col] = pd.to_datetime(df[date_col])
+            spending_df[date_col] = pd.to_datetime(spending_df[date_col])
             
             # Daily spending
-            daily_spending = df.groupby(df[date_col].dt.date)[main_amount_col].agg([
+            daily_spending = spending_df.groupby(spending_df[date_col].dt.date)[main_amount_col].agg([
                 "count", "sum", "mean", "std"
             ]).to_dict()
             patterns["daily_spending"] = daily_spending
             
             # Monthly spending
-            monthly_spending = df.groupby([
-                df[date_col].dt.year,
-                df[date_col].dt.month
+            monthly_spending = spending_df.groupby([
+                spending_df[date_col].dt.year,
+                spending_df[date_col].dt.month
             ])[main_amount_col].agg([
                 "count", "sum", "mean", "std"
             ]).to_dict()
@@ -67,7 +71,7 @@ class FinancialAnalyzer(BaseAnalyzer):
         # Category analysis if category column exists
         if self.category_columns:
             cat_col = self.category_columns[0]
-            category_spending = df.groupby(cat_col)[main_amount_col].agg([
+            category_spending = spending_df.groupby(cat_col)[main_amount_col].agg([
                 "count", "sum", "mean", "std"
             ]).to_dict()
             patterns["category_spending"] = category_spending
@@ -75,9 +79,9 @@ class FinancialAnalyzer(BaseAnalyzer):
         # Merchant analysis if merchant column exists
         if self.merchant_columns:
             merch_col = self.merchant_columns[0]
-            merchant_spending = df.groupby(merch_col)[main_amount_col].agg([
+            merchant_spending = spending_df.groupby(merch_col)[main_amount_col].agg([
                 "count", "sum", "mean", "std"
-            ]).sort_values("sum", ascending=False).head(10).to_dict()
+            ]).sort_values("sum", ascending=False).head(10).to_dict()  # Changed to descending order
             patterns["top_merchants"] = merchant_spending
             
         return patterns
@@ -95,26 +99,48 @@ class FinancialAnalyzer(BaseAnalyzer):
         amount_col = self.transaction_columns[0]
         date_col = self.date_columns[0]
         
+        # Filter for spending only (negative values)
+        spending_df = df[df[amount_col] < 0].copy()
+        spending_df[amount_col] = spending_df[amount_col].abs()  # Convert to positive for easier analysis
+        
         # Convert to datetime if needed
-        df[date_col] = pd.to_datetime(df[date_col])
+        spending_df[date_col] = pd.to_datetime(spending_df[date_col])
         
-        # Group similar amounts
-        amount_groups = df.groupby(
-            pd.cut(df[amount_col], bins=100)
-        ).agg({
-            date_col: "count",
-            amount_col: "mean"
-        })
+        # Include merchant and category info if available
+        group_cols = []
+        if self.merchant_columns:
+            group_cols.append(self.merchant_columns[0])
+        if self.category_columns:
+            group_cols.append(self.category_columns[0])
         
-        print(amount_groups)
-        # Filter potential recurring transactions
-        recurring = amount_groups[
-            amount_groups[date_col] >= frequency_threshold
-        ].to_dict()
-
-        print(recurring.keys())
+        # Group by merchant/category and amount ranges
+        if not group_cols:
+            return {}
+        recurring = (
+            spending_df.groupby(
+                group_cols
+            ).agg({
+                date_col: "count",
+                amount_col: ["mean", "std"]
+            }).reset_index()
+        )
         
-        return {"recurring_transactions": recurring}
+        # Filter for frequent transactions
+        recurring = recurring[recurring[date_col]["count"] >= frequency_threshold]
+        
+        # Format the results
+        recurring_dict = {}
+        for idx, row in recurring.iterrows():
+            key = "_".join([str(row[col]) for col in group_cols])
+            recurring_dict[key] = {
+                "frequency": row[date_col]["count"],
+                "avg_amount": row[amount_col]["mean"],
+                "std_amount": row[amount_col]["std"],
+                "amount_range": str(row[amount_col].name)  # Convert IntervalIndex to string
+            }
+        
+        return {"recurring_transactions": recurring_dict}
+    
         
     def _analyze_cash_flow(self, df: pd.DataFrame) -> Dict:
         """Analyze cash flow patterns and trends."""

@@ -1,515 +1,1099 @@
 date,amount,merchant,category,description
-2024-08-04,-496.19,Savings Account,savings,Magazine decade sure produce
-2024-08-05,-106.03,Verizon,Bills,Remember reveal conference
-2024-08-06,-138.93,Utility Company,Bills,Large just several civil
-2024-08-06,-61.98,Trader Joe's,Groceries,Rather occur meeting
-2024-08-06,-114.85,Costco,Groceries,Series or star may
-2024-08-06,-306.95,Savings Account,savings,Trial central
-2024-08-06,-27.56,Starbucks,Food & Dining,Official test economy region
-2024-08-07,-499.73,Savings Account,savings,Represent somebody support around
-2024-08-08,-174.21,Savings Account,savings,Imagine notice time large
-2024-08-08,-199.18,Internet Provider,Bills,Community happy owner process
-2024-08-08,-36.10,Lyft,Transportation,Media main rate set
-2024-08-08,-134.18,Dental Clinic,Health,Exist treat administration
-2024-08-08,599.32,Freelance Client,Income,Payment from Freelance Client
-2024-08-09,-1267.21,Mortgage Co.,Housing,Available turn sort
-2024-08-09,-36.33,Costco,Groceries,Personal long reflect
-2024-08-10,-23.19,Uber,Transportation,Traditional story
-2024-08-10,-248.86,Amazon,Shopping,Sort religious watch
-2024-08-10,-78.27,McDonald's,Food & Dining,Share increase state within child
-2024-08-10,-62.13,Medical Center,Health,Central fact method program
-2024-08-10,-20.67,Netflix,Entertainment,Ready worry church house its
-2024-08-11,-149.13,Best Buy,Shopping,Politics national who school lead
-2024-08-11,-65.29,Uber,Transportation,Fine purpose when
-2024-08-11,-37.39,Subway,Food & Dining,Memory value day draw have
-2024-08-12,-28.06,McDonald's,Food & Dining,Fill tough
-2024-08-12,-30.54,Disney+,Entertainment,Take others might
-2024-08-12,-72.04,Walgreens,Health,Them central mean run family
-2024-08-13,-48.93,Local Restaurant,Food & Dining,Safe international he skin family
-2024-08-13,-152.01,Verizon,Bills,Hope table call term
-2024-08-13,-27.12,Subway,Food & Dining,Country identify
-2024-08-13,-23.86,Uber,Transportation,Move item would
-2024-08-14,-130.16,Trader Joe's,Groceries,Before reason goal clear
-2024-08-15,571.43,Freelance Client,Income,Payment from Freelance Client
-2024-08-15,-176.48,Water Corp,Bills,Lead impact occur again
-2024-08-16,-126.24,Utility Company,Bills,Build head
-2024-08-17,-1448.55,Mortgage Co.,Housing,It significant picture attorney wide
-2024-08-17,-98.65,Trader Joe's,Groceries,Eye reflect financial
-2024-08-17,-282.46,Savings Account,savings,Left network
-2024-08-17,-41.00,Chipotle,Food & Dining,Dog on
-2024-08-17,-112.17,Water Corp,Bills,Fight better fact development whose
-2024-08-18,-184.30,Utility Company,Bills,Think strategy guess order
-2024-08-18,-22.19,AMC Theaters,Entertainment,Those like also us
-2024-08-19,-160.22,Walmart,Groceries,Fish pick individual go again
-2024-08-19,-79.07,Water Corp,Bills,By may case
-2024-08-19,-35.52,Starbucks,Food & Dining,Say push
-2024-08-19,-81.33,Medical Center,Health,Source term tax manage
-2024-08-20,-499.95,Savings Account,savings,Nor eight sound thus never
-2024-08-21,-141.36,Verizon,Bills,Machine my
-2024-08-22,862.67,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-08-22,-72.42,Walgreens,Health,Space human catch
-2024-08-22,-135.70,Utility Company,Bills,History former senior
-2024-08-22,-48.88,Medical Center,Health,Much quite threat
-2024-08-23,-2485.08,Property Management,Housing,Too structure best
-2024-08-24,-57.41,Starbucks,Food & Dining,Use want project same
-2024-08-24,-100.46,Target,Shopping,Poor truth appear month likely
-2024-08-24,-31.96,BP,Transportation,Different run well sometimes
-2024-08-24,-94.14,Dental Clinic,Health,Before especially more himself drop
-2024-08-25,-325.99,Savings Account,savings,Up fact wonder
-2024-08-26,-45.15,McDonald's,Food & Dining,Market whom economy former
-2024-08-26,-80.07,Starbucks,Food & Dining,News voice whose
-2024-08-26,-92.18,Medical Center,Health,Central shoulder rather light
-2024-08-27,-58.35,Uber,Transportation,Under guess allow
-2024-08-27,-116.91,Walgreens,Health,Daughter candidate determine soldier
-2024-08-28,-75.92,Pharmacy,Health,Often bank century Mr
-2024-08-29,-48.69,Disney+,Entertainment,Parent stuff
-2024-08-29,-295.49,Nike,Shopping,Risk several
-2024-08-29,-102.62,Savings Account,savings,Child tell talk forget trade
-2024-08-30,-126.17,Dental Clinic,Health,Accept explain edge program one
-2024-08-30,-68.32,Target,Shopping,Form spend
-2024-08-30,-32.31,Spotify,Entertainment,Within memory successful
-2024-08-30,-66.77,Shell,Transportation,Two ten teacher myself change
-2024-08-30,-77.95,Whole Foods,Groceries,Leave listen hotel
-2024-08-31,3000.00,Employer Inc,Income,Monthly Salary
-2024-08-31,-69.23,Chipotle,Food & Dining,Main own whom he
-2024-09-01,-2003.14,Landlord,Housing,Move better
-2024-09-02,-34.04,Shell,Transportation,Half water no
-2024-09-03,-156.48,Savings Account,savings,Final stay though identify
-2024-09-03,-28.27,Pharmacy,Health,Network investment
-2024-09-03,-74.68,Lyft,Transportation,Already over sport newspaper
-2024-09-03,814.17,Freelance Client,Income,Payment from Freelance Client
-2024-09-04,-379.78,Savings Account,savings,Behind reality
-2024-09-04,-40.33,Safeway,Groceries,Could put
-2024-09-04,-480.32,Savings Account,savings,Safe owner painting finally
-2024-09-04,-217.93,Apple Store,Shopping,Case news response
-2024-09-04,-253.13,Nike,Shopping,Easy side smile better
-2024-09-05,-43.47,Starbucks,Food & Dining,Soldier whom
-2024-09-05,-125.36,Walgreens,Health,Politics enter throw commercial continue
-2024-09-05,-27.30,HBO Max,Entertainment,Might clear too
-2024-09-05,-36.77,Walgreens,Health,Give employee
-2024-09-05,-11.30,Disney+,Entertainment,Candidate recognize
-2024-09-06,-245.35,Target,Shopping,Very particular exist challenge ground
-2024-09-07,-67.26,Nike,Shopping,Hand attention yourself method into
-2024-09-07,-86.84,Subway,Food & Dining,Follow only poor
-2024-09-08,-296.37,Target,Shopping,About daughter agree
-2024-09-08,-409.52,Savings Account,savings,Control girl board finally
-2024-09-08,-1200.04,Landlord,Housing,Impact over successful
-2024-09-08,-140.76,Savings Account,savings,Data painting board step
-2024-09-09,-267.79,Savings Account,savings,Professional drop yourself blue
-2024-09-09,-467.18,Savings Account,savings,Weight medical
-2024-09-10,828.23,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-09-10,-1847.50,Property Management,Housing,Current involve
-2024-09-11,-185.05,Internet Provider,Bills,Find population decade wear
-2024-09-11,-163.03,Costco,Groceries,Himself music if
-2024-09-11,-31.75,Pharmacy,Health,Middle property building
-2024-09-11,428.73,Freelance Client,Income,Payment from Freelance Client
-2024-09-11,-44.33,Nike,Shopping,Along goal painting
-2024-09-12,-162.32,Water Corp,Bills,Still heart environment
-2024-09-13,-120.26,Medical Center,Health,Mouth state bill cut
-2024-09-13,-144.10,Savings Account,savings,Actually high
-2024-09-13,-29.70,Starbucks,Food & Dining,Always north action
-2024-09-13,-2497.39,Landlord,Housing,This central above another turn
-2024-09-14,-157.15,Savings Account,savings,Ask spend popular
-2024-09-14,-489.51,Savings Account,savings,Hand little
-2024-09-14,-70.80,BP,Transportation,Reason end anyone suffer director
-2024-09-15,-98.88,Trader Joe's,Groceries,Stand who
-2024-09-15,-149.83,Dental Clinic,Health,Sure per part
-2024-09-15,-67.86,AT&T,Bills,Billion trouble of attorney lot
-2024-09-15,-50.80,Shell,Transportation,Me successful not myself
-2024-09-16,-78.42,Pharmacy,Health,Happy light real nothing
-2024-09-16,-294.06,Apple Store,Shopping,On success key
-2024-09-17,-105.86,Whole Foods,Groceries,Head discussion
-2024-09-18,-67.64,BP,Transportation,Three nice could
-2024-09-18,-136.10,Nike,Shopping,Hear resource machine truth
-2024-09-18,-77.81,Trader Joe's,Groceries,Will information wrong property central
-2024-09-19,-79.52,Uber,Transportation,Six idea
-2024-09-19,-22.64,Uber,Transportation,Accept close popular debate however
-2024-09-19,-1032.47,Property Management,Housing,Fine catch term add will
-2024-09-20,-55.32,Trader Joe's,Groceries,Our wrong fear
-2024-09-20,-28.91,AMC Theaters,Entertainment,Positive physical
-2024-09-20,-76.28,Subway,Food & Dining,Region real lay fast tend
-2024-09-21,-62.81,Shell,Transportation,Provide account
-2024-09-21,-51.27,Chevron,Transportation,Tend occur though condition
-2024-09-21,-84.22,Costco,Groceries,Process quite
-2024-09-22,-2364.44,Property Management,Housing,Network financial answer soon particularly
-2024-09-22,-290.88,Nike,Shopping,Less allow
-2024-09-23,-1809.87,Property Management,Housing,Mention detail
-2024-09-23,-64.45,Amazon,Shopping,Maintain produce brother public
-2024-09-24,-77.90,Lyft,Transportation,Conference firm cover
-2024-09-24,-34.55,Trader Joe's,Groceries,Coach magazine
-2024-09-24,-280.75,Nike,Shopping,Laugh card true happen several
-2024-09-25,-152.81,Trader Joe's,Groceries,Senior maybe interest
-2024-09-25,-246.83,Nike,Shopping,Different power assume collection information
-2024-09-25,-196.42,Water Corp,Bills,Sea organization employee product
-2024-09-25,-61.82,Nike,Shopping,Reason door half science
-2024-09-26,-49.73,Spotify,Entertainment,Stage beautiful
-2024-09-26,-96.62,Walmart,Groceries,Edge lead under little
-2024-09-26,560.59,Freelance Client,Income,Payment from Freelance Client
-2024-09-27,-142.98,Target,Shopping,There civil morning ask place
-2024-09-27,-54.56,Whole Foods,Groceries,Rather yeah wish music
-2024-09-27,-77.34,Internet Provider,Bills,Floor out do gun
-2024-09-27,-1431.21,Landlord,Housing,Dark employee public
-2024-09-28,-17.72,Starbucks,Food & Dining,Great civil the
-2024-09-28,-21.10,AMC Theaters,Entertainment,Final enough
-2024-09-28,-181.42,Verizon,Bills,Especially take politics kid
-2024-09-28,-328.32,Savings Account,savings,Into whether billion wall
-2024-09-29,-38.86,Spotify,Entertainment,Drug father street bad
-2024-09-29,-187.58,Savings Account,savings,Threat surface fear stand
-2024-09-29,-1405.49,Mortgage Co.,Housing,When positive dark
-2024-09-29,-155.87,Utility Company,Bills,Claim question
-2024-09-30,3000.00,Employer Inc,Income,Monthly Salary
-2024-09-30,-178.27,Best Buy,Shopping,Adult clearly onto environment
-2024-09-30,-259.85,Best Buy,Shopping,People analysis end
-2024-10-01,-64.38,Dental Clinic,Health,Society music
-2024-10-01,-51.42,Water Corp,Bills,Stuff play area
-2024-10-01,-50.80,Medical Center,Health,Low affect television
-2024-10-01,-194.54,Best Buy,Shopping,Here picture identify tonight
-2024-10-02,-29.41,Netflix,Entertainment,Big meeting crime table
-2024-10-02,-17.56,AMC Theaters,Entertainment,Community worry theory
-2024-10-03,-79.10,Walgreens,Health,Account force
-2024-10-03,-21.70,McDonald's,Food & Dining,Event quickly policy head
-2024-10-03,-20.79,Dental Clinic,Health,Federal them scene travel here
-2024-10-04,-37.29,Chevron,Transportation,Glass knowledge
-2024-10-04,-96.80,Safeway,Groceries,Technology her carry
-2024-10-05,-66.05,Shell,Transportation,See during ok
-2024-10-06,-279.16,Savings Account,savings,Total body establish strategy
-2024-10-07,-270.22,Savings Account,savings,Free nor feel act
-2024-10-07,-35.18,Netflix,Entertainment,Kid key
-2024-10-07,-59.08,Walgreens,Health,Before off growth
-2024-10-08,-210.13,Savings Account,savings,Lose system
-2024-10-08,326.81,Freelance Client,Income,Payment from Freelance Client
-2024-10-08,-20.68,Disney+,Entertainment,High continue half
-2024-10-08,-64.75,Internet Provider,Bills,Conference top try
-2024-10-08,-159.75,Verizon,Bills,Simply street
-2024-10-09,-186.60,Nike,Shopping,Thousand explain left color
-2024-10-10,-486.51,Savings Account,savings,Billion call animal
-2024-10-10,-262.58,Nike,Shopping,Job enjoy executive similar
-2024-10-10,-99.97,Medical Center,Health,Forward agent space
-2024-10-10,-79.58,CVS,Health,Those argue camera sure miss
-2024-10-10,204.73,Freelance Client,Income,Payment from Freelance Client
-2024-10-11,934.77,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-10-11,-173.97,AT&T,Bills,No attorney girl
-2024-10-12,-74.17,Shell,Transportation,Better democratic commercial
-2024-10-13,-1563.62,Landlord,Housing,Enter family eat protect
-2024-10-13,-308.44,Savings Account,savings,Work bag high behind
-2024-10-14,-34.13,BP,Transportation,Project less over
-2024-10-14,-99.75,Nike,Shopping,Audience understand cause
-2024-10-14,-64.37,Starbucks,Food & Dining,Truth hour imagine happy worker
-2024-10-15,-72.08,Apple Store,Shopping,Talk if
-2024-10-15,-380.02,Savings Account,savings,Before here will
-2024-10-15,-46.46,Local Restaurant,Food & Dining,Answer development still
-2024-10-16,-58.60,Lyft,Transportation,Current truth focus
-2024-10-16,-74.25,McDonald's,Food & Dining,Mrs drug chance increase
-2024-10-17,-145.28,Internet Provider,Bills,Hot technology
-2024-10-18,-214.76,Savings Account,savings,Role west free rate ok
-2024-10-18,-394.90,Savings Account,savings,Camera property
-2024-10-18,-40.90,AMC Theaters,Entertainment,Traditional kid knowledge individual and
-2024-10-18,-423.56,Savings Account,savings,Today everything method
-2024-10-19,990.69,Freelance Client,Income,Payment from Freelance Client
-2024-10-20,-1301.64,Mortgage Co.,Housing,Room give
-2024-10-20,661.60,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-10-20,-22.05,Local Restaurant,Food & Dining,Become evening he discuss
-2024-10-20,-17.24,AMC Theaters,Entertainment,Act none section
-2024-10-20,-423.12,Savings Account,savings,Crime station name deep why
-2024-10-21,257.04,Freelance Client,Income,Payment from Freelance Client
-2024-10-21,-90.22,Trader Joe's,Groceries,Draw include democratic along necessary
-2024-10-21,-171.41,Costco,Groceries,Book heart actually
-2024-10-21,-144.78,Trader Joe's,Groceries,Certain feeling away
-2024-10-22,676.08,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-10-23,897.83,Freelance Client,Income,Payment from Freelance Client
-2024-10-24,-36.92,Subway,Food & Dining,Offer they particular fire
-2024-10-24,552.15,Freelance Client,Income,Payment from Freelance Client
-2024-10-24,-170.54,Verizon,Bills,Notice focus road speak
-2024-10-24,-61.58,Chipotle,Food & Dining,Tell seek now
-2024-10-25,-124.24,Costco,Groceries,Could benefit character
-2024-10-25,-75.28,Chipotle,Food & Dining,Through else decide
-2024-10-25,-33.87,Lyft,Transportation,Program next beyond
-2024-10-26,-10.85,Subway,Food & Dining,Himself difficult heart whatever
-2024-10-26,-130.37,Savings Account,savings,Exist much attention anyone
-2024-10-26,-51.38,Safeway,Groceries,Toward parent
-2024-10-26,-63.60,Subway,Food & Dining,Although all health degree
-2024-10-26,-137.15,Internet Provider,Bills,Whose cut fund
-2024-10-27,-30.54,Apple Store,Shopping,Letter stuff
-2024-10-28,-22.35,Starbucks,Food & Dining,Of floor
-2024-10-29,-241.53,Savings Account,savings,Usually resource question door from
-2024-10-29,-29.98,AMC Theaters,Entertainment,Dog event board news
-2024-10-29,-171.55,Savings Account,savings,Require event court
-2024-10-29,116.07,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-10-29,-159.12,Trader Joe's,Groceries,Almost south nature
-2024-10-30,-224.09,Savings Account,savings,To dream whatever something ground
-2024-10-31,3000.00,Employer Inc,Income,Monthly Salary
-2024-10-31,-117.58,Dental Clinic,Health,Shake bring bad win
-2024-11-01,-35.00,Subway,Food & Dining,Spring father research
-2024-11-02,-338.50,Savings Account,savings,Interesting nor back culture
-2024-11-02,-187.36,Best Buy,Shopping,Better past set prepare
-2024-11-02,-47.30,Lyft,Transportation,Onto themselves simple
-2024-11-02,-15.99,Netflix,Entertainment,Also society hospital school
-2024-11-03,-161.28,Savings Account,savings,Stuff learn appear provide different
-2024-11-04,-822.05,Landlord,Housing,Central sometimes
-2024-11-04,-107.25,Dental Clinic,Health,History road station
-2024-11-04,-339.06,Savings Account,savings,Firm leg evidence
-2024-11-05,-112.46,Pharmacy,Health,Five wife
-2024-11-05,-49.44,Disney+,Entertainment,Father himself true
-2024-11-06,822.07,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-11-06,-347.07,Savings Account,savings,Region chance into beautiful
-2024-11-06,-92.11,Starbucks,Food & Dining,Significant decade single
-2024-11-07,-141.14,Dental Clinic,Health,Cause which
-2024-11-08,-14.61,AMC Theaters,Entertainment,Work cold try leader
-2024-11-08,-27.97,Best Buy,Shopping,Occur up
-2024-11-08,387.68,Freelance Client,Income,Payment from Freelance Client
-2024-11-08,-52.47,Local Restaurant,Food & Dining,Nature bring story
-2024-11-08,-77.09,CVS,Health,Number during one will
-2024-11-09,-126.29,Utility Company,Bills,Boy one real
-2024-11-09,-275.14,Savings Account,savings,Will office along cold without
-2024-11-09,-74.57,Local Restaurant,Food & Dining,Trip character
-2024-11-09,-1342.80,Property Management,Housing,Wide manager of
-2024-11-10,-12.18,McDonald's,Food & Dining,Seat remember its
-2024-11-10,284.87,Freelance Client,Income,Payment from Freelance Client
-2024-11-10,-44.42,Walgreens,Health,American base heavy
-2024-11-10,-133.86,Best Buy,Shopping,Relate wear begin truth
-2024-11-11,311.35,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-11-11,431.13,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-11-11,687.23,Freelance Client,Income,Payment from Freelance Client
-2024-11-11,-74.33,Whole Foods,Groceries,Former her
-2024-11-12,-39.98,BP,Transportation,These country radio necessary buy
-2024-11-12,-68.53,BP,Transportation,Cultural item whose modern
-2024-11-12,-936.65,Landlord,Housing,Authority account year
-2024-11-12,-33.57,Whole Foods,Groceries,Cover feel part only
-2024-11-12,-1478.83,Landlord,Housing,Ago space describe offer ago
-2024-11-13,-189.01,Costco,Groceries,Medical environmental physical daughter list
-2024-11-13,-1633.64,Mortgage Co.,Housing,Time with we
-2024-11-13,-373.45,Savings Account,savings,Boy thought any even
-2024-11-14,-195.25,Internet Provider,Bills,Everyone common scientist too situation
-2024-11-15,-139.88,Nike,Shopping,Billion line strategy meeting lead
-2024-11-15,-35.35,HBO Max,Entertainment,Million under build
-2024-11-15,-61.13,Costco,Groceries,Hand class face once
-2024-11-15,-83.99,Whole Foods,Groceries,Energy art often board subject
-2024-11-15,-104.88,Dental Clinic,Health,Interesting body
-2024-11-16,-473.22,Savings Account,savings,Morning tend finally
-2024-11-16,-143.90,Trader Joe's,Groceries,Deep result discussion begin
-2024-11-16,-86.70,Medical Center,Health,Republican two summer young
-2024-11-17,-131.78,AT&T,Bills,Else western represent table
-2024-11-17,563.06,Freelance Client,Income,Payment from Freelance Client
-2024-11-17,-1109.40,Landlord,Housing,Message view
-2024-11-18,-160.93,Target,Shopping,Create charge treatment recent
-2024-11-18,-332.24,Savings Account,savings,Their behind turn
-2024-11-18,-113.52,CVS,Health,Act man
-2024-11-19,-125.06,AT&T,Bills,Clear ten science music husband
-2024-11-19,-103.67,CVS,Health,Eight wide
-2024-11-19,-808.13,Property Management,Housing,East hair cut heavy small
-2024-11-20,-187.99,Nike,Shopping,Activity low program
-2024-11-21,658.28,Freelance Client,Income,Payment from Freelance Client
-2024-11-21,-11.43,AMC Theaters,Entertainment,Industry soon result vote
-2024-11-22,-159.79,Savings Account,savings,Man must line whatever fight
-2024-11-22,-15.67,Local Restaurant,Food & Dining,Article group right often
-2024-11-22,-88.25,Utility Company,Bills,Tonight firm job many
-2024-11-22,-77.08,Local Restaurant,Food & Dining,Still per
-2024-11-22,-2034.75,Landlord,Housing,Edge pressure arm rest name
-2024-11-23,-117.50,Medical Center,Health,Its Mrs measure
-2024-11-23,-172.18,Trader Joe's,Groceries,Two thought
-2024-11-23,-93.49,Chipotle,Food & Dining,North go job or
-2024-11-23,-102.86,Internet Provider,Bills,Though various past member take
-2024-11-23,-1126.15,Landlord,Housing,Activity its bar picture find
-2024-11-24,-1089.41,Landlord,Housing,Choice couple service attack
-2024-11-24,943.81,Freelance Client,Income,Payment from Freelance Client
-2024-11-24,-43.24,Netflix,Entertainment,Around increase control
-2024-11-24,-206.41,Savings Account,savings,Physical decision heavy pay
-2024-11-24,-136.11,Trader Joe's,Groceries,Artist consider happen analysis this
-2024-11-25,-137.69,Trader Joe's,Groceries,Drop Congress
-2024-11-25,-48.10,Netflix,Entertainment,Trade fly
-2024-11-25,-95.70,Medical Center,Health,Of throughout although major
-2024-11-26,-2174.91,Mortgage Co.,Housing,Marriage green each
-2024-11-26,498.15,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-11-26,-31.54,Costco,Groceries,Action institution
-2024-11-26,-47.22,Disney+,Entertainment,Newspaper issue make
-2024-11-26,-131.26,Trader Joe's,Groceries,Blood degree
-2024-11-27,-176.43,Trader Joe's,Groceries,Mr floor account
-2024-11-27,-384.69,Savings Account,savings,Direction would main
-2024-11-28,-356.58,Savings Account,savings,Little century writer
-2024-11-29,-236.81,Savings Account,savings,Second decision various
-2024-11-30,3000.00,Employer Inc,Income,Monthly Salary
-2024-11-30,-77.07,Safeway,Groceries,Commercial hot
-2024-12-01,-21.07,Chevron,Transportation,Already benefit former pattern decision
-2024-12-02,-10.44,Starbucks,Food & Dining,Low into
-2024-12-02,-35.10,Spotify,Entertainment,Majority network reality lead
-2024-12-02,-18.62,Spotify,Entertainment,Young often house
-2024-12-02,-177.02,Savings Account,savings,Side nor accept help
-2024-12-02,-64.43,Walgreens,Health,Store table argue
-2024-12-03,-841.18,Landlord,Housing,Great final if
-2024-12-03,-269.96,Apple Store,Shopping,Customer order anyone out
-2024-12-04,-330.86,Savings Account,savings,Receive customer late
-2024-12-04,-861.59,Landlord,Housing,Pressure fine force play
-2024-12-04,-28.35,Lyft,Transportation,Push learn war leave
-2024-12-04,-279.08,Nike,Shopping,Alone by exist
-2024-12-05,-26.07,Chipotle,Food & Dining,Test here who
-2024-12-06,-114.76,Medical Center,Health,Make budget
-2024-12-06,219.34,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-06,-43.48,Starbucks,Food & Dining,Certain along chance
-2024-12-06,-111.37,Trader Joe's,Groceries,Here later structure us
-2024-12-06,-195.93,Nike,Shopping,Never design shoulder
-2024-12-07,219.47,Freelance Client,Income,Payment from Freelance Client
-2024-12-07,-147.25,Walgreens,Health,Wrong set physical her check
-2024-12-07,-96.92,Whole Foods,Groceries,Station at fill prepare
-2024-12-07,-188.86,Savings Account,savings,Argue difference about
-2024-12-07,-167.45,Savings Account,savings,Game strategy early decade
-2024-12-08,-114.23,Dental Clinic,Health,Protect reality myself
-2024-12-08,898.66,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-09,-83.81,Safeway,Groceries,Break time stand office smile
-2024-12-09,-127.41,Water Corp,Bills,Best ask force born form
-2024-12-09,-75.49,Lyft,Transportation,Middle happy could usually population
-2024-12-09,-1238.92,Mortgage Co.,Housing,Challenge head feel purpose make
-2024-12-10,-25.45,HBO Max,Entertainment,Hotel fact to question
-2024-12-11,361.55,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-11,-195.12,Safeway,Groceries,Place stop
-2024-12-12,-44.59,Netflix,Entertainment,Toward direction realize
-2024-12-12,-87.30,Water Corp,Bills,Professional put itself outside us
-2024-12-13,-142.60,Walgreens,Health,My consumer rich raise
-2024-12-13,-82.30,Local Restaurant,Food & Dining,Interview exist half home
-2024-12-13,835.18,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-13,-134.90,Costco,Groceries,Ago probably house
-2024-12-13,-138.71,Water Corp,Bills,Hold method
-2024-12-14,-47.79,BP,Transportation,Significant ok identify
-2024-12-14,-30.05,McDonald's,Food & Dining,Challenge must past force
-2024-12-15,-55.46,McDonald's,Food & Dining,Report participant friend charge
-2024-12-15,-62.43,Trader Joe's,Groceries,Stage from the prevent on
-2024-12-15,-31.02,Safeway,Groceries,Kid avoid herself
-2024-12-16,454.00,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-16,-26.15,Shell,Transportation,Player trip air
-2024-12-16,-124.92,Walgreens,Health,Evidence degree send drug school
-2024-12-16,-25.89,Local Restaurant,Food & Dining,Late race ask bar moment
-2024-12-16,-395.95,Savings Account,savings,His school especially hot long
-2024-12-17,-53.86,Whole Foods,Groceries,Success talk poor
-2024-12-17,-2342.54,Property Management,Housing,Represent sound
-2024-12-17,-26.35,Best Buy,Shopping,Doctor I forget food
-2024-12-18,-96.83,Verizon,Bills,Ground every bed
-2024-12-18,-82.55,Starbucks,Food & Dining,Lay nice
-2024-12-19,-78.73,Apple Store,Shopping,Citizen close box story
-2024-12-19,-171.78,AT&T,Bills,Sea thus community woman
-2024-12-20,-173.10,Nike,Shopping,Language poor likely real
-2024-12-20,-44.99,Chipotle,Food & Dining,Well garden hospital
-2024-12-21,-419.95,Savings Account,savings,Range just
-2024-12-21,-84.98,Subway,Food & Dining,Thousand before drive road
-2024-12-21,-1453.72,Landlord,Housing,Race prove must
-2024-12-21,-198.30,Savings Account,savings,Policy seek station
-2024-12-22,-26.92,Lyft,Transportation,Dog by
-2024-12-22,-54.73,Shell,Transportation,Quickly they
-2024-12-23,521.62,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-24,-269.14,Savings Account,savings,Design evening
-2024-12-24,624.75,Freelance Client,Income,Payment from Freelance Client
-2024-12-24,639.22,Side Gig LLC,Income,Payment from Side Gig LLC
-2024-12-24,-43.79,Shell,Transportation,Candidate back artist
-2024-12-24,-1480.34,Landlord,Housing,Tree play response serve
-2024-12-25,-59.43,Medical Center,Health,Crime admit piece nor
-2024-12-25,-88.30,Trader Joe's,Groceries,Occur trial test dark popular
-2024-12-25,-111.11,Verizon,Bills,Safe local get
-2024-12-26,-117.36,Safeway,Groceries,Alone question phone stage
-2024-12-26,-29.52,Spotify,Entertainment,Economic police power head
-2024-12-26,-140.69,Target,Shopping,Open finally
-2024-12-27,-85.26,Target,Shopping,Yes owner check
-2024-12-27,-19.04,Spotify,Entertainment,Follow leg information people
-2024-12-27,-102.54,Verizon,Bills,Ten will
-2024-12-28,-156.03,Verizon,Bills,Either receive draw
-2024-12-28,-427.82,Savings Account,savings,Art star front address
-2024-12-28,-121.62,Dental Clinic,Health,Seven mother movement
-2024-12-28,-47.01,Netflix,Entertainment,Energy both
-2024-12-29,-225.16,Savings Account,savings,Health assume economic suffer finish
-2024-12-29,-50.57,Medical Center,Health,Behavior including
-2024-12-30,-1751.46,Property Management,Housing,Interest attack card
-2024-12-31,3000.00,Employer Inc,Income,Monthly Salary
-2024-12-31,-75.50,Best Buy,Shopping,Building than
-2025-01-01,-188.04,Water Corp,Bills,View remember student ever me
-2025-01-01,-11.67,Netflix,Entertainment,Partner set standard dark owner
-2025-01-01,-65.96,Chevron,Transportation,Compare game item
-2025-01-01,-111.91,Water Corp,Bills,Win soldier thus
-2025-01-02,-30.84,Dental Clinic,Health,Five hit where
-2025-01-02,900.33,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-02,-56.90,BP,Transportation,Growth center contain
-2025-01-02,-31.36,Spotify,Entertainment,Together best leader
-2025-01-02,-20.99,Chevron,Transportation,Government fund usually institution
-2025-01-03,-180.83,Water Corp,Bills,Style career pay term street
-2025-01-03,-2333.76,Property Management,Housing,Continue administration score
-2025-01-04,692.17,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-04,-146.90,Utility Company,Bills,City help
-2025-01-05,723.28,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-05,-133.56,Walgreens,Health,Cost skill
-2025-01-05,-23.14,Walgreens,Health,Always billion himself physical
-2025-01-06,-49.54,HBO Max,Entertainment,Left prove very guy
-2025-01-07,-362.00,Savings Account,savings,Oil site soon
-2025-01-07,-63.64,Chevron,Transportation,Country activity
-2025-01-08,-88.98,Dental Clinic,Health,Ready glass leave family indicate
-2025-01-09,-84.70,Costco,Groceries,Network lead serious else
-2025-01-09,-100.71,Walmart,Groceries,Type cell not next section
-2025-01-10,-144.32,Savings Account,savings,Tend easy
-2025-01-10,-69.41,AT&T,Bills,Laugh artist free
-2025-01-10,-45.09,Chevron,Transportation,As hour night trade report
-2025-01-10,-26.45,Apple Store,Shopping,Election look whose
-2025-01-10,-12.77,AMC Theaters,Entertainment,Write street treatment nothing
-2025-01-11,-25.45,Uber,Transportation,Pressure hard style
-2025-01-11,-397.68,Savings Account,savings,Collection I
-2025-01-11,985.15,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-12,-1889.23,Mortgage Co.,Housing,Own can
-2025-01-13,-61.61,Subway,Food & Dining,Green difficult support check speech
-2025-01-13,-1937.04,Mortgage Co.,Housing,Wide to again religious
-2025-01-13,-79.04,Walgreens,Health,Option oil instead better
-2025-01-13,-131.52,Verizon,Bills,Their operation outside military
-2025-01-13,-64.67,CVS,Health,Soon discussion sea
-2025-01-14,-11.48,Local Restaurant,Food & Dining,Station quality also
-2025-01-14,-23.64,Pharmacy,Health,More so pattern
-2025-01-14,-1403.35,Landlord,Housing,Brother at capital share sea
-2025-01-14,-38.41,Walmart,Groceries,Successful begin during customer set
-2025-01-15,149.38,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-15,-306.31,Savings Account,savings,Weight yard and
-2025-01-16,-169.19,Nike,Shopping,Teacher finish campaign
-2025-01-16,-172.14,Utility Company,Bills,Son staff entire make
-2025-01-16,-40.97,Chevron,Transportation,Yet forget why
-2025-01-16,-1714.79,Property Management,Housing,Central truth then difficult president
-2025-01-16,-243.20,Amazon,Shopping,Opportunity product require important
-2025-01-17,-66.98,Subway,Food & Dining,Room result hand special give
-2025-01-17,-66.22,BP,Transportation,Clearly vote learn voice
-2025-01-17,-76.40,Starbucks,Food & Dining,Modern near thing
-2025-01-17,-90.28,Dental Clinic,Health,Least use role company
-2025-01-18,463.78,Freelance Client,Income,Payment from Freelance Client
-2025-01-19,-977.66,Landlord,Housing,Court seek feeling lot
-2025-01-19,-164.35,Savings Account,savings,Much increase not
-2025-01-19,-82.46,Chipotle,Food & Dining,Manager it front up
-2025-01-19,-19.47,AMC Theaters,Entertainment,Through road fine
-2025-01-20,-48.34,Uber,Transportation,May arrive month pull
-2025-01-20,-10.77,Disney+,Entertainment,Ok interview management
-2025-01-20,-47.20,Walgreens,Health,Very month politics they
-2025-01-21,-58.37,Trader Joe's,Groceries,Must director peace
-2025-01-21,-18.99,Local Restaurant,Food & Dining,Vote short level man
-2025-01-21,-115.65,CVS,Health,Best explain others some
-2025-01-22,-10.16,Subway,Food & Dining,Eight scientist capital
-2025-01-22,-149.93,CVS,Health,Edge research wear that
-2025-01-23,-55.13,BP,Transportation,Artist fly radio race
-2025-01-23,-54.15,Amazon,Shopping,Morning administration
-2025-01-23,-188.07,Costco,Groceries,Much whatever race senior order
-2025-01-23,-189.30,Savings Account,savings,Relate buy level
-2025-01-24,-63.16,Shell,Transportation,Chair maybe within friend
-2025-01-25,-158.10,Amazon,Shopping,Star project bill
-2025-01-25,-53.76,Chipotle,Food & Dining,Exactly yet heavy push
-2025-01-25,-31.73,Spotify,Entertainment,As customer possible
-2025-01-26,-1262.20,Mortgage Co.,Housing,Knowledge first from
-2025-01-26,-170.03,Savings Account,savings,Federal walk keep
-2025-01-26,-67.23,McDonald's,Food & Dining,Appear part too
-2025-01-26,-63.73,CVS,Health,Skill man stand relationship
-2025-01-27,-38.07,CVS,Health,Into role see
-2025-01-27,-37.90,Whole Foods,Groceries,Take along indicate offer employee
-2025-01-27,-63.38,Lyft,Transportation,Beautiful line range
-2025-01-27,-1126.83,Landlord,Housing,Blue Mrs institution reduce
-2025-01-28,-71.25,BP,Transportation,Majority four
-2025-01-28,-34.77,HBO Max,Entertainment,Seat else prevent well
-2025-01-28,631.52,Freelance Client,Income,Payment from Freelance Client
-2025-01-28,584.82,Side Gig LLC,Income,Payment from Side Gig LLC
-2025-01-29,-78.38,Shell,Transportation,After nothing safe act up
-2025-01-29,-325.66,Savings Account,savings,Either model
-2025-01-30,-27.98,Local Restaurant,Food & Dining,Send firm parent
-2025-01-30,-19.64,AMC Theaters,Entertainment,Dark kid so
-2025-01-30,-293.90,Apple Store,Shopping,Often benefit impact majority
-2025-01-30,329.53,Freelance Client,Income,Payment from Freelance Client
-2025-01-30,-144.89,Savings Account,savings,Beyond early after successful pass
-2025-01-31,3000.00,Employer Inc,Income,Monthly Salary
-2025-01-31,-78.37,Walmart,Groceries,American million marriage black other
-2025-01-31,-35.84,Spotify,Entertainment,Million poor individual
-2025-01-31,136.74,Freelance Client,Income,Payment from Freelance Client
-2025-01-31,-116.42,Best Buy,Shopping,Final anyone fly
+2024-02-01,-413.55,Savings Account,savings,Strategy hope
+2024-02-01,-137.26,Amazon,Shopping,Letter west above name
+2024-02-01,-41.02,Trader Joe's,Groceries,Make president concern
+2024-02-02,-48.09,Spotify,Entertainment,Product class laugh method hair
+2024-02-02,-26.29,Netflix,Entertainment,Report public writer
+2024-02-02,-78.31,Verizon,Bills,Court just
+2024-02-02,329.38,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-03,-164.94,Water Corp,Bills,Goal institution
+2024-02-04,-87.58,Safeway,Groceries,Wonder tend
+2024-02-04,-224.09,Target,Shopping,Understand particular him century
+2024-02-04,-60.94,Chevron,Transportation,Explain appear very
+2024-02-05,-65.99,Local Restaurant,Food & Dining,Something while guess suffer lose
+2024-02-05,131.44,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-06,-175.05,Trader Joe's,Groceries,During live southern
+2024-02-07,-93.39,Chipotle,Food & Dining,History plant
+2024-02-07,-21.38,Shell,Transportation,Democratic day million
+2024-02-08,-306.90,Savings Account,savings,Start window fund
+2024-02-08,-143.48,Walgreens,Health,Attorney ten instead economy could
+2024-02-09,-152.58,AT&T,Bills,Look red Republican
+2024-02-09,590.07,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-09,-71.40,Subway,Food & Dining,Meet front understand
+2024-02-09,-121.90,Walmart,Groceries,Population doctor
+2024-02-09,-66.81,Amazon,Shopping,Any evening school condition
+2024-02-10,-61.95,Internet Provider,Bills,One with reach religious
+2024-02-10,-50.89,Pharmacy,Health,Collection suffer company
+2024-02-10,-49.36,Dental Clinic,Health,Notice task next yard
+2024-02-11,-30.41,Uber,Transportation,Discussion someone black stand according
+2024-02-11,-159.86,Trader Joe's,Groceries,Interesting action soldier
+2024-02-11,756.48,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-11,-297.21,Savings Account,savings,Training different executive now party
+2024-02-11,-22.29,Shell,Transportation,Them leave a
+2024-02-12,-170.73,Savings Account,savings,Hope former behavior
+2024-02-12,-99.58,Walmart,Groceries,Ever form look decade
+2024-02-12,-15.63,Spotify,Entertainment,Describe world project authority why
+2024-02-12,-474.37,Savings Account,savings,Wrong born ok
+2024-02-12,-1513.72,Mortgage Co.,Housing,Add return group
+2024-02-13,-136.52,Water Corp,Bills,Option art Republican treat
+2024-02-14,166.76,Freelance Client,Income,Payment from Freelance Client
+2024-02-15,-59.91,Amazon,Shopping,Time perhaps
+2024-02-15,-982.86,Property Management,Housing,Single sister church career
+2024-02-15,-42.49,Whole Foods,Groceries,Fear short million
+2024-02-15,-73.50,Lyft,Transportation,Already rather hold action
+2024-02-16,635.49,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-16,-93.59,Starbucks,Food & Dining,Both huge learn
+2024-02-16,-263.28,Target,Shopping,Mind owner actually
+2024-02-16,978.10,Freelance Client,Income,Payment from Freelance Client
+2024-02-16,-59.20,Chipotle,Food & Dining,Front teacher change because
+2024-02-17,-60.10,Target,Shopping,Chance also event officer though
+2024-02-18,-158.63,Trader Joe's,Groceries,Media writer wall assume
+2024-02-18,-33.75,Lyft,Transportation,Box thought level
+2024-02-18,-180.57,Savings Account,savings,Explain necessary return star
+2024-02-18,-144.54,Internet Provider,Bills,Avoid budget represent leg heavy
+2024-02-19,-473.53,Savings Account,savings,Well herself
+2024-02-19,-24.46,BP,Transportation,Serious girl
+2024-02-19,-27.73,Spotify,Entertainment,Front range little
+2024-02-19,-166.64,AT&T,Bills,Affect Republican least can
+2024-02-19,600.21,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-20,-32.78,Uber,Transportation,Approach general
+2024-02-20,-127.68,Utility Company,Bills,Among though person
+2024-02-20,-30.34,Starbucks,Food & Dining,Building speak leader
+2024-02-20,-1815.99,Mortgage Co.,Housing,Ahead moment deep
+2024-02-21,-2186.68,Mortgage Co.,Housing,Month his general it
+2024-02-21,-168.39,Walmart,Groceries,Ahead ok our hear
+2024-02-21,-22.22,Netflix,Entertainment,Country benefit stand so
+2024-02-21,-96.73,Walgreens,Health,Draw her within discuss
+2024-02-22,-187.74,Walmart,Groceries,Hear especially those
+2024-02-22,-25.80,Lyft,Transportation,Degree either your surface
+2024-02-23,-193.14,Water Corp,Bills,Place history it
+2024-02-23,-2180.30,Property Management,Housing,Blood measure new activity
+2024-02-24,-215.16,Apple Store,Shopping,Read black top argue
+2024-02-24,-903.49,Mortgage Co.,Housing,Song station dark
+2024-02-24,-40.14,CVS,Health,Tv result already
+2024-02-25,474.08,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-02-25,-67.66,Starbucks,Food & Dining,Real determine contain
+2024-02-25,-121.23,Apple Store,Shopping,If provide may positive party
+2024-02-25,-38.02,Disney+,Entertainment,Manager body likely his
+2024-02-26,-65.74,Best Buy,Shopping,Little same movie
+2024-02-27,-114.02,Verizon,Bills,Mention player radio accept hot
+2024-02-27,-44.18,Chevron,Transportation,Similar general face
+2024-02-28,-54.39,Dental Clinic,Health,Break human
+2024-02-28,-1749.45,Property Management,Housing,Second walk other yeah
+2024-02-28,618.92,Freelance Client,Income,Payment from Freelance Client
+2024-02-29,18000.00,Employer Inc,Income,Monthly Salary
+2024-02-29,-377.53,Savings Account,savings,Cover class shoulder few
+2024-02-29,-101.33,Savings Account,savings,Meet follow student
+2024-02-29,-105.82,Nike,Shopping,List consider
+2024-03-01,191.16,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-01,-119.95,Walgreens,Health,State believe
+2024-03-02,-43.91,AMC Theaters,Entertainment,Send hand stock prepare
+2024-03-03,-402.55,Savings Account,savings,Future truth leave guess
+2024-03-03,-1167.67,Property Management,Housing,Offer blue per city
+2024-03-03,-37.40,McDonald's,Food & Dining,Price something herself manage
+2024-03-04,-2365.81,Property Management,Housing,Down reveal test today
+2024-03-04,-60.89,Lyft,Transportation,Read class above to
+2024-03-04,-152.34,Costco,Groceries,Tv girl reason
+2024-03-04,-249.24,Savings Account,savings,Popular election low with
+2024-03-04,391.04,Freelance Client,Income,Payment from Freelance Client
+2024-03-05,750.28,Freelance Client,Income,Payment from Freelance Client
+2024-03-06,279.65,Freelance Client,Income,Payment from Freelance Client
+2024-03-07,-2252.79,Property Management,Housing,Make billion activity
+2024-03-07,745.33,Freelance Client,Income,Payment from Freelance Client
+2024-03-07,-60.38,Dental Clinic,Health,Space could quickly doctor
+2024-03-08,-84.97,CVS,Health,Position figure
+2024-03-08,-66.46,Uber,Transportation,Current just property during
+2024-03-09,-1268.70,Mortgage Co.,Housing,Whether property several yard
+2024-03-09,-66.39,CVS,Health,Student best nearly
+2024-03-09,-49.62,Shell,Transportation,Several poor thank form
+2024-03-10,-163.09,Trader Joe's,Groceries,Pass not special
+2024-03-11,-65.33,Shell,Transportation,Really big enjoy various cause
+2024-03-11,-72.66,Water Corp,Bills,Theory idea now rule seem
+2024-03-11,-58.66,Medical Center,Health,Activity community PM else
+2024-03-11,-20.85,CVS,Health,Voice economic
+2024-03-11,705.78,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-12,-264.51,Savings Account,savings,Life people scientist cell
+2024-03-12,331.92,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-13,-82.55,Starbucks,Food & Dining,Size hear base surface environmental
+2024-03-13,-92.42,Starbucks,Food & Dining,Form factor grow development
+2024-03-14,720.50,Freelance Client,Income,Payment from Freelance Client
+2024-03-14,-122.75,Savings Account,savings,Seek truth theory
+2024-03-15,-349.21,Savings Account,savings,Year direction
+2024-03-15,-57.74,Chevron,Transportation,Car house scene since into
+2024-03-15,-21.31,HBO Max,Entertainment,Personal soon resource experience
+2024-03-15,-141.52,Savings Account,savings,Officer actually fly
+2024-03-16,-134.58,Medical Center,Health,Thousand administration company hard
+2024-03-16,687.81,Freelance Client,Income,Payment from Freelance Client
+2024-03-16,-447.19,Savings Account,savings,Huge boy
+2024-03-17,-1301.53,Mortgage Co.,Housing,Part likely imagine message
+2024-03-17,-107.47,Walgreens,Health,Treat most if right
+2024-03-17,-186.65,AT&T,Bills,Ground authority perform analysis thus
+2024-03-18,803.94,Freelance Client,Income,Payment from Freelance Client
+2024-03-18,-80.23,Subway,Food & Dining,Director catch team agree
+2024-03-18,-148.08,Verizon,Bills,Amount sometimes only
+2024-03-19,-360.11,Savings Account,savings,Player decade
+2024-03-19,-97.43,Verizon,Bills,Commercial pattern matter stock
+2024-03-19,-140.75,Target,Shopping,Population our
+2024-03-19,-46.88,Walgreens,Health,Certain explain day
+2024-03-19,-163.45,Internet Provider,Bills,Night smile seek stand her
+2024-03-20,-70.41,BP,Transportation,Bag will
+2024-03-20,-1944.06,Mortgage Co.,Housing,Character meeting up do
+2024-03-20,-59.96,Uber,Transportation,Draw feel group
+2024-03-21,-159.67,Savings Account,savings,Himself set buy few
+2024-03-21,-2284.05,Mortgage Co.,Housing,Consumer nearly
+2024-03-21,-2108.34,Property Management,Housing,Base condition
+2024-03-21,-45.54,Subway,Food & Dining,Particular his government
+2024-03-22,-283.51,Nike,Shopping,Theory commercial bad relationship
+2024-03-22,-30.19,Apple Store,Shopping,Subject main add area walk
+2024-03-22,399.86,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-22,-55.43,Uber,Transportation,Different message specific traditional key
+2024-03-23,-30.93,Disney+,Entertainment,Kind data fear
+2024-03-23,270.81,Freelance Client,Income,Payment from Freelance Client
+2024-03-24,-245.86,Best Buy,Shopping,Could summer physical its
+2024-03-24,-99.20,Utility Company,Bills,Worry though realize small argue
+2024-03-24,224.36,Freelance Client,Income,Payment from Freelance Client
+2024-03-24,-387.85,Savings Account,savings,Send however other company
+2024-03-24,-298.76,Savings Account,savings,Myself agreement statement one
+2024-03-25,756.22,Freelance Client,Income,Payment from Freelance Client
+2024-03-25,-2010.17,Mortgage Co.,Housing,Race create hard
+2024-03-26,731.87,Freelance Client,Income,Payment from Freelance Client
+2024-03-26,-175.73,Verizon,Bills,Everybody suddenly
+2024-03-26,-92.37,Safeway,Groceries,Free return their
+2024-03-26,-202.82,Savings Account,savings,No available technology rule
+2024-03-26,-2213.18,Mortgage Co.,Housing,Popular least describe
+2024-03-27,-145.50,Walgreens,Health,Ever market today
+2024-03-27,-76.65,McDonald's,Food & Dining,Off he across too power
+2024-03-27,-91.41,Amazon,Shopping,Change out next
+2024-03-27,-11.56,Starbucks,Food & Dining,Direction while young
+2024-03-28,-249.74,Amazon,Shopping,Arrive argue
+2024-03-28,-87.82,Costco,Groceries,Conference until draw
+2024-03-28,666.76,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-28,-73.67,Chevron,Transportation,Everybody training foreign age
+2024-03-28,-70.89,Shell,Transportation,Team say admit
+2024-03-29,335.56,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-03-30,-63.22,McDonald's,Food & Dining,Former method company
+2024-03-30,-232.15,Savings Account,savings,Mission one style feeling it
+2024-03-30,-88.85,Amazon,Shopping,Seat simply much
+2024-03-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-03-31,-187.88,Whole Foods,Groceries,Large sing
+2024-03-31,-43.02,Whole Foods,Groceries,Dinner check need current analysis
+2024-04-01,-101.02,Internet Provider,Bills,Maybe these her
+2024-04-01,-21.23,Disney+,Entertainment,Hour station statement
+2024-04-02,-352.16,Savings Account,savings,South thought
+2024-04-02,-27.35,Netflix,Entertainment,Truth his personal
+2024-04-03,-2294.41,Mortgage Co.,Housing,Writer full sell plan
+2024-04-03,-170.62,AT&T,Bills,Our clear front
+2024-04-04,-982.22,Mortgage Co.,Housing,Rich property speech miss
+2024-04-04,-2085.79,Property Management,Housing,Ball Mrs drive
+2024-04-04,-1340.88,Mortgage Co.,Housing,More challenge
+2024-04-04,-113.64,Utility Company,Bills,Great student
+2024-04-04,-128.37,Utility Company,Bills,Same religious
+2024-04-05,-164.66,Water Corp,Bills,President allow when air politics
+2024-04-06,-178.92,Savings Account,savings,Change any democratic
+2024-04-06,-65.63,CVS,Health,While up change
+2024-04-06,-186.82,AT&T,Bills,Lawyer herself foot lay record
+2024-04-07,-57.15,Starbucks,Food & Dining,Common thing toward
+2024-04-08,-285.39,Savings Account,savings,Window interesting a collection southern
+2024-04-09,-185.50,Savings Account,savings,Win set
+2024-04-09,-289.67,Savings Account,savings,Indeed big conference
+2024-04-10,-94.37,Walmart,Groceries,Easy west someone
+2024-04-10,-189.27,Verizon,Bills,Ball traditional live student
+2024-04-10,-34.77,Chevron,Transportation,Tree southern speak
+2024-04-10,-99.15,CVS,Health,Box opportunity should
+2024-04-10,-36.12,Spotify,Entertainment,Company financial interest where
+2024-04-11,-1114.43,Mortgage Co.,Housing,Modern short book compare
+2024-04-11,-380.00,Savings Account,savings,Return our medical
+2024-04-11,-89.10,Chipotle,Food & Dining,Cold change
+2024-04-11,-253.37,Savings Account,savings,Election choice information stay
+2024-04-12,222.04,Freelance Client,Income,Payment from Freelance Client
+2024-04-12,-27.63,Spotify,Entertainment,Expert animal seek
+2024-04-12,-145.06,Best Buy,Shopping,She pull fly manager
+2024-04-12,-50.33,Trader Joe's,Groceries,Important direction
+2024-04-13,-21.95,Local Restaurant,Food & Dining,Off thing use
+2024-04-14,-73.86,Walmart,Groceries,However all fire as
+2024-04-15,235.30,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-04-16,-56.24,Internet Provider,Bills,Activity focus area could
+2024-04-17,-380.69,Savings Account,savings,Large interesting reflect man risk
+2024-04-17,-148.48,Target,Shopping,Detail hot TV
+2024-04-17,-30.61,Medical Center,Health,Mention front huge indicate occur
+2024-04-17,-52.21,Shell,Transportation,Right stuff American along against
+2024-04-17,-41.60,Chipotle,Food & Dining,Range owner increase
+2024-04-18,-294.37,Best Buy,Shopping,Go discuss
+2024-04-18,-16.78,Local Restaurant,Food & Dining,Reality simple energy always
+2024-04-19,-87.17,Internet Provider,Bills,Less high because more
+2024-04-19,-21.59,Uber,Transportation,Wear ball keep court
+2024-04-19,-34.01,Uber,Transportation,Girl practice
+2024-04-19,-188.36,Savings Account,savings,Mrs mind week public
+2024-04-20,-180.29,Utility Company,Bills,Industry service hear
+2024-04-20,-146.81,Apple Store,Shopping,Test writer career herself
+2024-04-20,-411.09,Savings Account,savings,Around other generation likely
+2024-04-21,-41.42,Spotify,Entertainment,Example including contain eight
+2024-04-21,-53.28,AT&T,Bills,Pm evening
+2024-04-21,-66.58,CVS,Health,Consider serious woman
+2024-04-21,-16.94,AMC Theaters,Entertainment,Which job form company
+2024-04-21,-294.05,Savings Account,savings,Mother mention feeling
+2024-04-22,559.02,Freelance Client,Income,Payment from Freelance Client
+2024-04-22,-192.04,Whole Foods,Groceries,Mean law cold
+2024-04-22,-53.37,Dental Clinic,Health,Race song instead
+2024-04-22,895.50,Freelance Client,Income,Payment from Freelance Client
+2024-04-23,-48.53,Disney+,Entertainment,Challenge white
+2024-04-24,-93.84,Medical Center,Health,Major stuff feel art
+2024-04-24,-23.03,Uber,Transportation,Sort series enjoy paper
+2024-04-24,-2139.13,Property Management,Housing,Stand walk forward
+2024-04-25,-151.66,Utility Company,Bills,Rock agreement somebody
+2024-04-25,-22.76,Chipotle,Food & Dining,Budget since art
+2024-04-26,-68.74,Verizon,Bills,Appear second foot
+2024-04-26,-13.83,AMC Theaters,Entertainment,Foot music why guy state
+2024-04-27,766.56,Freelance Client,Income,Payment from Freelance Client
+2024-04-27,-39.64,Lyft,Transportation,True education rate buy
+2024-04-27,-2265.46,Property Management,Housing,Your field environment old imagine
+2024-04-27,-74.84,Safeway,Groceries,Least it majority good specific
+2024-04-27,-1542.77,Property Management,Housing,Mean have
+2024-04-28,-58.01,Best Buy,Shopping,Green parent center none order
+2024-04-28,-92.63,Safeway,Groceries,Life study plant human challenge
+2024-04-29,890.08,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-04-29,-130.94,Target,Shopping,Strong again
+2024-04-29,-166.54,Costco,Groceries,Range seat
+2024-04-29,-44.29,Shell,Transportation,Site character think traditional
+2024-04-29,-37.90,BP,Transportation,Occur job huge
+2024-04-30,18000.00,Employer Inc,Income,Monthly Salary
+2024-04-30,-57.33,Walgreens,Health,Animal visit grow
+2024-04-30,419.18,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-04-30,-39.23,Walgreens,Health,Church exist
+2024-04-30,-28.18,Chevron,Transportation,Democratic air various expert
+2024-04-30,-806.46,Property Management,Housing,Something travel score have
+2024-05-01,-64.38,Shell,Transportation,Writer kitchen
+2024-05-01,-14.01,Disney+,Entertainment,Vote information point decide better
+2024-05-01,-450.27,Savings Account,savings,Each politics
+2024-05-02,-121.63,Whole Foods,Groceries,Middle performance wrong study
+2024-05-02,-54.03,McDonald's,Food & Dining,Report forward media
+2024-05-02,-79.46,Verizon,Bills,Child show everybody support
+2024-05-02,-49.56,AMC Theaters,Entertainment,Foot president anyone
+2024-05-02,-93.00,Amazon,Shopping,Scene church last whatever
+2024-05-03,-386.70,Savings Account,savings,Set instead computer election he
+2024-05-03,-138.51,CVS,Health,Society region record
+2024-05-04,-359.46,Savings Account,savings,Clearly occur stop
+2024-05-04,-59.08,BP,Transportation,Strategy evening whether discussion
+2024-05-04,-48.02,Walmart,Groceries,Response truth officer
+2024-05-04,-148.14,Dental Clinic,Health,Possible style age
+2024-05-04,-46.88,Dental Clinic,Health,Tough expert nothing lead
+2024-05-05,-205.92,Savings Account,savings,Child he
+2024-05-05,-35.25,Apple Store,Shopping,Effect inside say
+2024-05-05,657.18,Freelance Client,Income,Payment from Freelance Client
+2024-05-05,-66.14,Uber,Transportation,Keep lose another might
+2024-05-06,166.88,Freelance Client,Income,Payment from Freelance Client
+2024-05-06,-51.17,Costco,Groceries,Address question huge name admit
+2024-05-06,-49.57,Lyft,Transportation,Green spend
+2024-05-06,-43.33,Trader Joe's,Groceries,Success particularly amount there lead
+2024-05-07,-1477.57,Mortgage Co.,Housing,Move street often
+2024-05-07,-65.51,Chevron,Transportation,Company out indicate explain
+2024-05-08,-94.84,Local Restaurant,Food & Dining,Stage yourself visit test leader
+2024-05-08,-73.84,Utility Company,Bills,Clear window
+2024-05-08,-31.21,HBO Max,Entertainment,Treat scene opportunity
+2024-05-08,-2271.93,Property Management,Housing,Each expert
+2024-05-09,-95.75,Subway,Food & Dining,Result thank second
+2024-05-10,-77.53,Starbucks,Food & Dining,Remember administration hit next piece
+2024-05-10,237.47,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-10,-141.87,Pharmacy,Health,Street recognize certain spring vote
+2024-05-11,-362.24,Savings Account,savings,Strong figure wish
+2024-05-11,-28.36,Netflix,Entertainment,Summer partner but one
+2024-05-11,-286.64,Amazon,Shopping,The while any
+2024-05-12,-129.00,Walgreens,Health,Popular modern television
+2024-05-12,-165.96,Amazon,Shopping,Appear prevent
+2024-05-12,-53.30,Uber,Transportation,Stop goal design
+2024-05-13,-111.54,Verizon,Bills,Consider report picture condition medical
+2024-05-13,-1735.26,Property Management,Housing,Budget expect none them
+2024-05-14,-246.65,Apple Store,Shopping,Meet may able total
+2024-05-14,-50.93,Lyft,Transportation,Need magazine far box itself
+2024-05-15,134.36,Freelance Client,Income,Payment from Freelance Client
+2024-05-16,-11.23,Netflix,Entertainment,Scene listen movie
+2024-05-16,-194.47,Amazon,Shopping,Relate black any party
+2024-05-16,-71.77,Walgreens,Health,Teacher base return morning whose
+2024-05-16,-96.65,Apple Store,Shopping,Hold office knowledge
+2024-05-16,-136.31,Safeway,Groceries,Now sport catch size
+2024-05-17,622.89,Freelance Client,Income,Payment from Freelance Client
+2024-05-17,977.77,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-17,-62.63,McDonald's,Food & Dining,Something minute
+2024-05-18,-57.93,Medical Center,Health,Medical human without base
+2024-05-18,-474.86,Savings Account,savings,Billion sound leave year
+2024-05-18,-1670.67,Mortgage Co.,Housing,Imagine hard film
+2024-05-18,-27.42,AMC Theaters,Entertainment,Our Republican cup really
+2024-05-18,-137.64,Whole Foods,Groceries,Key learn analysis stock
+2024-05-19,-52.26,Target,Shopping,Democrat success practice oil
+2024-05-19,529.83,Freelance Client,Income,Payment from Freelance Client
+2024-05-19,-162.11,Best Buy,Shopping,Present whether civil
+2024-05-19,-171.57,Walmart,Groceries,Yourself attack
+2024-05-20,-189.76,Best Buy,Shopping,Small which represent if oil
+2024-05-20,-33.48,Subway,Food & Dining,Church later name
+2024-05-21,-399.96,Savings Account,savings,Figure off
+2024-05-21,-146.93,Walmart,Groceries,Large war amount
+2024-05-21,-50.90,Subway,Food & Dining,Avoid call hundred significant wear
+2024-05-21,-122.64,Utility Company,Bills,Series oil any trouble
+2024-05-21,-48.29,AMC Theaters,Entertainment,International perform indicate
+2024-05-22,-1884.60,Property Management,Housing,Realize source concern those
+2024-05-22,-197.23,Verizon,Bills,Community smile any anything coach
+2024-05-22,-24.27,Walgreens,Health,Century agreement field away personal
+2024-05-23,-2408.12,Property Management,Housing,Benefit push long
+2024-05-24,536.75,Freelance Client,Income,Payment from Freelance Client
+2024-05-24,-40.45,Spotify,Entertainment,However necessary establish now
+2024-05-24,-427.48,Savings Account,savings,Research travel sea
+2024-05-24,-16.60,AMC Theaters,Entertainment,Control challenge
+2024-05-25,-144.22,Savings Account,savings,Production building
+2024-05-25,-63.39,Best Buy,Shopping,Standard several many many
+2024-05-25,-189.60,Savings Account,savings,Century field people
+2024-05-26,-90.84,Walmart,Groceries,Camera prevent
+2024-05-26,920.53,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-26,826.89,Freelance Client,Income,Payment from Freelance Client
+2024-05-26,675.08,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-27,-1235.09,Property Management,Housing,Ago join fish military machine
+2024-05-28,-25.41,Target,Shopping,Compare especially
+2024-05-29,-255.57,Amazon,Shopping,Save group
+2024-05-29,-118.79,Best Buy,Shopping,Energy key available positive
+2024-05-29,-149.05,CVS,Health,Boy hospital analysis both
+2024-05-29,-74.65,Dental Clinic,Health,Field team believe top
+2024-05-29,-77.75,Chipotle,Food & Dining,Big chance
+2024-05-30,-95.76,Water Corp,Bills,Artist east activity area
+2024-05-30,-1677.94,Property Management,Housing,Budget new program child
+2024-05-30,194.99,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-30,139.71,Freelance Client,Income,Payment from Freelance Client
+2024-05-30,-34.03,Subway,Food & Dining,Four test friend nor pattern
+2024-05-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-05-31,907.77,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-05-31,-28.54,Netflix,Entertainment,Position before blue most better
+2024-05-31,-136.09,AT&T,Bills,Fear whom seem begin
+2024-06-01,-49.36,Uber,Transportation,Old exactly lay book
+2024-06-01,-1146.62,Mortgage Co.,Housing,Budget not defense face
+2024-06-01,-54.87,Uber,Transportation,Several range
+2024-06-01,-23.75,Disney+,Entertainment,Everything someone everybody
+2024-06-01,-184.79,Walmart,Groceries,Relationship strategy reveal
+2024-06-02,-261.04,Nike,Shopping,Include its prevent letter traditional
+2024-06-02,-99.12,Target,Shopping,Beyond majority
+2024-06-03,-70.24,Chevron,Transportation,When discussion off
+2024-06-03,-321.28,Savings Account,savings,Owner produce should simply
+2024-06-04,-62.27,Chevron,Transportation,Wide officer though
+2024-06-04,-20.85,Walgreens,Health,Behavior cold
+2024-06-04,-128.56,Nike,Shopping,For beautiful cell treat beyond
+2024-06-05,-1450.37,Property Management,Housing,Outside understand much oil
+2024-06-05,-138.20,Medical Center,Health,No task else purpose
+2024-06-05,-87.65,Local Restaurant,Food & Dining,Why data you operation
+2024-06-05,-78.45,Internet Provider,Bills,Type finish
+2024-06-05,-45.50,Safeway,Groceries,Star close worker
+2024-06-06,-78.80,Shell,Transportation,Factor cultural become reflect little
+2024-06-07,-39.29,Walgreens,Health,Sister huge cell anyone
+2024-06-07,-33.73,Disney+,Entertainment,American discuss above argue
+2024-06-08,-148.93,Apple Store,Shopping,Whether fund
+2024-06-08,-97.40,McDonald's,Food & Dining,Fear senior central
+2024-06-08,-235.95,Target,Shopping,Here keep high
+2024-06-09,-2489.74,Mortgage Co.,Housing,Minute sometimes no fast fund
+2024-06-09,-36.81,Netflix,Entertainment,Today impact off past concern
+2024-06-09,-102.12,CVS,Health,Its left someone decide
+2024-06-09,-44.10,Disney+,Entertainment,Maybe end might hair member
+2024-06-10,-1439.03,Property Management,Housing,Social participant of would
+2024-06-10,-148.08,Medical Center,Health,President offer
+2024-06-11,-50.58,Best Buy,Shopping,Operation news game national
+2024-06-11,-161.74,Costco,Groceries,President heavy argue
+2024-06-11,-75.37,Internet Provider,Bills,Surface issue work general
+2024-06-11,790.10,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-06-12,-143.23,Verizon,Bills,Pretty source just
+2024-06-12,-89.57,McDonald's,Food & Dining,Establish tough summer difficult late
+2024-06-12,-428.18,Savings Account,savings,Eye back their
+2024-06-12,-311.77,Savings Account,savings,Reflect artist night old
+2024-06-12,-102.63,Savings Account,savings,Nice style choice stop
+2024-06-13,-33.85,Pharmacy,Health,Morning far well though
+2024-06-13,-135.93,Best Buy,Shopping,Until year create
+2024-06-13,-11.26,Local Restaurant,Food & Dining,Green member billion new develop
+2024-06-13,-2486.05,Mortgage Co.,Housing,Sure space
+2024-06-14,-46.46,HBO Max,Entertainment,Television value lead approach thousand
+2024-06-14,590.64,Freelance Client,Income,Payment from Freelance Client
+2024-06-14,764.59,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-06-15,-39.36,Walgreens,Health,Enter data support letter
+2024-06-15,-162.90,Savings Account,savings,Station key serious ask
+2024-06-15,-172.22,Savings Account,savings,Positive book when
+2024-06-16,-363.59,Savings Account,savings,Parent remember sometimes evening
+2024-06-17,-107.92,Target,Shopping,Want must fine
+2024-06-18,-72.62,Shell,Transportation,Today become or box
+2024-06-18,-14.05,Subway,Food & Dining,Guy best purpose approach
+2024-06-18,-122.91,Whole Foods,Groceries,Yet around society
+2024-06-19,630.21,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-06-20,-41.57,Disney+,Entertainment,Build board write fall
+2024-06-20,-56.07,Chipotle,Food & Dining,You site fine choose
+2024-06-21,-71.92,Water Corp,Bills,Popular candidate left partner
+2024-06-21,-275.66,Nike,Shopping,Occur none somebody institution seven
+2024-06-22,-32.53,Chipotle,Food & Dining,Majority husband stage stage tell
+2024-06-23,-21.00,Shell,Transportation,Sure far of street move
+2024-06-23,998.77,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-06-24,-67.91,BP,Transportation,Why spring
+2024-06-24,-288.87,Savings Account,savings,Something human glass realize black
+2024-06-25,-49.28,BP,Transportation,Should too law reflect identify
+2024-06-25,-68.24,Nike,Shopping,Few participant material specific
+2024-06-25,-1772.32,Mortgage Co.,Housing,Know present painting edge
+2024-06-26,-298.47,Apple Store,Shopping,Type song sort
+2024-06-27,-1431.20,Property Management,Housing,Onto just language personal
+2024-06-27,-49.19,Netflix,Entertainment,Listen team although fall
+2024-06-27,-163.32,Target,Shopping,Leave threat
+2024-06-28,915.95,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-06-28,-78.37,Dental Clinic,Health,Serve all early myself
+2024-06-28,-114.99,Costco,Groceries,Fly force above
+2024-06-29,802.28,Freelance Client,Income,Payment from Freelance Client
+2024-06-29,-49.83,Walgreens,Health,Account better over cup
+2024-06-29,-180.43,Walmart,Groceries,Effect institution discuss second
+2024-06-29,-35.52,Whole Foods,Groceries,Material six far under opportunity
+2024-06-29,-99.11,Dental Clinic,Health,Certainly fast building
+2024-06-30,18000.00,Employer Inc,Income,Monthly Salary
+2024-06-30,-270.55,Nike,Shopping,Government capital visit best since
+2024-07-01,-179.10,Savings Account,savings,Owner to year
+2024-07-01,-140.45,Walmart,Groceries,Case consumer memory
+2024-07-02,-172.96,AT&T,Bills,Main share word watch seven
+2024-07-03,-203.99,Apple Store,Shopping,Structure administration activity
+2024-07-03,-109.33,Water Corp,Bills,Stand industry chair
+2024-07-03,-20.94,Spotify,Entertainment,Floor attention age
+2024-07-04,-146.50,Savings Account,savings,Help peace turn reveal eat
+2024-07-04,-36.41,AMC Theaters,Entertainment,Yourself enough side likely security
+2024-07-04,-73.17,Shell,Transportation,Democratic space reveal my this
+2024-07-05,-133.35,Best Buy,Shopping,Similar two week part
+2024-07-05,-36.99,Walmart,Groceries,Visit sell eat
+2024-07-06,610.00,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-07-06,569.08,Freelance Client,Income,Payment from Freelance Client
+2024-07-06,-445.56,Savings Account,savings,Agree cause
+2024-07-06,-97.06,Costco,Groceries,Wind sit four fast opportunity
+2024-07-06,-2153.10,Property Management,Housing,Whole probably cover help
+2024-07-07,-264.19,Amazon,Shopping,While actually contain Mr very
+2024-07-07,-71.26,Verizon,Bills,Effort with
+2024-07-07,-281.34,Best Buy,Shopping,Congress most
+2024-07-07,-169.78,Target,Shopping,Determine ago job couple claim
+2024-07-08,-56.61,Shell,Transportation,Gas couple success administration
+2024-07-09,-37.64,AMC Theaters,Entertainment,List message wall
+2024-07-10,-240.96,Apple Store,Shopping,Store provide than table
+2024-07-11,-25.05,Apple Store,Shopping,Blue drop news avoid
+2024-07-11,-1704.87,Property Management,Housing,Year create company
+2024-07-12,130.89,Freelance Client,Income,Payment from Freelance Client
+2024-07-12,-104.83,Utility Company,Bills,Five cup which present
+2024-07-12,-11.82,Disney+,Entertainment,Affect own owner record
+2024-07-12,-168.57,Utility Company,Bills,Attorney international policy among certain
+2024-07-12,-137.06,Best Buy,Shopping,Center traditional owner blood
+2024-07-13,-122.53,Amazon,Shopping,Show close team people
+2024-07-13,433.57,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-07-14,-76.66,Uber,Transportation,Exactly plant able role
+2024-07-14,-29.66,Spotify,Entertainment,Table hundred
+2024-07-15,-49.37,Netflix,Entertainment,Good fine claim than loss
+2024-07-15,-38.89,Disney+,Entertainment,Hear main candidate democratic visit
+2024-07-15,-279.86,Amazon,Shopping,Meeting cold because involve
+2024-07-16,-126.30,Utility Company,Bills,Page place which key investment
+2024-07-16,-197.99,Target,Shopping,Treatment say event
+2024-07-16,-357.10,Savings Account,savings,Grow very nor manage
+2024-07-16,-58.06,Chevron,Transportation,Population similar left he
+2024-07-16,-102.11,Nike,Shopping,Go political indicate second
+2024-07-17,-10.60,AMC Theaters,Entertainment,Law interest fast determine
+2024-07-17,-26.56,HBO Max,Entertainment,General government bring various cover
+2024-07-17,-180.61,Apple Store,Shopping,Leader camera back
+2024-07-17,-277.36,Nike,Shopping,Page rock once positive
+2024-07-18,-77.00,Medical Center,Health,Morning chance
+2024-07-18,-53.43,Utility Company,Bills,Billion American fish meeting today
+2024-07-18,-33.43,McDonald's,Food & Dining,Service character per
+2024-07-18,-24.23,Subway,Food & Dining,Summer right
+2024-07-18,-42.29,Netflix,Entertainment,Blue way daughter
+2024-07-19,-80.15,Utility Company,Bills,Recent toward establish evidence recent
+2024-07-19,-18.87,AMC Theaters,Entertainment,Operation detail glass
+2024-07-19,-32.65,McDonald's,Food & Dining,See pretty glass
+2024-07-20,-196.33,Verizon,Bills,Across none
+2024-07-20,-162.04,Whole Foods,Groceries,Few assume
+2024-07-20,-32.08,Spotify,Entertainment,Song quality
+2024-07-20,-59.62,Walgreens,Health,Money other around
+2024-07-20,-216.36,Apple Store,Shopping,Conference spring particularly someone form
+2024-07-21,225.43,Freelance Client,Income,Payment from Freelance Client
+2024-07-22,758.24,Freelance Client,Income,Payment from Freelance Client
+2024-07-22,-111.60,AT&T,Bills,Somebody plant much tree
+2024-07-22,-29.53,Lyft,Transportation,Recent go imagine discover mouth
+2024-07-22,-25.81,Netflix,Entertainment,Loss full face role
+2024-07-22,-20.31,Local Restaurant,Food & Dining,Quality after yard
+2024-07-23,-21.82,Uber,Transportation,High team example identify
+2024-07-24,-24.04,Walgreens,Health,Political new
+2024-07-24,-115.55,Verizon,Bills,Test message chance leave
+2024-07-24,-15.83,Netflix,Entertainment,News use something administration
+2024-07-24,498.44,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-07-24,784.05,Freelance Client,Income,Payment from Freelance Client
+2024-07-25,-492.26,Savings Account,savings,Open television election her
+2024-07-25,-42.66,Spotify,Entertainment,Toward crime open among
+2024-07-25,-26.55,Starbucks,Food & Dining,Scientist effect rule
+2024-07-26,-189.69,Internet Provider,Bills,Mr positive political size
+2024-07-26,800.48,Freelance Client,Income,Payment from Freelance Client
+2024-07-26,-53.30,Uber,Transportation,Next PM effect
+2024-07-26,-47.95,AMC Theaters,Entertainment,Measure lawyer
+2024-07-26,-2163.14,Property Management,Housing,Give write town star
+2024-07-27,-119.09,Savings Account,savings,Thought bad
+2024-07-27,-84.81,Trader Joe's,Groceries,Generation short available
+2024-07-27,-214.46,Savings Account,savings,Evidence base structure enter
+2024-07-28,987.52,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-07-28,-135.00,Dental Clinic,Health,Law senior about drive
+2024-07-28,-296.88,Apple Store,Shopping,Area tell foreign foot or
+2024-07-29,920.09,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-07-29,-100.55,Walgreens,Health,Time three more
+2024-07-30,-26.78,Chevron,Transportation,Happy fall myself produce military
+2024-07-30,-309.79,Savings Account,savings,Claim try until imagine feel
+2024-07-30,-379.17,Savings Account,savings,Trade why lead
+2024-07-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-07-31,160.60,Freelance Client,Income,Payment from Freelance Client
+2024-07-31,-36.77,Shell,Transportation,Once newspaper score
+2024-07-31,-78.32,Internet Provider,Bills,Vote under conference
+2024-08-01,-18.41,Netflix,Entertainment,Among attorney usually travel question
+2024-08-01,-166.22,Costco,Groceries,Buy certainly across push
+2024-08-01,-1294.86,Property Management,Housing,Issue finish unit continue first
+2024-08-02,-486.49,Savings Account,savings,Raise ball office arrive
+2024-08-02,-45.98,Apple Store,Shopping,Serve point sound
+2024-08-02,-61.51,CVS,Health,Big instead
+2024-08-02,-1595.99,Mortgage Co.,Housing,Authority discover those couple
+2024-08-03,-407.47,Savings Account,savings,Myself environmental large
+2024-08-03,-89.13,Internet Provider,Bills,A by
+2024-08-04,-98.49,Medical Center,Health,Professional laugh
+2024-08-05,-20.58,AMC Theaters,Entertainment,Fine night anyone thing firm
+2024-08-06,-58.72,Chipotle,Food & Dining,Network skin others set
+2024-08-06,-59.98,Trader Joe's,Groceries,Ready subject particular clear instead
+2024-08-06,-37.31,Subway,Food & Dining,Family threat experience else
+2024-08-06,-12.71,AMC Theaters,Entertainment,Administration Congress move trouble claim
+2024-08-07,-81.59,Subway,Food & Dining,Factor only star theory
+2024-08-07,-49.99,CVS,Health,Enter however machine tonight move
+2024-08-07,-156.31,Savings Account,savings,Really single important matter
+2024-08-08,-130.03,Whole Foods,Groceries,Popular about commercial
+2024-08-09,-248.32,Nike,Shopping,Entire I series police reveal
+2024-08-09,-126.67,Verizon,Bills,Enough human
+2024-08-09,224.07,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-09,-51.61,Lyft,Transportation,Good player
+2024-08-10,-1687.84,Mortgage Co.,Housing,Employee improve mouth
+2024-08-10,-106.96,Medical Center,Health,History improve month
+2024-08-11,-147.35,Trader Joe's,Groceries,Reality necessary not have
+2024-08-11,-276.77,Nike,Shopping,Movie face line stop throughout
+2024-08-11,-2478.62,Property Management,Housing,Event its modern energy organization
+2024-08-11,-125.07,Verizon,Bills,Meet system final
+2024-08-12,-20.99,HBO Max,Entertainment,Course natural language attack
+2024-08-13,-365.64,Savings Account,savings,Upon than
+2024-08-13,-376.29,Savings Account,savings,Hand night fish
+2024-08-13,-163.57,Costco,Groceries,Reduce leader
+2024-08-13,-67.96,Shell,Transportation,Bed study however travel
+2024-08-14,542.52,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-14,-1899.43,Property Management,Housing,Brother occur cost street
+2024-08-14,-64.47,Chipotle,Food & Dining,From interesting rest plant
+2024-08-15,737.07,Freelance Client,Income,Payment from Freelance Client
+2024-08-16,-100.24,Utility Company,Bills,Popular compare mouth
+2024-08-16,-25.56,Netflix,Entertainment,Become society whose figure
+2024-08-16,-19.13,Starbucks,Food & Dining,Quite agreement general will staff
+2024-08-17,-191.55,Walmart,Groceries,Me discuss call from
+2024-08-17,-44.88,Best Buy,Shopping,Who relate ok thank
+2024-08-17,-71.66,Lyft,Transportation,Maintain require short site
+2024-08-18,-52.90,Amazon,Shopping,Like talk
+2024-08-19,426.84,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-20,-36.88,Whole Foods,Groceries,Grow option imagine
+2024-08-20,-221.23,Apple Store,Shopping,Same television anything example task
+2024-08-21,-53.94,CVS,Health,Early interest thought
+2024-08-21,-64.14,Chevron,Transportation,Check traditional choice my weight
+2024-08-21,348.91,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-21,-295.40,Best Buy,Shopping,Audience report address
+2024-08-21,-359.53,Savings Account,savings,Camera seek policy best
+2024-08-22,950.28,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-23,-95.15,Trader Joe's,Groceries,Tv if
+2024-08-23,-115.58,Whole Foods,Groceries,Address opportunity
+2024-08-24,-30.28,Starbucks,Food & Dining,Official pay feel
+2024-08-24,-453.21,Savings Account,savings,Business garden while
+2024-08-24,-21.58,Disney+,Entertainment,Family decision represent enough
+2024-08-25,-64.31,BP,Transportation,Part every despite until bag
+2024-08-25,-46.99,Shell,Transportation,Short mention political throw
+2024-08-25,-42.97,BP,Transportation,Manage find lay travel
+2024-08-26,846.33,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-08-26,-46.45,Disney+,Entertainment,Response several
+2024-08-27,-40.72,Uber,Transportation,Both executive though son
+2024-08-28,468.86,Freelance Client,Income,Payment from Freelance Client
+2024-08-29,-75.67,BP,Transportation,Raise loss institution
+2024-08-29,-102.10,Pharmacy,Health,Sign rock box care song
+2024-08-29,-18.32,Chipotle,Food & Dining,Result necessary
+2024-08-30,-60.90,AT&T,Bills,Again heavy stay edge mouth
+2024-08-30,-68.26,Uber,Transportation,Yet strong last
+2024-08-30,-1237.94,Property Management,Housing,Hold no anyone skill
+2024-08-30,-306.75,Savings Account,savings,Tell finally movement fact
+2024-08-30,-94.64,Costco,Groceries,Level find begin actually medical
+2024-08-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-08-31,-257.26,Savings Account,savings,Finally no well arm before
+2024-08-31,-232.12,Savings Account,savings,Land better important
+2024-09-01,488.22,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-09-01,-90.32,Local Restaurant,Food & Dining,Guess ago inside chance
+2024-09-01,-59.42,Whole Foods,Groceries,Economy social back five
+2024-09-02,-240.16,Savings Account,savings,Central second
+2024-09-02,-312.73,Savings Account,savings,International the thousand
+2024-09-02,-72.48,McDonald's,Food & Dining,Good budget half wear son
+2024-09-02,-115.56,Nike,Shopping,May eat loss listen model
+2024-09-03,395.03,Freelance Client,Income,Payment from Freelance Client
+2024-09-03,-2212.09,Property Management,Housing,Cost with else dog
+2024-09-03,-488.52,Savings Account,savings,Increase ten
+2024-09-04,-175.27,Water Corp,Bills,Station determine seek ago
+2024-09-05,-48.65,Local Restaurant,Food & Dining,Race my with toward
+2024-09-05,-67.56,CVS,Health,Side population them important
+2024-09-05,-108.37,Medical Center,Health,Fight others must
+2024-09-06,-76.42,Lyft,Transportation,Seem teach very
+2024-09-06,-45.89,Chevron,Transportation,Else mind adult
+2024-09-06,-307.63,Savings Account,savings,Possible no
+2024-09-07,-284.47,Target,Shopping,Likely identify without
+2024-09-07,-20.75,AMC Theaters,Entertainment,Friend father right even
+2024-09-07,-290.05,Savings Account,savings,Daughter newspaper approach raise
+2024-09-08,-75.98,Lyft,Transportation,Top white nor place
+2024-09-09,231.63,Freelance Client,Income,Payment from Freelance Client
+2024-09-09,-62.14,Starbucks,Food & Dining,Few why role
+2024-09-09,-1779.03,Mortgage Co.,Housing,Fight smile can parent might
+2024-09-09,-58.81,Walmart,Groceries,Enough white standard culture
+2024-09-09,591.81,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-09-10,-29.20,Uber,Transportation,Blood relate
+2024-09-11,-1072.05,Property Management,Housing,Money but professor
+2024-09-11,-79.39,Local Restaurant,Food & Dining,Crime minute police full
+2024-09-11,-322.77,Savings Account,savings,Then article travel training available
+2024-09-12,-90.74,Water Corp,Bills,Agent real on alone
+2024-09-12,-47.62,Spotify,Entertainment,Air word end court
+2024-09-12,-20.19,Chevron,Transportation,Lose someone whatever
+2024-09-12,896.09,Freelance Client,Income,Payment from Freelance Client
+2024-09-12,-186.43,Walmart,Groceries,Group pay
+2024-09-13,-180.50,Costco,Groceries,System challenge range individual
+2024-09-13,-69.91,Utility Company,Bills,Happy similar deal want
+2024-09-13,337.76,Freelance Client,Income,Payment from Freelance Client
+2024-09-13,-1468.22,Property Management,Housing,Sign far before before rich
+2024-09-13,-157.34,Best Buy,Shopping,Decide with
+2024-09-14,920.57,Freelance Client,Income,Payment from Freelance Client
+2024-09-14,-114.38,Walgreens,Health,Rise huge practice along
+2024-09-14,-133.30,Walgreens,Health,Major weight heart
+2024-09-14,-916.40,Property Management,Housing,Although whatever food
+2024-09-14,-68.94,Whole Foods,Groceries,Program mean hot
+2024-09-15,-54.57,Utility Company,Bills,East be staff
+2024-09-15,-81.10,Walmart,Groceries,Product quite gun certainly range
+2024-09-15,-68.01,Internet Provider,Bills,Nearly mission well across
+2024-09-15,800.99,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-09-15,-50.46,Chevron,Transportation,Reach glass
+2024-09-16,-41.28,AMC Theaters,Entertainment,Building drop
+2024-09-17,177.17,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-09-17,-49.60,BP,Transportation,Feeling point
+2024-09-17,-117.24,Nike,Shopping,Similar the have action
+2024-09-17,-48.36,Netflix,Entertainment,Stuff born opportunity sign
+2024-09-17,-308.84,Savings Account,savings,Necessary security
+2024-09-18,188.72,Freelance Client,Income,Payment from Freelance Client
+2024-09-18,-40.21,Apple Store,Shopping,Sing face back
+2024-09-18,-87.39,Water Corp,Bills,Civil state certain structure for
+2024-09-19,-86.22,Starbucks,Food & Dining,Hard level ok record hotel
+2024-09-19,-183.05,Best Buy,Shopping,Method car budget college
+2024-09-19,-98.36,Internet Provider,Bills,Three believe recently same color
+2024-09-20,-36.36,Uber,Transportation,Quite benefit relationship person
+2024-09-21,324.60,Freelance Client,Income,Payment from Freelance Client
+2024-09-21,-244.25,Apple Store,Shopping,Administration far lay
+2024-09-21,-823.17,Mortgage Co.,Housing,How across life door
+2024-09-21,-195.24,Amazon,Shopping,Until daughter middle
+2024-09-22,-15.62,AMC Theaters,Entertainment,Mention job manager just
+2024-09-22,-349.26,Savings Account,savings,Growth debate work away
+2024-09-22,-1255.51,Mortgage Co.,Housing,Why which station
+2024-09-23,-221.08,Savings Account,savings,Lawyer old beyond coach
+2024-09-23,-238.00,Best Buy,Shopping,West kid
+2024-09-23,-58.35,Local Restaurant,Food & Dining,Western husband enter model organization
+2024-09-23,-178.40,Internet Provider,Bills,Heart expert
+2024-09-24,-70.31,Chevron,Transportation,Power understand deal trial his
+2024-09-24,-291.39,Target,Shopping,Factor leader how
+2024-09-24,-33.78,Medical Center,Health,Education important particularly religious
+2024-09-24,-1239.85,Property Management,Housing,Actually either
+2024-09-24,-108.66,Dental Clinic,Health,Like boy face
+2024-09-25,-99.38,Water Corp,Bills,Change this as candidate
+2024-09-25,-313.99,Savings Account,savings,Former step face dream
+2024-09-26,-112.57,Nike,Shopping,Action professor trip discover often
+2024-09-26,-67.30,Lyft,Transportation,Fall sometimes may step
+2024-09-26,-1128.28,Mortgage Co.,Housing,Here loss red
+2024-09-27,-107.57,Trader Joe's,Groceries,Study western mother stay
+2024-09-27,-1411.55,Mortgage Co.,Housing,Body section
+2024-09-27,-299.47,Savings Account,savings,Huge free response
+2024-09-27,-45.77,Disney+,Entertainment,Former use
+2024-09-28,-87.93,Walmart,Groceries,Whether for reduce
+2024-09-28,-193.71,Internet Provider,Bills,Every eight most if end
+2024-09-28,-26.87,Uber,Transportation,That want ahead
+2024-09-28,-12.09,McDonald's,Food & Dining,Never maintain four reflect
+2024-09-28,-120.37,Verizon,Bills,Share ago later
+2024-09-29,-27.49,Chevron,Transportation,Trip possible you
+2024-09-30,18000.00,Employer Inc,Income,Monthly Salary
+2024-09-30,-195.01,Apple Store,Shopping,Political never public huge phone
+2024-09-30,-36.99,Disney+,Entertainment,On hold wonder approach reflect
+2024-10-01,-1284.47,Property Management,Housing,Material state own at state
+2024-10-01,-29.91,Disney+,Entertainment,Husband dinner memory law
+2024-10-01,-35.73,Safeway,Groceries,Soldier remain either
+2024-10-01,-487.69,Savings Account,savings,Dream far lead avoid whatever
+2024-10-02,-382.40,Savings Account,savings,Bill hundred be mission
+2024-10-02,-243.97,Nike,Shopping,Hotel help personal hope ok
+2024-10-02,712.56,Freelance Client,Income,Payment from Freelance Client
+2024-10-02,-1232.12,Mortgage Co.,Housing,Class eye smile write market
+2024-10-02,669.90,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-10-03,-52.26,Chipotle,Food & Dining,Among participant
+2024-10-03,-172.57,Safeway,Groceries,Score like
+2024-10-03,-227.32,Savings Account,savings,Fight source magazine
+2024-10-04,-2368.96,Property Management,Housing,Catch way require seven
+2024-10-04,-31.80,HBO Max,Entertainment,Court all expect
+2024-10-04,-15.94,Spotify,Entertainment,Past determine true
+2024-10-04,-27.74,BP,Transportation,Ground eat case tree along
+2024-10-05,-118.79,Dental Clinic,Health,Lead hair court information
+2024-10-05,-73.33,Lyft,Transportation,Trouble catch home draw
+2024-10-05,638.07,Freelance Client,Income,Payment from Freelance Client
+2024-10-05,-110.97,Whole Foods,Groceries,Choose key north tax article
+2024-10-06,-298.20,Target,Shopping,Relate nice town democratic light
+2024-10-06,-126.81,Internet Provider,Bills,Town computer authority
+2024-10-06,-70.35,Walgreens,Health,Answer account check
+2024-10-07,-55.28,AT&T,Bills,Clear effect build human
+2024-10-08,263.60,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-10-08,-272.80,Savings Account,savings,Interesting edge three traditional
+2024-10-08,-250.38,Nike,Shopping,Better why talk lead
+2024-10-08,-103.96,Whole Foods,Groceries,Doctor and
+2024-10-09,-28.02,Lyft,Transportation,Community number class field
+2024-10-09,-27.83,HBO Max,Entertainment,Best claim
+2024-10-10,-83.86,AT&T,Bills,Major pressure
+2024-10-10,-74.73,Chipotle,Food & Dining,Enjoy traditional
+2024-10-10,-57.26,Internet Provider,Bills,Dark the coach mention else
+2024-10-10,-27.93,CVS,Health,Rather movie
+2024-10-11,-81.82,McDonald's,Food & Dining,Feeling likely middle
+2024-10-11,-191.49,Trader Joe's,Groceries,Control rise mouth carry difficult
+2024-10-11,-107.01,Target,Shopping,Read against conference
+2024-10-11,-1331.32,Property Management,Housing,Determine sure three wrong look
+2024-10-11,-36.01,Spotify,Entertainment,Sense college data draw pretty
+2024-10-12,-97.85,Target,Shopping,Contain before agency statement
+2024-10-13,-108.49,Best Buy,Shopping,But while truth
+2024-10-13,-77.72,Pharmacy,Health,Sea me also
+2024-10-14,-76.19,Chevron,Transportation,Language organization wear purpose
+2024-10-15,-227.23,Amazon,Shopping,Cup suddenly
+2024-10-16,-167.79,Trader Joe's,Groceries,Doctor eight phone
+2024-10-16,-34.99,Uber,Transportation,Interview character next add
+2024-10-16,-366.07,Savings Account,savings,Memory range
+2024-10-16,-27.46,Uber,Transportation,History responsibility long power
+2024-10-17,-89.45,Pharmacy,Health,Herself green
+2024-10-17,-97.26,Walmart,Groceries,Thing I
+2024-10-18,-161.50,AT&T,Bills,Mr writer free third federal
+2024-10-18,-24.30,BP,Transportation,Career claim behavior home
+2024-10-19,-30.08,Spotify,Entertainment,Maintain story maybe
+2024-10-19,-119.71,AT&T,Bills,Get clear here
+2024-10-19,-148.62,Walgreens,Health,Ground size model difference
+2024-10-20,-81.75,Pharmacy,Health,Order story soldier
+2024-10-20,-198.81,AT&T,Bills,Present impact summer do already
+2024-10-20,-146.43,Nike,Shopping,Court keep meet day
+2024-10-20,-22.45,Walgreens,Health,Why rule both region
+2024-10-21,-66.17,Amazon,Shopping,Eight myself so around born
+2024-10-22,-44.34,Disney+,Entertainment,Rich after
+2024-10-23,-41.34,Chevron,Transportation,Some democratic food
+2024-10-23,-191.83,Internet Provider,Bills,Field look more hear manager
+2024-10-23,-75.61,Target,Shopping,Mission ten doctor car
+2024-10-23,-351.94,Savings Account,savings,Film politics me
+2024-10-23,-79.56,Pharmacy,Health,Amount add owner
+2024-10-24,-41.64,Local Restaurant,Food & Dining,Across understand into official
+2024-10-24,-30.05,Safeway,Groceries,Attack nearly appear
+2024-10-24,919.69,Freelance Client,Income,Payment from Freelance Client
+2024-10-24,-144.83,Walgreens,Health,Key science why teacher
+2024-10-25,-182.54,Utility Company,Bills,Author live few all
+2024-10-25,-308.14,Savings Account,savings,Meet against
+2024-10-25,-109.52,Savings Account,savings,Success form send
+2024-10-26,-28.72,AMC Theaters,Entertainment,Interview lawyer gun
+2024-10-26,-2389.00,Mortgage Co.,Housing,Discover understand candidate
+2024-10-26,-184.95,AT&T,Bills,Standard political
+2024-10-26,-185.98,Safeway,Groceries,Four generation have particular
+2024-10-26,-29.69,HBO Max,Entertainment,Office better prepare
+2024-10-27,-32.74,Whole Foods,Groceries,Market pattern young
+2024-10-27,-32.39,Shell,Transportation,Ball foot authority after
+2024-10-27,-262.03,Savings Account,savings,Modern financial position ask
+2024-10-27,-33.53,Walmart,Groceries,Skin reveal one
+2024-10-28,-79.90,Utility Company,Bills,Moment break
+2024-10-29,-88.53,Local Restaurant,Food & Dining,Air within teach attorney
+2024-10-29,-159.01,Savings Account,savings,Play air east sister
+2024-10-29,-1869.07,Mortgage Co.,Housing,Almost process born box
+2024-10-29,-77.08,Dental Clinic,Health,Them car condition themselves
+2024-10-29,-110.07,Utility Company,Bills,Garden top water space
+2024-10-30,-92.70,Whole Foods,Groceries,Star whose cultural teach
+2024-10-30,-164.23,AT&T,Bills,Learn door several
+2024-10-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-10-31,-55.85,Medical Center,Health,Doctor low figure
+2024-10-31,-13.14,Netflix,Entertainment,Operation window fund
+2024-10-31,-164.56,Apple Store,Shopping,Better line success their
+2024-10-31,126.17,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-10-31,-280.46,Target,Shopping,Level traditional any radio
+2024-11-01,-96.72,Internet Provider,Bills,Where doctor throughout political opportunity
+2024-11-01,-225.35,Savings Account,savings,Research standard career
+2024-11-01,-91.98,Local Restaurant,Food & Dining,Seven nation top its onto
+2024-11-01,-62.85,BP,Transportation,Smile finish
+2024-11-01,-94.49,Best Buy,Shopping,Resource model Democrat gun eye
+2024-11-02,-84.20,Amazon,Shopping,Into size type boy
+2024-11-02,-2453.67,Property Management,Housing,Head week
+2024-11-02,-169.46,Internet Provider,Bills,Cold still
+2024-11-02,-330.36,Savings Account,savings,Top always price
+2024-11-02,-267.65,Nike,Shopping,Animal increase gun
+2024-11-03,-80.80,Apple Store,Shopping,Claim cup represent
+2024-11-04,-222.80,Savings Account,savings,Service friend address
+2024-11-05,-143.24,Savings Account,savings,Bill wish charge
+2024-11-05,-220.79,Nike,Shopping,Early night let sound Mr
+2024-11-06,-47.02,Local Restaurant,Food & Dining,Like worry whom simply common
+2024-11-06,-124.79,Target,Shopping,Behavior political land indeed take
+2024-11-06,-117.31,CVS,Health,Southern decade
+2024-11-06,-217.31,Savings Account,savings,Under defense
+2024-11-06,-17.77,Disney+,Entertainment,After son
+2024-11-07,-45.82,Target,Shopping,Film by run section
+2024-11-07,-47.34,Chevron,Transportation,Talk poor though
+2024-11-07,596.10,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-11-07,-88.32,Apple Store,Shopping,Mission son physical
+2024-11-08,-1910.69,Mortgage Co.,Housing,Cultural former attention cultural
+2024-11-08,-75.91,Shell,Transportation,Middle simple
+2024-11-08,-57.43,Trader Joe's,Groceries,Voice day
+2024-11-09,-1655.68,Mortgage Co.,Housing,After research
+2024-11-09,-279.67,Amazon,Shopping,Fight kid spring there
+2024-11-09,-2185.21,Mortgage Co.,Housing,Think media represent marriage field
+2024-11-10,-1962.89,Mortgage Co.,Housing,Environmental else again
+2024-11-11,-121.29,Verizon,Bills,Continue resource around
+2024-11-11,-188.74,Savings Account,savings,Approach order partner follow
+2024-11-11,-2050.67,Property Management,Housing,Indeed trip rich kitchen
+2024-11-11,-46.59,Chipotle,Food & Dining,Nice skin today better
+2024-11-12,-130.90,AT&T,Bills,Wall on kitchen
+2024-11-12,456.09,Freelance Client,Income,Payment from Freelance Client
+2024-11-12,380.39,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-11-12,-409.67,Savings Account,savings,Song American huge
+2024-11-12,458.95,Freelance Client,Income,Payment from Freelance Client
+2024-11-13,-21.33,CVS,Health,Clearly adult something
+2024-11-13,-291.47,Apple Store,Shopping,Difference green process
+2024-11-13,366.58,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-11-13,-47.56,Whole Foods,Groceries,Store term
+2024-11-13,-1751.66,Property Management,Housing,Right amount because
+2024-11-14,-197.44,Whole Foods,Groceries,Suffer oil former ready
+2024-11-14,-44.22,Disney+,Entertainment,Resource poor never where read
+2024-11-14,-128.59,Savings Account,savings,Prepare over cost treatment
+2024-11-14,-2132.15,Property Management,Housing,Seven customer
+2024-11-14,-36.37,Subway,Food & Dining,Effect loss itself
+2024-11-15,-2182.11,Mortgage Co.,Housing,Remain money
+2024-11-15,-54.55,Pharmacy,Health,Bag top others grow
+2024-11-15,-148.69,Pharmacy,Health,Million student ahead memory surface
+2024-11-16,-105.43,Savings Account,savings,Actually full goal
+2024-11-16,-198.38,Verizon,Bills,Ability environmental
+2024-11-16,-478.64,Savings Account,savings,Science side
+2024-11-17,466.00,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-11-17,-40.82,Trader Joe's,Groceries,Morning teacher
+2024-11-17,-76.92,Water Corp,Bills,Thousand record throw sell
+2024-11-17,-203.94,Nike,Shopping,Mind will best instead
+2024-11-18,-1134.11,Mortgage Co.,Housing,Cover stand
+2024-11-18,-69.45,Shell,Transportation,Remain clear
+2024-11-19,-2024.70,Property Management,Housing,Third onto
+2024-11-19,-116.98,Trader Joe's,Groceries,Of seven worry
+2024-11-19,-60.46,Uber,Transportation,Again local relate star
+2024-11-20,-188.50,Verizon,Bills,Thus have seem foreign
+2024-11-20,-117.78,Water Corp,Bills,Operation product operation vote gas
+2024-11-21,-16.56,Disney+,Entertainment,Century term enough
+2024-11-21,-124.71,Savings Account,savings,Should couple
+2024-11-21,-70.32,Uber,Transportation,Building those health week point
+2024-11-21,-144.40,Safeway,Groceries,Significant later generation rate call
+2024-11-21,-111.59,Safeway,Groceries,Week quality can treat do
+2024-11-22,-29.68,Disney+,Entertainment,Reach technology similar record
+2024-11-22,-38.04,Pharmacy,Health,From interesting boy
+2024-11-22,-1250.48,Property Management,Housing,After party
+2024-11-22,-24.81,CVS,Health,Any your especially seat
+2024-11-22,-99.31,Amazon,Shopping,Really key senior itself provide
+2024-11-23,-55.18,Uber,Transportation,Along create middle
+2024-11-23,-51.63,Uber,Transportation,Dog politics job
+2024-11-24,-167.05,Utility Company,Bills,Gas institution tough visit
+2024-11-25,-74.25,McDonald's,Food & Dining,Everybody clearly change second
+2024-11-26,-194.74,Savings Account,savings,Teach couple happen
+2024-11-26,-16.73,Spotify,Entertainment,Heavy project speak ahead
+2024-11-26,-1340.40,Mortgage Co.,Housing,Or front
+2024-11-27,147.71,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-11-27,-33.77,AMC Theaters,Entertainment,Style sell along floor develop
+2024-11-28,885.05,Freelance Client,Income,Payment from Freelance Client
+2024-11-29,-21.89,Chipotle,Food & Dining,Stay kind task thus
+2024-11-29,-191.25,Walmart,Groceries,Heart society
+2024-11-29,-54.12,Target,Shopping,Director maintain there mention
+2024-11-30,18000.00,Employer Inc,Income,Monthly Salary
+2024-11-30,-31.08,AMC Theaters,Entertainment,Realize wall stuff
+2024-12-01,-179.36,Savings Account,savings,Director participant anything
+2024-12-01,-158.09,AT&T,Bills,Seat become idea treat
+2024-12-01,-142.72,Pharmacy,Health,Address writer customer
+2024-12-01,-22.13,Chevron,Transportation,Want street indicate whatever
+2024-12-02,-106.06,Medical Center,Health,Base happen
+2024-12-02,-277.49,Amazon,Shopping,Stand themselves
+2024-12-02,-2175.99,Mortgage Co.,Housing,None may particular
+2024-12-02,-20.08,BP,Transportation,Thought let animal despite Mrs
+2024-12-02,-72.92,Chevron,Transportation,Interest food
+2024-12-03,-185.57,Safeway,Groceries,Economic race success together
+2024-12-03,-2056.97,Mortgage Co.,Housing,Easy fire behavior mention
+2024-12-03,-24.55,Lyft,Transportation,Congress American answer
+2024-12-03,-454.24,Savings Account,savings,School where
+2024-12-03,406.40,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-12-04,-70.14,Apple Store,Shopping,Professor evening security
+2024-12-04,-39.51,Netflix,Entertainment,Want under agent magazine
+2024-12-04,-21.86,Netflix,Entertainment,Cold operation same
+2024-12-04,-333.63,Savings Account,savings,Page bag stop adult
+2024-12-05,-34.91,HBO Max,Entertainment,Believe sign wear provide idea
+2024-12-05,-47.17,Chevron,Transportation,But week
+2024-12-05,-124.67,Savings Account,savings,Store next treat
+2024-12-06,-98.15,Target,Shopping,Town let stock shoulder
+2024-12-06,-122.28,Nike,Shopping,Receive little line choice
+2024-12-06,-843.39,Property Management,Housing,Whose agreement than
+2024-12-06,435.65,Freelance Client,Income,Payment from Freelance Client
+2024-12-07,-387.46,Savings Account,savings,Usually situation drop college
+2024-12-07,-64.71,Water Corp,Bills,Across modern food
+2024-12-07,-152.83,AT&T,Bills,Memory film off four any
+2024-12-07,-40.36,Medical Center,Health,Morning her rate
+2024-12-08,-54.69,Safeway,Groceries,Sort including simple
+2024-12-08,-299.53,Best Buy,Shopping,Black since peace candidate
+2024-12-08,-34.32,Chipotle,Food & Dining,Again second
+2024-12-09,-30.60,AMC Theaters,Entertainment,Decide trouble
+2024-12-09,-20.53,Uber,Transportation,Century a contain special
+2024-12-09,-179.25,Whole Foods,Groceries,Value spring president hear
+2024-12-09,-16.94,Subway,Food & Dining,Manage indeed these understand
+2024-12-10,-373.41,Savings Account,savings,Impact even those
+2024-12-10,-49.36,Subway,Food & Dining,Reveal build
+2024-12-11,-45.31,Netflix,Entertainment,Throughout debate different live
+2024-12-12,-33.98,Safeway,Groceries,Indicate price risk notice
+2024-12-12,-39.43,CVS,Health,Like finish current cost growth
+2024-12-13,-112.71,Savings Account,savings,Two fire
+2024-12-13,-197.42,Internet Provider,Bills,Environment body such
+2024-12-13,-78.76,Local Restaurant,Food & Dining,Great idea reduce
+2024-12-14,-19.66,AMC Theaters,Entertainment,Summer base history
+2024-12-15,-61.42,Walgreens,Health,Professional check while
+2024-12-15,-2070.67,Mortgage Co.,Housing,Son see follow reveal
+2024-12-15,-918.35,Property Management,Housing,Professor establish see
+2024-12-15,-194.10,Verizon,Bills,Else despite
+2024-12-16,-388.20,Savings Account,savings,Up theory media win
+2024-12-16,-100.95,Utility Company,Bills,This either there
+2024-12-16,-84.62,Verizon,Bills,Vote newspaper who above
+2024-12-16,-100.70,Savings Account,savings,Large organization fear
+2024-12-17,-73.55,Internet Provider,Bills,Stand onto author
+2024-12-17,-62.98,Dental Clinic,Health,Huge source value past
+2024-12-17,-60.42,Subway,Food & Dining,Right hold whether reflect
+2024-12-17,-143.19,Costco,Groceries,Camera plant clearly ability
+2024-12-17,-86.19,Medical Center,Health,Popular simply again which
+2024-12-18,807.63,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-12-18,-23.07,AMC Theaters,Entertainment,Treatment word let history view
+2024-12-18,-2055.39,Mortgage Co.,Housing,Front someone performance news could
+2024-12-18,-36.92,BP,Transportation,Agency learn note
+2024-12-18,-46.26,Starbucks,Food & Dining,Hand act American year prevent
+2024-12-19,-141.46,Internet Provider,Bills,Wear cause military
+2024-12-19,-20.61,AMC Theaters,Entertainment,Her prove bill career pick
+2024-12-19,-155.38,Trader Joe's,Groceries,School tree involve big
+2024-12-20,-47.38,Lyft,Transportation,Country computer month
+2024-12-20,-39.70,AMC Theaters,Entertainment,Teach relationship
+2024-12-20,696.01,Side Gig LLC,Income,Payment from Side Gig LLC
+2024-12-20,-93.23,CVS,Health,Kind early away get art
+2024-12-21,-27.08,Best Buy,Shopping,Establish oil majority
+2024-12-21,-145.07,AT&T,Bills,Century role push development
+2024-12-22,-37.33,Shell,Transportation,But have yeah type TV
+2024-12-22,-58.19,Subway,Food & Dining,Head scene second radio method
+2024-12-22,-478.04,Savings Account,savings,Of those great send
+2024-12-22,-183.68,Utility Company,Bills,Recently old consumer help seven
+2024-12-23,-225.06,Savings Account,savings,Reality myself
+2024-12-23,-73.30,Uber,Transportation,Away nation resource where cut
+2024-12-24,-136.15,Savings Account,savings,Safe always
+2024-12-24,-272.71,Best Buy,Shopping,Style television answer memory
+2024-12-24,-142.01,AT&T,Bills,Size image body place
+2024-12-25,-122.75,Apple Store,Shopping,Perform keep successful decision
+2024-12-26,-1788.30,Property Management,Housing,Anyone fill add between
+2024-12-27,-20.90,Spotify,Entertainment,Call want some clear action
+2024-12-28,-41.03,Spotify,Entertainment,Miss best draw performance
+2024-12-28,-862.58,Property Management,Housing,First where stuff
+2024-12-28,-88.95,Subway,Food & Dining,Admit wall reflect
+2024-12-28,-51.77,Chipotle,Food & Dining,Police end economic woman
+2024-12-28,-70.82,Utility Company,Bills,In blood peace agreement break
+2024-12-29,-122.37,Medical Center,Health,Draw wish those rule nothing
+2024-12-29,-91.20,Utility Company,Bills,Ahead side air but others
+2024-12-29,-33.58,Lyft,Transportation,Fear not wind
+2024-12-30,-35.84,CVS,Health,Force sea
+2024-12-30,-164.61,AT&T,Bills,Computer live more public
+2024-12-30,-54.12,Trader Joe's,Groceries,Statement it discover
+2024-12-30,-68.88,BP,Transportation,Defense represent
+2024-12-30,-247.31,Savings Account,savings,Can sing painting test
+2024-12-31,18000.00,Employer Inc,Income,Monthly Salary
+2024-12-31,-268.59,Apple Store,Shopping,Piece best property four sure
+2024-12-31,-51.26,CVS,Health,Here fund
+2024-12-31,-133.85,Pharmacy,Health,Marriage last quickly reason fill
+2024-12-31,-95.61,Costco,Groceries,Close but
+2025-01-01,-170.43,Safeway,Groceries,After laugh pressure cost
+2025-01-01,-26.14,BP,Transportation,Various road whatever hot
+2025-01-01,-2180.52,Mortgage Co.,Housing,Day side show detail
+2025-01-02,-46.46,Starbucks,Food & Dining,Level service eye will late
+2025-01-02,-139.33,Pharmacy,Health,Health know range goal
+2025-01-03,-104.07,Utility Company,Bills,Large inside trouble
+2025-01-04,-74.78,Subway,Food & Dining,Too people
+2025-01-05,-251.93,Savings Account,savings,Speech of
+2025-01-05,-68.99,Shell,Transportation,Staff left institution building
+2025-01-05,-349.03,Savings Account,savings,Hot out director employee
+2025-01-05,171.14,Freelance Client,Income,Payment from Freelance Client
+2025-01-06,-18.10,McDonald's,Food & Dining,Great week month
+2025-01-06,-148.77,Internet Provider,Bills,Space quality
+2025-01-06,578.69,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-06,534.15,Freelance Client,Income,Payment from Freelance Client
+2025-01-06,-423.90,Savings Account,savings,Himself exist spend class
+2025-01-07,-20.16,AMC Theaters,Entertainment,Involve cost dinner too
+2025-01-07,-146.38,Verizon,Bills,Policy including baby security
+2025-01-07,-53.92,Internet Provider,Bills,Time meet happen appear
+2025-01-07,-187.18,AT&T,Bills,Enough yes ask what
+2025-01-07,-44.93,Medical Center,Health,Career if hope effort
+2025-01-08,-22.60,Netflix,Entertainment,Say authority health
+2025-01-08,-263.08,Apple Store,Shopping,Analysis beat standard
+2025-01-08,-29.46,Shell,Transportation,Remain follow us first
+2025-01-08,-29.17,AMC Theaters,Entertainment,Trip network agency north Congress
+2025-01-09,-487.74,Savings Account,savings,Individual soldier ready
+2025-01-09,-187.95,Savings Account,savings,Society will issue
+2025-01-10,-151.49,Savings Account,savings,Some success sing blood dog
+2025-01-10,-28.46,Lyft,Transportation,Firm for authority physical
+2025-01-10,-153.73,Utility Company,Bills,Might per big
+2025-01-11,172.65,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-11,983.41,Freelance Client,Income,Payment from Freelance Client
+2025-01-11,-1479.01,Property Management,Housing,Fund why news learn first
+2025-01-11,-422.09,Savings Account,savings,Stay laugh environmental
+2025-01-12,-50.04,Chevron,Transportation,Before worker number always
+2025-01-12,-63.51,McDonald's,Food & Dining,Trial thank new look sell
+2025-01-13,714.26,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-13,438.40,Freelance Client,Income,Payment from Freelance Client
+2025-01-13,-18.50,Disney+,Entertainment,According police
+2025-01-14,-147.20,Dental Clinic,Health,Hotel half rather who tell
+2025-01-14,-123.40,Trader Joe's,Groceries,International give perhaps even
+2025-01-15,-25.16,Lyft,Transportation,Reason tell system wall when
+2025-01-15,-98.42,Medical Center,Health,Various third until character
+2025-01-15,128.02,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-15,-11.66,Spotify,Entertainment,Image firm when four
+2025-01-16,-109.28,Medical Center,Health,Team talk boy federal
+2025-01-17,-194.32,AT&T,Bills,Major other party though receive
+2025-01-17,516.42,Freelance Client,Income,Payment from Freelance Client
+2025-01-17,-55.52,Trader Joe's,Groceries,Oil serve heavy
+2025-01-18,-65.28,McDonald's,Food & Dining,Maybe himself
+2025-01-18,-45.47,CVS,Health,Difference necessary owner
+2025-01-19,-408.24,Savings Account,savings,Person various college have
+2025-01-19,-13.30,Disney+,Entertainment,Mind coach paper
+2025-01-19,-114.65,Walgreens,Health,Pm entire movement stand
+2025-01-19,-107.91,Walmart,Groceries,Break can idea newspaper
+2025-01-19,-43.00,HBO Max,Entertainment,Marriage Mr class current
+2025-01-20,-169.09,Verizon,Bills,Both fill
+2025-01-20,-69.64,Uber,Transportation,Report court performance spring
+2025-01-20,-130.28,Target,Shopping,Help focus
+2025-01-20,-139.89,Trader Joe's,Groceries,Challenge executive pay couple Democrat
+2025-01-20,701.01,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-21,-1611.28,Property Management,Housing,Life happy
+2025-01-21,225.39,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-21,164.31,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-21,-31.24,Medical Center,Health,Discover director effort
+2025-01-21,-57.09,Uber,Transportation,Poor I probably
+2025-01-22,482.59,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-22,-38.65,Spotify,Entertainment,Raise claim sign carry
+2025-01-22,-83.11,Dental Clinic,Health,West do ground occur
+2025-01-22,-31.42,HBO Max,Entertainment,Color listen thing real
+2025-01-23,-41.67,Chipotle,Food & Dining,Walk teach deep
+2025-01-23,299.39,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-23,-189.43,Target,Shopping,People read
+2025-01-23,-1877.75,Property Management,Housing,Pay address almost owner
+2025-01-23,-133.43,CVS,Health,Month town be
+2025-01-24,-268.52,Nike,Shopping,Eight poor child
+2025-01-25,-2144.77,Property Management,Housing,Paper day surface moment throughout
+2025-01-25,-253.07,Nike,Shopping,Fund effect professor
+2025-01-25,-49.03,HBO Max,Entertainment,Vote term sound
+2025-01-25,827.29,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-25,-111.33,Costco,Groceries,North suffer after make base
+2025-01-26,306.43,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-26,-29.20,AMC Theaters,Entertainment,Act kind future yard
+2025-01-26,-269.63,Savings Account,savings,Visit tough peace work
+2025-01-26,-435.27,Savings Account,savings,Most fall development
+2025-01-26,-2247.00,Mortgage Co.,Housing,Study also measure respond hold
+2025-01-27,-1594.72,Property Management,Housing,Government join wear pay
+2025-01-27,-193.44,Walmart,Groceries,Million forward serious air Republican
+2025-01-28,938.83,Side Gig LLC,Income,Payment from Side Gig LLC
+2025-01-28,-104.38,Pharmacy,Health,Office each
+2025-01-28,-134.43,Target,Shopping,Authority or heart run family
+2025-01-29,-175.25,Savings Account,savings,Consumer market
+2025-01-29,-11.12,Chipotle,Food & Dining,Between can book talk choose
+2025-01-29,-2219.34,Property Management,Housing,Others billion baby heart
+2025-01-29,-408.91,Savings Account,savings,Community strategy
+2025-01-30,237.40,Freelance Client,Income,Payment from Freelance Client
+2025-01-30,-60.34,Lyft,Transportation,Movement check level
+2025-01-31,18000.00,Employer Inc,Income,Monthly Salary
+2025-01-31,-70.59,Verizon,Bills,South itself natural person
