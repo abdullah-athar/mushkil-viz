@@ -1,0 +1,35 @@
+# Generic domain visualization settings
+visualization:
+  color_scheme:
+    primary: "#2C3E50"
+    secondary: "#E74C3C"
+    accent: "#3498DB"
+    background: "#ECF0F1"
+  plot_style:
+    font_family: "Arial"
+    title_size: 16
+    label_size: 12
+    tick_size: 10
+    legend_size: 10
+    figure_size: [10, 6]
+
+# Report sections for generic data
+report:
+  format: html
+  include_toc: true
+  sections:
+    - title: "Dataset Overview"
+      description: "Basic statistics and distribution of variables"
+      plots:
+        - distribution
+        - correlation_matrix
+    - title: "Feature Analysis"
+      description: "Detailed analysis of individual features"
+      plots:
+        - box_plots
+        - scatter_matrix
+    - title: "Data Quality"
+      description: "Missing values and outlier analysis"
+      plots:
+        - missing_values_heatmap
+        - outlier_plot 

@@ -1,0 +1,48 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="mushkil-viz",
+    version="0.1.0",
+    description="Intelligent Tabular Data Analysis & Visualization System",
+    author="Waleed Hashmi and Abdullah Athar",
+    author_email="ama86@cantab.ac.uk",
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
+    python_requires=">=3.8",
+    install_requires=[
+        "pandas>=2.0.0",
+        "numpy>=1.24.0",
+        "scikit-learn>=1.3.0",
+        "matplotlib>=3.7.0",
+        "seaborn>=0.12.0",
+        "plotly>=5.18.0",
+        "altair>=5.1.0",
+        "umap-learn>=0.5.0",
+        "xgboost>=2.0.0",
+        "pycaret>=3.1.0",
+        "statsmodels>=0.14.0",
+        "scipy>=1.11.0",
+        "spacy>=3.7.0",
+        "rapidfuzz>=3.4.0",
+        "jinja2>=3.1.0",
+        "weasyprint>=60.1",
+        "typer>=0.9.0",
+        "pyyaml>=6.0.0",
+        "dask>=2023.12.0",
+    ],
+    extras_require={
+        "dev": [
+            "pytest>=7.4.0",
+            "pytest-cov>=4.1.0",
+            "black",
+            "flake8",
+            "isort",
+            "pre-commit",
+        ],
+    },
+    entry_points={
+        "console_scripts": [
+            "mushkil-viz=mushkil_viz.cli:app",
+        ],
+    },
+) 
