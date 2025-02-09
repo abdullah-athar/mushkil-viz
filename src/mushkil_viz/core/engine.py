@@ -34,13 +34,6 @@ class DomainDetector:
         for domain, rules in self.domain_rules.items():
             print(f"Checking rules for domain: {domain}")  # Debug logging
             
-            # Check column_indicators (legacy)
-            if 'column_indicators' in rules:
-                indicators = set(rules['column_indicators'])
-                print(f"Checking column_indicators: {indicators}")  # Debug logging
-                if any(indicator in columns for indicator in indicators):
-                    return domain
-            
             # Check column_patterns (new format)
             if 'column_patterns' in rules:
                 patterns = set()
