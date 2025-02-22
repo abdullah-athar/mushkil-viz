@@ -128,7 +128,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+
 .venv
 env/
 venv/
@@ -171,7 +171,7 @@ cython_debug/
 .pypirc
 
 # Environment variables
-.env
+
 .env.*
 
 # IDE
