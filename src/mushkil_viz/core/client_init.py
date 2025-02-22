@@ -19,7 +19,7 @@ def init_openai_client(api_key: Optional[str] = None, api_base: Optional[str] = 
     load_dotenv()
     
     # Get configuration from parameters or environment
-    api_key = api_key or os.getenv("OPENAI_API_KEY")
+    api_key = api_key or os.getenv("OPENROUTER_API_KEY")
     api_base = api_base or os.getenv("OPENAI_API_BASE")
     
     if not api_key:
