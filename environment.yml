@@ -32,4 +32,3 @@ dependencies:
       - -e .
   - openai
   - python-dotenv
-  -
