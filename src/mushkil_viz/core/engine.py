@@ -7,6 +7,7 @@ from ..core.analyzers.base import BaseAnalyzer
 from ..core.visualizers.base import BaseVisualizer
 from ..adapters.financial.analyzer import FinancialAnalyzer
 from ..adapters.financial.visualizer import FinancialVisualizer
+from ..adapters.llm.analyzer import LLMAnalyzer
 
 class DomainDetector:
     """Detects the domain of the dataset."""
@@ -58,6 +59,7 @@ class MushkilVizEngine:
         # Register available analyzers and visualizers
         self.analyzers = {
             "financial": FinancialAnalyzer,
+            "llm": LLMAnalyzer,
             "generic": BaseAnalyzer  # Use base analyzer as fallback
         }
         

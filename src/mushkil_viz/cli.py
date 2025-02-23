@@ -7,6 +7,7 @@ from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 import webbrowser
 import tempfile
+import json
 
 from .core.engine import MushkilVizEngine
 
@@ -59,6 +60,16 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
                 background-color: white;
                 border-radius: 5px;
             }
+            .section-description {
+                color: #666;
+                margin-bottom: 15px;
+                font-style: italic;
+            }
+            .plot-description {
+                color: #666;
+                margin: 10px 0;
+                font-size: 0.9em;
+            }
         </style>
     </head>
     <body>
@@ -70,14 +81,22 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
             {% for section in sections %}
             <div class="section">
                 <h2>{{ section.title }}</h2>
-                {% for plot_name in section.plots %}
-                <div class="plot">
-                    <div id="{{ plot_name }}"></div>
-                    <script>
-                        var plotData = {{ visualizations[plot_name] }};
-                        Plotly.newPlot('{{ plot_name }}', plotData.data, plotData.layout);
-                    </script>
-                </div>
+                {% if section.description %}
+                <div class="section-description">{{ section.description }}</div>
+                {% endif %}
+                {% for plot_id in section.get('visualizations', section.get('plots', [])) %}
+                    {% if visualizations.get(plot_id) %}
+                    <div class="plot">
+                        <div id="{{ plot_id }}"></div>
+                        {% if descriptions.get(plot_id) %}
+                        <div class="plot-description">{{ descriptions[plot_id] }}</div>
+                        {% endif %}
+                        <script>
+                            var plotData = {{ visualizations[plot_id] | safe }};
+                            Plotly.newPlot('{{ plot_id }}', plotData.data, plotData.layout);
+                        </script>
+                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             {% endfor %}
@@ -89,9 +108,20 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
     from jinja2 import Template
     template = Template(html_template)
     
+    # Extract descriptions from visualization specs
+    descriptions = {}
+    for viz_id, viz_data in visualizations.items():
+        try:
+            plot_data = json.loads(viz_data)
+            if isinstance(plot_data, dict) and "description" in plot_data:
+                descriptions[viz_id] = plot_data["description"]
+        except:
+            pass
+    
     return template.render(
         sections=config["report"]["sections"],
         visualizations=visualizations,
+        descriptions=descriptions,
         domain=domain
     )
 

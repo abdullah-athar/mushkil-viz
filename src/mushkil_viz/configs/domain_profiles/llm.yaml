@@ -1,0 +1,75 @@
+# LLM Domain Configuration
+
+# Visualization settings
+visualization:
+  color_scheme:
+    primary: "#3498db" # Blue
+    secondary: "#2ecc71" # Green
+    accent: "#e74c3c" # Red
+    neutral: "#95a5a6" # Gray
+
+  chart_defaults:
+    bar:
+      opacity: 0.8
+      orientation: "v"
+      text_auto: true
+
+    line:
+      mode: "lines+markers"
+      marker_size: 6
+
+    scatter:
+      mode: "markers"
+      marker_size: 8
+
+    histogram:
+      nbins: 30
+      opacity: 0.7
+
+    heatmap:
+      colorscale: "Viridis"
+
+  layout:
+    font_family: "Arial, sans-serif"
+    title_font_size: 16
+    axis_font_size: 12
+    margin:
+      t: 50
+      r: 50
+      b: 50
+      l: 50
+    showlegend: true
+    paper_bgcolor: "white"
+    plot_bgcolor: "white"
+    grid:
+      show: true
+      color: "#ecf0f1"
+      width: 1
+
+report:
+  sections:
+    - title: "Dataset Overview"
+      description: "Basic information about the dataset including size, structure, and data types."
+      visualizations:
+        - type_distribution
+        - rating_distribution
+        - duration_distribution
+
+    - title: "Temporal Analysis"
+      description: "Analysis of time-related aspects of the content."
+      visualizations:
+        - release_year_distribution
+        - date_added_distribution
+
+    - title: "Content Analysis"
+      description: "Detailed breakdown of content characteristics."
+      visualizations:
+        - country_distribution
+        - director_distribution
+        - cast_distribution
+        - listed_in_distribution
+
+    - title: "Additional Insights"
+      description: "Other relevant visualizations and insights."
+      visualizations:
+        - description_distribution
