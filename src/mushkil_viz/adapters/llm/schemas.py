@@ -1,5 +1,5 @@
 """Schemas for LLM analyzer module."""
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Field
 
 
@@ -42,6 +42,50 @@ class DatasetContext(BaseModel):
 class AnalysisPlan(BaseModel):
     """Schema for the complete analysis plan from the LLM."""
     functions: List[AnalysisFunction] = Field(..., description="List of analysis functions to execute")
+
+
+class DataTransformation(BaseModel):
+    """Model for data transformation specifications."""
+    operation: str = Field(..., description="Type of transformation (groupby, sort, filter, datetime)")
+    columns: Optional[List[str]] = Field(None, description="Columns to operate on")
+    aggregation: Optional[str] = Field(None, description="Aggregation function for groupby")
+    column: Optional[str] = Field(None, description="Column for sort/filter operations")
+    ascending: Optional[bool] = Field(True, description="Sort direction")
+    condition: Optional[str] = Field(None, description="Filter condition")
+    unit: Optional[str] = Field(None, description="Time unit for datetime operations")
+
+
+class VisualizationData(BaseModel):
+    """Model for visualization data specifications."""
+    x: Optional[str] = Field(None, description="Column for x-axis")
+    y: Optional[str] = Field(None, description="Column for y-axis")
+    z: Optional[str] = Field(None, description="Column for z-axis (heatmaps)")
+    color: Optional[str] = Field(None, description="Column for color mapping")
+    size: Optional[str] = Field(None, description="Column for size mapping")
+    transformations: Optional[List[DataTransformation]] = Field(None, description="Data transformations to apply")
+
+
+class VisualizationLayout(BaseModel):
+    """Model for visualization layout specifications."""
+    title: str = Field(..., description="Plot title")
+    xaxis_title: Optional[str] = Field(None, description="X-axis label")
+    yaxis_title: Optional[str] = Field(None, description="Y-axis label")
+    zaxis_title: Optional[str] = Field(None, description="Z-axis label")
+
+
+class VisualizationSpec(BaseModel):
+    """Model for complete visualization specification."""
+    id: str = Field(..., description="Unique identifier for the visualization")
+    type: str = Field(..., description="Type of plot (bar, line, scatter, etc.)")
+    title: str = Field(..., description="Title of the visualization")
+    description: str = Field(..., description="Description of what the visualization shows")
+    data: VisualizationData = Field(..., description="Data specification")
+    layout: VisualizationLayout = Field(..., description="Layout specification")
+
+
+class VisualizationResponse(BaseModel):
+    """Model for LLM response containing visualization specifications."""
+    visualizations: List[VisualizationSpec] = Field(..., description="List of visualization specifications")
 
 
 FUNCTION_SCHEMA = {
@@ -109,4 +153,13 @@ FUNCTION_SCHEMA = {
             "required": ["functions"]
         }
     }
-} 
+}
+
+# Validation functions
+def validate_visualization_spec(spec: Dict) -> VisualizationSpec:
+    """Validate a single visualization specification."""
+    return VisualizationSpec(**spec)
+
+def validate_visualization_response(response: Dict) -> VisualizationResponse:
+    """Validate complete visualization response from LLM."""
+    return VisualizationResponse(**response) 

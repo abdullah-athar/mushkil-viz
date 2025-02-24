@@ -30,5 +30,4 @@ dependencies:
       - openai==1.63.2
       - faker>=20.0.0
       - -e .
-  - openai
   - python-dotenv

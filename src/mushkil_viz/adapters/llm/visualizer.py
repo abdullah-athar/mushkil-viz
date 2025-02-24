@@ -7,6 +7,7 @@ import pandas as pd
 import json
 import numpy as np
 from mushkil_viz.core.client_init import init_openai_client
+import plotly.utils
 
 class VisualizationError(Exception):
     """Custom exception for visualization errors with fallback options."""
@@ -55,28 +56,118 @@ class LLMVisualizer:
 
     def _apply_transformations(self, data: pd.DataFrame, transformations: List[Dict]) -> pd.DataFrame:
         """Apply data transformations specified in the visualization spec."""
+        if not transformations:
+            return data
+            
         df = data.copy()
         
         for transform in transformations:
             try:
                 operation = transform.get("operation")
+                
                 if operation == "groupby":
                     groupby_cols = transform.get("columns", [])
+                    if not groupby_cols:
+                        continue
+                        
                     agg_func = transform.get("aggregation", "count")
-                    df = df.groupby(groupby_cols).agg(agg_func).reset_index()
+                    # Handle multiple aggregation functions
+                    if isinstance(agg_func, dict):
+                        df = df.groupby(groupby_cols).agg(agg_func).reset_index()
+                    else:
+                        df = df.groupby(groupby_cols).agg(agg_func).reset_index()
+                    
                 elif operation == "sort":
                     sort_col = transform.get("column")
+                    if not sort_col:
+                        continue
+                        
                     ascending = transform.get("ascending", True)
                     df = df.sort_values(sort_col, ascending=ascending)
+                    
+                    # Limit rows if specified
+                    if transform.get("limit"):
+                        df = df.head(transform["limit"])
+                    
                 elif operation == "filter":
                     condition = transform.get("condition")
-                    df = df.query(condition)
+                    if not condition:
+                        continue
+                        
+                    # Handle different filter conditions
+                    if isinstance(condition, str):
+                        df = df.query(condition)
+                    elif isinstance(condition, dict):
+                        for col, value in condition.items():
+                            if isinstance(value, (list, tuple)):
+                                df = df[df[col].isin(value)]
+                            else:
+                                df = df[df[col] == value]
+                    
                 elif operation == "datetime":
                     col = transform.get("column")
+                    if not col:
+                        continue
+                        
+                    # Convert to datetime if not already
+                    if not pd.api.types.is_datetime64_any_dtype(df[col]):
+                        df[col] = pd.to_datetime(df[col], errors='coerce')
+                    
+                    # Apply datetime transformations
                     unit = transform.get("unit", "D")
-                    df[col] = pd.to_datetime(df[col]).dt.to_period(unit)
+                    if transform.get("extract"):
+                        # Extract specific datetime component
+                        component = transform["extract"].lower()
+                        if component == "year":
+                            df[f"{col}_year"] = df[col].dt.year
+                        elif component == "month":
+                            df[f"{col}_month"] = df[col].dt.month
+                        elif component == "day":
+                            df[f"{col}_day"] = df[col].dt.day
+                        elif component == "hour":
+                            df[f"{col}_hour"] = df[col].dt.hour
+                    else:
+                        # Convert to period
+                        df[col] = df[col].dt.to_period(unit)
+                
+                elif operation == "calculate":
+                    # Handle calculated columns
+                    new_col = transform.get("new_column")
+                    formula = transform.get("formula")
+                    if new_col and formula:
+                        df[new_col] = df.eval(formula)
+                
+                elif operation == "bin":
+                    # Handle numeric binning
+                    col = transform.get("column")
+                    bins = transform.get("bins")
+                    if col and bins:
+                        if isinstance(bins, int):
+                            df[f"{col}_binned"] = pd.qcut(df[col], bins, labels=False)
+                        elif isinstance(bins, list):
+                            df[f"{col}_binned"] = pd.cut(df[col], bins, labels=False)
+                
+                elif operation == "text":
+                    # Handle text operations
+                    col = transform.get("column")
+                    if not col:
+                        continue
+                        
+                    text_op = transform.get("text_operation")
+                    if text_op == "length":
+                        df[f"{col}_length"] = df[col].str.len()
+                    elif text_op == "lower":
+                        df[col] = df[col].str.lower()
+                    elif text_op == "upper":
+                        df[col] = df[col].str.upper()
+                    elif text_op == "extract":
+                        pattern = transform.get("pattern")
+                        if pattern:
+                            df[f"{col}_extracted"] = df[col].str.extract(pattern)
+                
             except Exception as e:
                 print(f"Error applying transformation {operation}: {str(e)}")
+                continue
                 
         return df
 
@@ -95,118 +186,144 @@ class LLMVisualizer:
             # Create figure based on plot type
             fig = None
             plot_type = spec["type"]
+            plot_data = spec.get("data", {})
+            
+            # Ensure required columns exist
+            for col in [plot_data.get("x"), plot_data.get("y")]:
+                if col and col not in data.columns:
+                    raise ValueError(f"Column {col} not found in dataset")
             
             if plot_type == "bar":
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
                 fig = go.Figure(data=[
                     go.Bar(
-                        x=data[spec["data"]["x"]],
-                        y=data[spec["data"]["y"]],
+                        x=x_data,
+                        y=y_data,
                         marker_color=colors.get("primary"),
                         **chart_config.get("bar", {})
                     )
                 ])
             elif plot_type == "line":
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
                 fig = go.Figure(data=[
                     go.Scatter(
-                        x=data[spec["data"]["x"]],
-                        y=data[spec["data"]["y"]],
+                        x=x_data,
+                        y=y_data,
                         mode="lines+markers",
                         line=dict(color=colors.get("primary")),
                         **chart_config.get("line", {})
                     )
                 ])
             elif plot_type == "scatter":
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
+                color_data = data[plot_data["color"]].tolist() if plot_data.get("color") else None
+                size_data = data[plot_data["size"]].tolist() if plot_data.get("size") else None
+                
+                marker_dict = {
+                    "color": color_data if color_data else colors.get("primary"),
+                    "size": size_data if size_data else 8
+                }
                 fig = go.Figure(data=[
                     go.Scatter(
-                        x=data[spec["data"]["x"]],
-                        y=data[spec["data"]["y"]],
+                        x=x_data,
+                        y=y_data,
                         mode="markers",
-                        marker=dict(
-                            color=data[spec["data"].get("color")] if spec["data"].get("color") else colors.get("primary"),
-                            size=data[spec["data"].get("size")] if spec["data"].get("size") else 8
-                        ),
+                        marker=marker_dict,
                         **chart_config.get("scatter", {})
                     )
                 ])
             elif plot_type == "box":
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
                 fig = go.Figure(data=[
                     go.Box(
-                        y=data[spec["data"]["y"]],
-                        x=data[spec["data"].get("x")] if spec["data"].get("x") else None,
+                        y=y_data,
+                        x=x_data,
                         marker_color=colors.get("primary"),
                         **chart_config.get("box", {})
                     )
                 ])
             elif plot_type == "histogram":
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
                 fig = go.Figure(data=[
                     go.Histogram(
-                        x=data[spec["data"]["x"]],
+                        x=x_data,
+                        y=y_data,
                         marker_color=colors.get("primary"),
                         **chart_config.get("histogram", {})
                     )
                 ])
             elif plot_type == "heatmap":
-                pivot_data = data.pivot(
-                    index=spec["data"]["y"],
-                    columns=spec["data"]["x"],
-                    values=spec["data"]["z"]
-                )
-                fig = go.Figure(data=[
-                    go.Heatmap(
-                        z=pivot_data.values,
-                        x=pivot_data.columns,
-                        y=pivot_data.index,
-                        **chart_config.get("heatmap", {})
+                if all(k in plot_data for k in ["x", "y", "z"]):
+                    pivot_data = data.pivot(
+                        index=plot_data["y"],
+                        columns=plot_data["x"],
+                        values=plot_data["z"]
                     )
-                ])
+                    fig = go.Figure(data=[
+                        go.Heatmap(
+                            z=pivot_data.values.tolist(),
+                            x=pivot_data.columns.tolist(),
+                            y=pivot_data.index.tolist(),
+                            colorscale=chart_config.get("heatmap", {}).get("colorscale", "Viridis")
+                        )
+                    ])
             elif plot_type == "pie":
+                labels = data[plot_data["x"]].tolist() if plot_data.get("x") else None
+                values = data[plot_data["y"]].tolist() if plot_data.get("y") else None
                 fig = go.Figure(data=[
                     go.Pie(
-                        labels=data[spec["data"]["x"]],
-                        values=data[spec["data"]["y"]],
+                        labels=labels,
+                        values=values,
                         marker=dict(colors=[colors.get("primary"), colors.get("secondary"), colors.get("accent")]),
                         **chart_config.get("pie", {})
                     )
                 ])
             elif plot_type == "violin":
+                y_data = data[plot_data["y"]].tolist() if plot_data.get("y") else None
+                x_data = data[plot_data["x"]].tolist() if plot_data.get("x") else None
                 fig = go.Figure(data=[
                     go.Violin(
-                        y=data[spec["data"]["y"]],
-                        x=data[spec["data"].get("x")] if spec["data"].get("x") else None,
+                        y=y_data,
+                        x=x_data,
                         marker_color=colors.get("primary"),
                         **chart_config.get("violin", {})
                     )
                 ])
-            elif plot_type == "bubble":
-                fig = go.Figure(data=[
-                    go.Scatter(
-                        x=data[spec["data"]["x"]],
-                        y=data[spec["data"]["y"]],
-                        mode="markers",
-                        marker=dict(
-                            size=data[spec["data"]["size"]],
-                            color=data[spec["data"].get("color")] if spec["data"].get("color") else colors.get("primary"),
-                            sizemode="area",
-                            sizeref=2.*max(data[spec["data"]["size"]])/(40.**2),
-                            sizemin=4
-                        ),
-                        **chart_config.get("bubble", {})
-                    )
-                ])
             else:
                 raise ValueError(f"Unsupported plot type: {plot_type}")
-                
-            # Update layout
-            fig.update_layout(
-                title=spec["layout"]["title"],
-                xaxis_title=spec["layout"]["xaxis_title"],
-                yaxis_title=spec["layout"]["yaxis_title"],
-                **layout_config
-            )
             
-            return fig.to_json()
+            if fig is None:
+                raise ValueError(f"Failed to create figure for plot type: {plot_type}")
+                
+            # Update layout with both config and spec settings
+            layout_updates = {
+                "title": spec.get("layout", {}).get("title"),
+                "xaxis_title": spec.get("layout", {}).get("xaxis_title"),
+                "yaxis_title": spec.get("layout", {}).get("yaxis_title"),
+                **layout_config
+            }
+            fig.update_layout(**{k: v for k, v in layout_updates.items() if v is not None})
+            
+            # Convert figure to dict first
+            fig_dict = fig.to_dict()
+            
+            # Create the final visualization data
+            viz_data = {
+                "data": fig_dict["data"],
+                "layout": fig_dict["layout"],
+                "description": spec.get("description", "")
+            }
+            
+            # Convert to JSON string
+            return json.dumps(viz_data)
             
         except Exception as e:
+            print(f"Error in _create_visualization: {str(e)}")
             # Try fallback if available
             if plot_type in self.fallback_types:
                 fallback_spec = spec.copy()

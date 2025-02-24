@@ -49,27 +49,27 @@ visualization:
 report:
   sections:
     - title: "Dataset Overview"
-      description: "Basic information about the dataset including size, structure, and data types."
+      description: "Basic information about the dataset including size, structure, and key distributions."
       visualizations:
-        - type_distribution
-        - rating_distribution
-        - duration_distribution
+        - categorical_distributions
+        - numeric_distributions
+        - temporal_patterns
 
-    - title: "Temporal Analysis"
-      description: "Analysis of time-related aspects of the content."
+    - title: "Feature Analysis"
+      description: "Analysis of key features and their relationships."
       visualizations:
-        - release_year_distribution
-        - date_added_distribution
+        - feature_correlations
+        - feature_distributions
+        - outlier_analysis
 
-    - title: "Content Analysis"
-      description: "Detailed breakdown of content characteristics."
+    - title: "Relationships & Patterns"
+      description: "Key relationships and patterns discovered in the data."
       visualizations:
-        - country_distribution
-        - director_distribution
-        - cast_distribution
-        - listed_in_distribution
+        - key_relationships
+        - trend_analysis
+        - group_comparisons
 
     - title: "Additional Insights"
-      description: "Other relevant visualizations and insights."
+      description: "Other relevant visualizations and insights discovered in the data."
       visualizations:
-        - description_distribution
+        - custom_insights

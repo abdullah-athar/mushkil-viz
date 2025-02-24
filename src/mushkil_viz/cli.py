@@ -21,6 +21,26 @@ def load_config(config_path: Path) -> dict:
 
 def generate_html_report(visualizations: dict, config: dict, domain: str) -> str:
     """Generate HTML report from visualizations."""
+    
+    # Debug print
+    print("Visualizations received:", list(visualizations.keys()))
+    
+    # Parse visualization specs
+    visualization_specs = []
+    for viz_id, viz_data in visualizations.items():
+        try:
+            viz_dict = json.loads(viz_data)
+            visualization_specs.append({
+                "id": viz_id,
+                "description": viz_dict.get("description", ""),
+                "data": viz_dict.get("data", []),
+                "layout": viz_dict.get("layout", {})
+            })
+            print(f"Successfully parsed visualization {viz_id}")
+        except Exception as e:
+            print(f"Error parsing visualization {viz_id}: {str(e)}")
+            continue
+    
     html_template = """
     <!DOCTYPE html>
     <html>
@@ -59,6 +79,7 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
                 padding: 10px;
                 background-color: white;
                 border-radius: 5px;
+                min-height: 400px;
             }
             .section-description {
                 color: #666;
@@ -70,36 +91,75 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
                 margin: 10px 0;
                 font-size: 0.9em;
             }
+            .error-message {
+                color: #e74c3c;
+                padding: 10px;
+                background-color: #fadbd8;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+            .debug-info {
+                font-family: monospace;
+                font-size: 12px;
+                color: #666;
+                margin-top: 5px;
+                display: none;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <h1>MushkilViz Analysis Report</h1>
             <div class="domain-info">
-                <strong>Detected Domain:</strong> {{ domain }}
+                <strong>Domain:</strong> {{ domain }}
             </div>
-            {% for section in sections %}
-            <div class="section">
-                <h2>{{ section.title }}</h2>
-                {% if section.description %}
-                <div class="section-description">{{ section.description }}</div>
-                {% endif %}
-                {% for plot_id in section.get('visualizations', section.get('plots', [])) %}
-                    {% if visualizations.get(plot_id) %}
-                    <div class="plot">
-                        <div id="{{ plot_id }}"></div>
-                        {% if descriptions.get(plot_id) %}
-                        <div class="plot-description">{{ descriptions[plot_id] }}</div>
-                        {% endif %}
-                        <script>
-                            var plotData = {{ visualizations[plot_id] | safe }};
-                            Plotly.newPlot('{{ plot_id }}', plotData.data, plotData.layout);
-                        </script>
-                    </div>
+            
+            <div id="visualization-container">
+            {% for spec in visualization_specs %}
+                <div class="plot">
+                    <div id="{{ spec.id }}"></div>
+                    {% if spec.description %}
+                    <div class="plot-description">{{ spec.description }}</div>
                     {% endif %}
-                {% endfor %}
-            </div>
+                    <div class="debug-info">Visualization ID: {{ spec.id }}</div>
+                </div>
             {% endfor %}
+            </div>
+            
+            <script>
+                // Function to safely parse JSON
+                function safeJSONParse(str) {
+                    try {
+                        return JSON.parse(str);
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        return null;
+                    }
+                }
+                
+                // Initialize all plots
+                document.addEventListener('DOMContentLoaded', function() {
+                    {% for spec in visualization_specs %}
+                    (function() {
+                        try {
+                            var plotElement = document.getElementById('{{ spec.id }}');
+                            var data = {{ spec.data | tojson | safe }};
+                            var layout = {{ spec.layout | tojson | safe }};
+                            
+                            if (data && layout) {
+                                Plotly.newPlot('{{ spec.id }}', data, layout);
+                            } else {
+                                plotElement.innerHTML = '<div class="error-message">Error: Missing plot data or layout</div>';
+                            }
+                        } catch (e) {
+                            console.error('Error creating plot {{ spec.id }}:', e);
+                            document.getElementById('{{ spec.id }}').innerHTML = 
+                                '<div class="error-message">Error: ' + e.message + '</div>';
+                        }
+                    })();
+                    {% endfor %}
+                });
+            </script>
         </div>
     </body>
     </html>
@@ -108,20 +168,8 @@ def generate_html_report(visualizations: dict, config: dict, domain: str) -> str
     from jinja2 import Template
     template = Template(html_template)
     
-    # Extract descriptions from visualization specs
-    descriptions = {}
-    for viz_id, viz_data in visualizations.items():
-        try:
-            plot_data = json.loads(viz_data)
-            if isinstance(plot_data, dict) and "description" in plot_data:
-                descriptions[viz_id] = plot_data["description"]
-        except:
-            pass
-    
     return template.render(
-        sections=config["report"]["sections"],
-        visualizations=visualizations,
-        descriptions=descriptions,
+        visualization_specs=visualization_specs,
         domain=domain
     )
 

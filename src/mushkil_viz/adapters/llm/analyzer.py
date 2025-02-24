@@ -9,43 +9,79 @@ from scipy import stats
 from mushkil_viz.adapters.llm.constants import DEFAULT_MODEL, LOG_FORMAT
 from mushkil_viz.core.analyzers.base import BaseAnalyzer
 from mushkil_viz.core.client_init import init_openai_client
+from mushkil_viz.adapters.llm.schemas import (
+    validate_visualization_response,
+    validate_visualization_spec,
+    VisualizationSpec
+)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
-SYSTEM_PROMPT = """You are a data visualization expert. Your task is to analyze the provided dataset and suggest meaningful visualizations.
-Focus on insights that would be valuable to visualize. For each visualization:
-1. Choose an appropriate plot type based on the data characteristics
-2. Provide clear titles and axis labels
-3. Include any necessary data transformations
-4. Explain why this visualization is useful
+SYSTEM_PROMPT = """You are a data visualization expert. Your task is to analyze the provided dataset context and suggest meaningful visualizations based on the actual data characteristics found in the dataset.
 
-Available Plot Types:
-- Bar/Column Charts (for categorical comparisons)
-- Line Charts (for trends over time or sequences)
-- Scatter Plots (for relationships between variables)
-- Box Plots (for distribution and outliers)
-- Histograms (for distribution of numeric data)
-- Heatmaps (for correlation matrices or 2D distributions)
-- Area Charts (for cumulative or stacked trends)
-- Pie Charts (for part-to-whole relationships)
-- Violin Plots (for probability density)
-- Bubble Charts (for 3 dimensions of data)
+For each column type found in the dataset:
 
-Return your response as a JSON object with the following structure:
+1. For Numeric Columns:
+   - Create distribution plots (histogram/box) for continuous variables
+   - Show correlations between numeric variables if multiple exist
+   - Identify and visualize any outliers
+   - If time series data exists, show trends over time
+
+2. For Categorical Columns:
+   - Show value distributions using appropriate charts (bar/pie)
+   - If few unique values (<10), show detailed breakdowns
+   - Create cross-tabulations with other categorical columns
+   - Show relationships with numeric columns using box plots
+
+3. For Temporal Columns:
+   - Show time-based patterns and trends
+   - Create time series visualizations
+   - Show seasonal patterns if they exist
+   - Aggregate by different time periods (day, month, year)
+
+4. For Text Columns:
+   - Show length distributions
+   - Display frequency of common values
+   - Create meaningful groupings if possible
+
+Look for and visualize:
+1. Strong correlations between variables
+2. Unusual patterns or outliers
+3. Time-based trends if temporal data exists
+4. Group differences and comparisons
+5. Key summary statistics and distributions
+
+For each visualization, provide:
+1. A clear title and description of what it shows
+2. Appropriate axis labels and scales
+3. Any necessary data transformations
+4. Why this visualization is useful for understanding the data
+
+Return your response as a JSON object with this structure:
 {
     "visualizations": [
         {
-            "id": "unique_id",
+            "id": "unique_id",  # Make this descriptive of what's being shown
             "type": "plot_type",
             "title": "Descriptive Title",
             "description": "Why this visualization is useful",
             "data": {
-                "x": "column_name or transformation",
-                "y": "column_name or transformation",
+                "x": "column_name",
+                "y": "column_name",
                 "color": "optional_column",
                 "size": "optional_column",
-                "transformations": []
+                "transformations": [
+                    {
+                        "operation": "groupby/sort/filter/datetime",
+                        "columns": ["column_names"],
+                        "aggregation": "count/sum/mean",
+                        "column": "column_name",
+                        "ascending": true/false,
+                        "condition": "filter_condition",
+                        "unit": "time_unit"
+                    }
+                ]
             },
             "layout": {
                 "title": "Plot Title",
@@ -54,7 +90,28 @@ Return your response as a JSON object with the following structure:
             }
         }
     ]
-}"""
+}
+
+Available Plot Types:
+- Bar/Column Charts: For categorical comparisons
+- Line Charts: For trends over time or sequences
+- Scatter Plots: For relationships between variables
+- Box Plots: For distribution and outliers
+- Histograms: For distribution of numeric data
+- Heatmaps: For correlation matrices or 2D distributions
+- Area Charts: For cumulative or stacked trends
+- Pie Charts: For part-to-whole relationships (use sparingly)
+- Violin Plots: For probability density
+- Bubble Charts: For 3 dimensions of data
+
+Guidelines:
+1. Focus on the most insightful visualizations (max 10)
+2. Ensure each visualization adds unique value
+3. Use appropriate plot types for the data
+4. Include clear titles and labels
+5. Apply transformations when needed (grouping, filtering, etc.)
+6. Consider the number of unique values when choosing plot types
+7. Handle missing values appropriately"""
 
 class LLMAnalyzer(BaseAnalyzer):
     """Analyzer that uses LLMs to generate and execute data analysis functions."""
@@ -65,7 +122,7 @@ class LLMAnalyzer(BaseAnalyzer):
         self.model = DEFAULT_MODEL
         self.system_prompt = SYSTEM_PROMPT
         self.max_retries = 3
-        self.max_plots = 15
+        self.max_plots = 10
         logger.debug("LLMAnalyzer initialized with model: %s", self.model)
 
     def _build_dataset_context(self, df: pd.DataFrame) -> Dict[str, Any]:
@@ -137,135 +194,32 @@ class LLMAnalyzer(BaseAnalyzer):
             
         return context
 
-    def _generate_default_visualizations(self, df: pd.DataFrame) -> List[Dict]:
-        """Generate default visualizations for Netflix dataset."""
-        specs = []
-        
-        # Type Distribution
-        if "type" in df.columns:
-            specs.append({
-                "id": "type_distribution",
-                "type": "bar",
-                "title": "Distribution of Content Types",
-                "description": "Shows the distribution of movies vs TV shows",
-                "data": {
-                    "transformations": [{
-                        "operation": "groupby",
-                        "columns": ["type"],
-                        "aggregation": "count"
-                    }],
-                    "x": "type",
-                    "y": "count"
-                },
-                "layout": {
-                    "title": "Distribution of Content Types",
-                    "xaxis_title": "Content Type",
-                    "yaxis_title": "Count"
-                }
-            })
+    def _get_visualization_suggestions(self, context: Dict[str, Any]) -> List[VisualizationSpec]:
+        """Get visualization suggestions from LLM based on dataset context."""
+        try:
+            messages = [
+                {"role": "system", "content": self.system_prompt},
+                {"role": "user", "content": f"Suggest visualizations for this dataset context: {json.dumps(context)}"}
+            ]
             
-        # Rating Distribution
-        if "rating" in df.columns:
-            specs.append({
-                "id": "rating_distribution",
-                "type": "bar",
-                "title": "Distribution of Content Ratings",
-                "description": "Shows the distribution of content ratings",
-                "data": {
-                    "transformations": [{
-                        "operation": "groupby",
-                        "columns": ["rating"],
-                        "aggregation": "count"
-                    }],
-                    "x": "rating",
-                    "y": "count"
-                },
-                "layout": {
-                    "title": "Distribution of Content Ratings",
-                    "xaxis_title": "Rating",
-                    "yaxis_title": "Count"
-                }
-            })
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.7,
+                max_tokens=2000,
+                response_format={"type": "json_object"}
+            )
             
-        # Release Year Distribution
-        if "release_year" in df.columns:
-            specs.append({
-                "id": "release_year_distribution",
-                "type": "histogram",
-                "title": "Distribution of Release Years",
-                "description": "Shows the distribution of content release years",
-                "data": {
-                    "x": "release_year"
-                },
-                "layout": {
-                    "title": "Distribution of Release Years",
-                    "xaxis_title": "Release Year",
-                    "yaxis_title": "Count"
-                }
-            })
+            # Parse and validate response
+            suggestions = json.loads(response.choices[0].message.content)
+            validated_response = validate_visualization_response(suggestions)
             
-        # Date Added Distribution
-        if "date_added" in df.columns:
-            specs.append({
-                "id": "date_added_distribution",
-                "type": "histogram",
-                "title": "Distribution of Date Added",
-                "description": "Shows when content was added to Netflix",
-                "data": {
-                    "x": "date_added"
-                },
-                "layout": {
-                    "title": "Distribution of Date Added",
-                    "xaxis_title": "Date Added",
-                    "yaxis_title": "Count"
-                }
-            })
+            # Limit number of visualizations
+            return validated_response.visualizations[:self.max_plots]
             
-        # Country Distribution
-        if "country" in df.columns:
-            specs.append({
-                "id": "country_distribution",
-                "type": "bar",
-                "title": "Top Countries by Content",
-                "description": "Shows the distribution of content by country",
-                "data": {
-                    "transformations": [{
-                        "operation": "groupby",
-                        "columns": ["country"],
-                        "aggregation": "count"
-                    }, {
-                        "operation": "sort",
-                        "column": "count",
-                        "ascending": False
-                    }],
-                    "x": "country",
-                    "y": "count"
-                },
-                "layout": {
-                    "title": "Top Countries by Content",
-                    "xaxis_title": "Country",
-                    "yaxis_title": "Count"
-                }
-            })
-            
-        # Duration Distribution
-        if "duration" in df.columns:
-            specs.append({
-                "id": "duration_distribution",
-                "type": "histogram",
-                "title": "Distribution of Content Duration",
-                "description": "Shows the distribution of content duration",
-                "data": {
-                    "x": "duration"
-                },
-                "layout": {
-                    "title": "Distribution of Content Duration",
-                    "xaxis_title": "Duration",
-                    "yaxis_title": "Count"
-                }
-            })
-            
-        return specs
+        except Exception as e:
+            logger.error(f"Error getting visualization suggestions: {str(e)}")
+            return []
 
     def analyze(self, df: pd.DataFrame) -> Dict:
         """Perform comprehensive analysis of the dataset using LLM suggestions."""
@@ -274,12 +228,15 @@ class LLMAnalyzer(BaseAnalyzer):
         # Get base analysis results
         base_analysis = super().analyze(df)
         
-        # Generate default visualizations for Netflix dataset
-        visualization_specs = self._generate_default_visualizations(df)
+        # Build rich dataset context
+        context = self._build_dataset_context(df)
+        
+        # Get visualization suggestions from LLM
+        visualization_specs = self._get_visualization_suggestions(context)
         
         # Add visualization specs to results
         results = base_analysis
-        results["visualization_specs"] = visualization_specs
+        results["visualization_specs"] = [spec.dict() for spec in visualization_specs]
         
         return results
 

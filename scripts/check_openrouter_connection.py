@@ -41,7 +41,6 @@ def test_openrouter_api(api_key, model_name):
 def main():
     # Get API key from environment variable or user input
     api_key = os.getenv('OPENROUTER_API_KEY')
-    print(api_key)
     
     if not api_key:
         print("OPENROUTER_API_KEY is not set")
