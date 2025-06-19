@@ -34,16 +34,22 @@ MushkilViz is a powerful Python framework for automated analysis and visualizati
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mushkil-viz.git
+git clone git@github.com:abdullah-athar/mushkil-viz.git
 cd mushkil-viz
 
 # Create and activate conda environment
 conda env create -f environment.yml
-conda activate mushkil-viz
+conda activate mushkil
 
 # Alternatively, use mamba for faster installation
 mamba env create -f environment.yml
-mamba activate mushkil-viz
+mamba activate mushkil
+
+# Install deps
+uv pip install -r requirements/requirements.txt 
+
+# Copy env boilerplate and update variables
+cp .env.example .env
 ```
 
 The environment includes all necessary dependencies for development and usage, including:
