@@ -4,7 +4,7 @@ import json
 import plotly.graph_objects as go
 from dotenv import load_dotenv
 from mushkil_viz.agent.utils import load_data, run_analysis
-from mushkil_viz.streamlit.utils import validate_uploaded_file, load_sample_data, safe_read_csv
+from mushkil_viz.streamlit.utils import validate_uploaded_file, load_sample_data, safe_read_csv, check_data_quality
 
 # Basic page configuration
 st.set_page_config(
@@ -167,7 +167,15 @@ if df is not None:
     st.dataframe(df.head(3))
 
     st.markdown('<div class="section-header"><h2>📊 Basic Statistics</h2></div>', unsafe_allow_html=True)
-    st.dataframe(summary)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.dataframe(summary)
+    with col2:
+        st.markdown("**Data Quality**")
+        quality_info = check_data_quality(df)
+        for key, value in quality_info.items():
+            st.metric(key.replace("_", " ").title(), value)
 
     # Analysis section
     st.markdown('<div class="section-header"><h2>🤖 Multi-Agent Analysis</h2></div>', unsafe_allow_html=True)

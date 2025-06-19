@@ -50,6 +50,22 @@ def safe_read_csv(file_path_or_buffer):
     raise ValueError("Could not decode file with any supported encoding")
 
 
+def check_data_quality(df):
+    """Quick data quality assessment."""
+    total_cells = df.shape[0] * df.shape[1]
+    missing_cells = df.isnull().sum().sum()
+    
+    quality_info = {
+        "rows": f"{df.shape[0]:,}",
+        "columns": df.shape[1],
+        "missing_values": f"{missing_cells:,} ({100 * missing_cells / total_cells:.1f}%)",
+        "duplicates": f"{df.duplicated().sum():,}",
+        "memory_usage": f"{df.memory_usage(deep=True).sum() / 1024**2:.1f}MB"
+    }
+    
+    return quality_info
+
+
 def display_error(message: str, details: str = None):
     """Display formatted error message with optional details."""
     st.error(f"❌ {message}")
