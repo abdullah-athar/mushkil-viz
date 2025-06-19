@@ -172,7 +172,6 @@ cython_debug/
 
 # Environment variables
 .env
-.env.*
 
 # IDE
 .idea/
