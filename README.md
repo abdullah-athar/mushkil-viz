@@ -50,6 +50,9 @@ uv pip install -r requirements/requirements.txt
 
 # Copy env boilerplate and update variables
 cp .env.example .env
+
+# Set up your Google Gemini API key
+echo "GOOGLE_GEMINI_KEY=your_actual_api_key_here" > .env
 ```
 
 The environment includes all necessary dependencies for development and usage, including:
@@ -60,60 +63,25 @@ The environment includes all necessary dependencies for development and usage, i
 
 ## Quick Start
 
-1. **Basic Usage**
+### Web Interface (Streamlit)
 
 ```bash
-# Analyze a dataset with automatic domain detection
-python -m mushkil_viz.cli analyze data.csv
+# Run the Streamlit application
+make run-app
 
-# Specify domain and custom configuration
-python -m mushkil_viz.cli analyze data.csv --domain financial --config custom_config.yaml
+# OR alternatively 
+streamlit run src/mushkil_viz/streamlit/app.py --server.port=8501
 ```
 
-2. **Python API**
-
-```python
-from mushkil_viz.core.engine import MushkilVizEngine
-from mushkil_viz.adapters.financial import FinancialAnalyzer, FinancialVisualizer
-
-# Initialize components
-analyzer = FinancialAnalyzer()
-visualizer = FinancialVisualizer()
-
-# Load and analyze data
-df = pd.read_csv("financial_data.csv")
-analysis_results = analyzer.analyze(df)
-visualizations = visualizer.visualize(df, analysis_results)
-```
+Then open your browser to: **http://localhost:8501**
 
 ## Project Structure
 
 ```
 mushkil_viz/
-├── core/                 # Core analysis components
-├── adapters/            # Domain-specific adapters
-├── configs/             # Configuration files
-├── examples/            # Example datasets
-├── tests/              # Test suite
-└── cli.py              # Command-line interface
+├── agent/
+├── streamlit/
 ```
-
-## Domain Support
-
-### Financial Analysis
-- Transaction pattern analysis
-- Spending categorization
-- Cash flow analysis
-- Recurring transaction detection
-- Merchant analysis
-
-### Coming Soon
-- Biological data analysis
-- Real estate market analysis
-- Time series analysis
-- Text data analysis
-
-## Configuration
 
 MushkilViz uses YAML configuration files for customization:
 

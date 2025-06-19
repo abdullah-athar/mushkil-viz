@@ -5,6 +5,12 @@ import plotly.graph_objects as go
 from dotenv import load_dotenv
 from mushkil_viz.agent.utils import load_data, run_analysis
 
+# Basic page configuration
+st.set_page_config(
+    page_title="MushkilViz - AI Data Analysis",
+    page_icon="📊",
+    layout="wide"
+)
 
 # Initialize environment
 load_dotenv()
