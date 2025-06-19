@@ -4,6 +4,7 @@ import json
 import plotly.graph_objects as go
 from dotenv import load_dotenv
 from mushkil_viz.agent.utils import load_data, run_analysis
+from mushkil_viz.streamlit.utils import validate_uploaded_file, load_sample_data, safe_read_csv
 
 # Basic page configuration
 st.set_page_config(
@@ -107,138 +108,179 @@ if (
 # File upload section
 st.markdown('<div class="section-header"><h2>📁 Data Upload</h2></div>', unsafe_allow_html=True)
 
+# Sample data section
+sample_data = load_sample_data()
+if sample_data:
+    with st.expander("📊 Use Sample Data", expanded=False):
+        cols = st.columns(len(sample_data))
+        for idx, (key, info) in enumerate(sample_data.items()):
+            with cols[idx]:
+                if st.button(f"{info['name']}\n({info['size']})", key=f"sample_{key}"):
+                    st.session_state["sample_file"] = info["path"]
+                    st.rerun()
+
 with st.container():
     uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
-if uploaded_file:
+# Handle data loading
+df = None
+data_source = "uploaded"
+
+# Check for sample data selection
+if "sample_file" in st.session_state and not uploaded_file:
     try:
-        # Load data and show preview
-        df, summary = load_data(uploaded_file)
-
-        st.markdown('<div class="section-header"><h2>📄 Data Preview</h2></div>', unsafe_allow_html=True)
-        st.dataframe(df.head(3))
-
-        st.markdown('<div class="section-header"><h2>📊 Basic Statistics</h2></div>', unsafe_allow_html=True)
-        st.dataframe(summary)
-
-        # Analysis section
-        st.markdown('<div class="section-header"><h2>🤖 Multi-Agent Analysis</h2></div>', unsafe_allow_html=True)
+        df = safe_read_csv(st.session_state["sample_file"])
+        st.info(f"📊 Using sample data: {st.session_state['sample_file'].name}")
+        data_source = "sample"
         
-        with st.container():
-            st.markdown('<div class="analysis-container">', unsafe_allow_html=True)
-            
-            # Sample prompts button
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                prompt = st.text_area(
-                    "Ask your question:",
-                    placeholder="e.g., 'Show correlation matrix', 'Plot distribution of sales', 'Analyze missing values'",
-                )
-            with col2:
-                st.write("")  # Spacing
-                if st.button("💡 Get Sample Prompts"):
-                    with st.spinner("Generating relevant prompts..."):
-                        try:
-                            sample_result = run_analysis(df, "get sample prompts")
-                            if not sample_result["error"]:
-                                st.info("**Suggested Analysis Ideas:**")
-                                st.markdown(sample_result["output"])
-                        except Exception as e:
-                            st.error(f"Error getting prompts: {str(e)}")
-
-            if st.button("🚀 Run Analysis") and prompt:
-                with st.spinner("🔄 Agents working on your request..."):
-                    try:
-                        result = run_analysis(df, prompt)
-
-                        # Debug information
-                        with st.expander("🔍 Debug Info", expanded=False):
-                            st.json(
-                                {
-                                    "result_keys": list(result.keys()),
-                                    "has_output": bool(result.get("output")),
-                                    "has_chart": bool(result.get("chart")),
-                                    "has_table": bool(result.get("table")),
-                                    "error": result.get("error", False),
-                                    "output_length": len(str(result.get("output", ""))),
-                                }
-                            )
-
-                        if result["error"]:
-                            st.error(f"❌ Error: {result['output']}")
-                        else:
-                            st.success("✅ Analysis Complete!")
-
-                            # Always show the output
-                            if result.get("output"):
-                                st.markdown("### 📝 Analysis Result:")
-                                st.markdown(result["output"])
-                            else:
-                                st.warning("⚠️ No output text received from agents")
-
-                            # Display interactive visualization if generated
-                            if result.get("chart"):
-                                st.subheader("📈 Interactive Visualization")
-                                try:
-                                    # Parse the Plotly JSON and display
-                                    fig_dict = json.loads(result["chart"])
-                                    fig = go.Figure(fig_dict)
-                                    st.plotly_chart(fig, use_container_width=True)
-                                    st.success("✅ Chart displayed successfully!")
-                                except Exception as e:
-                                    st.error(f"❌ Error displaying chart: {str(e)}")
-                                    st.text("Chart JSON preview:")
-                                    st.text(
-                                        str(result["chart"])[:500] + "..."
-                                        if len(str(result["chart"])) > 500
-                                        else str(result["chart"])
-                                    )
-
-                            # Display enhanced table results if generated
-                            if result.get("table"):
-                                st.subheader(f"📊 {result['table']['title']}")
-                                try:
-                                    # Parse the dataframe JSON and display
-                                    import pandas as pd
-
-                                    df_result = pd.read_json(result["table"]["data"])
-                                    st.dataframe(df_result, use_container_width=True)
-                                    st.success("✅ Table displayed successfully!")
-                                except Exception as e:
-                                    st.error(f"❌ Error displaying table: {str(e)}")
-                                    st.text("Table JSON preview:")
-                                    st.text(
-                                        str(result["table"]["data"])[:500] + "..."
-                                        if len(str(result["table"]["data"])) > 500
-                                        else str(result["table"]["data"])
-                                    )
-
-                    except Exception as e:
-                        st.error(f"💥 Critical error: {str(e)}")
-                        import traceback
-
-                        st.text("Full traceback:")
-                        st.text(traceback.format_exc())
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-
+        if st.button("Clear Sample Data"):
+            del st.session_state["sample_file"]
+            st.rerun()
     except Exception as e:
-        st.error(f"❌ Error loading file: {str(e)}")
+        st.error(f"❌ Error loading sample data: {str(e)}")
+        del st.session_state["sample_file"]
 
-# Sidebar
-with st.sidebar:
-    st.markdown("### 🚀 Quick Start")
-    st.markdown("""
-        1. Upload a CSV file
-        2. Review your data
-        3. Ask questions in natural language
-        4. Get AI-powered insights
-    """)
+# Handle uploaded file
+if uploaded_file:
+    is_valid, error_msg = validate_uploaded_file(uploaded_file)
+    if not is_valid:
+        st.error(f"❌ {error_msg}")
+    else:
+        try:
+            df = safe_read_csv(uploaded_file)
+            st.success(f"✅ File loaded: {len(df):,} rows × {len(df.columns)} columns")
+        except Exception as e:
+            st.error(f"❌ Error loading file: {str(e)}")
+
+if df is not None:
+    # Generate summary
+    try:
+        if data_source == "uploaded":
+            uploaded_file.seek(0)
+            _, summary = load_data(uploaded_file)
+        else:
+            summary = df.describe()
+    except:
+        summary = df.describe()
+
+    st.markdown('<div class="section-header"><h2>📄 Data Preview</h2></div>', unsafe_allow_html=True)
+    st.dataframe(df.head(3))
+
+    st.markdown('<div class="section-header"><h2>📊 Basic Statistics</h2></div>', unsafe_allow_html=True)
+    st.dataframe(summary)
+
+    # Analysis section
+    st.markdown('<div class="section-header"><h2>🤖 Multi-Agent Analysis</h2></div>', unsafe_allow_html=True)
     
-    st.markdown("### 💡 Example Queries")
-    st.markdown("""
-        - "Show correlation matrix"
-        - "Plot sales by category" 
-        - "Find outliers in data"
-        - "Analyze missing values"
-    """)
+    with st.container():
+        st.markdown('<div class="analysis-container">', unsafe_allow_html=True)
+        
+        # Sample prompts button
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            prompt = st.text_area(
+                "Ask your question:",
+                placeholder="e.g., 'Show correlation matrix', 'Plot distribution of sales', 'Analyze missing values'",
+            )
+        with col2:
+            st.write("")  # Spacing
+            if st.button("💡 Get Sample Prompts"):
+                with st.spinner("Generating relevant prompts..."):
+                    try:
+                        sample_result = run_analysis(df, "get sample prompts")
+                        if not sample_result["error"]:
+                            st.info("**Suggested Analysis Ideas:**")
+                            st.markdown(sample_result["output"])
+                    except Exception as e:
+                        st.error(f"Error getting prompts: {str(e)}")
+
+        if st.button("🚀 Run Analysis") and prompt:
+            with st.spinner("🔄 Agents working on your request..."):
+                try:
+                    result = run_analysis(df, prompt)
+
+                    # Debug information
+                    with st.expander("🔍 Debug Info", expanded=False):
+                        st.json(
+                            {
+                                "result_keys": list(result.keys()),
+                                "has_output": bool(result.get("output")),
+                                "has_chart": bool(result.get("chart")),
+                                "has_table": bool(result.get("table")),
+                                "error": result.get("error", False),
+                                "output_length": len(str(result.get("output", ""))),
+                            }
+                        )
+
+                    if result["error"]:
+                        st.error(f"❌ Error: {result['output']}")
+                    else:
+                        st.success("✅ Analysis Complete!")
+
+                        # Always show the output
+                        if result.get("output"):
+                            st.markdown("### 📝 Analysis Result:")
+                            st.markdown(result["output"])
+                        else:
+                            st.warning("⚠️ No output text received from agents")
+
+                        # Display interactive visualization if generated
+                        if result.get("chart"):
+                            st.subheader("📈 Interactive Visualization")
+                            try:
+                                # Parse the Plotly JSON and display
+                                fig_dict = json.loads(result["chart"])
+                                fig = go.Figure(fig_dict)
+                                st.plotly_chart(fig, use_container_width=True)
+                                st.success("✅ Chart displayed successfully!")
+                            except Exception as e:
+                                st.error(f"❌ Error displaying chart: {str(e)}")
+                                st.text("Chart JSON preview:")
+                                st.text(
+                                    str(result["chart"])[:500] + "..."
+                                    if len(str(result["chart"])) > 500
+                                    else str(result["chart"])
+                                )
+
+                        # Display enhanced table results if generated
+                        if result.get("table"):
+                            st.subheader(f"📊 {result['table']['title']}")
+                            try:
+                                # Parse the dataframe JSON and display
+                                import pandas as pd
+
+                                df_result = pd.read_json(result["table"]["data"])
+                                st.dataframe(df_result, use_container_width=True)
+                                st.success("✅ Table displayed successfully!")
+                            except Exception as e:
+                                st.error(f"❌ Error displaying table: {str(e)}")
+                                st.text("Table JSON preview:")
+                                st.text(
+                                    str(result["table"]["data"])[:500] + "..."
+                                    if len(str(result["table"]["data"])) > 500
+                                    else str(result["table"]["data"])
+                                )
+
+                except Exception as e:
+                    st.error(f"💥 Critical error: {str(e)}")
+                    import traceback
+
+                    st.text("Full traceback:")
+                    st.text(traceback.format_exc())
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
+# Minimal sidebar - pinned items only
+with st.sidebar:
+    # Top section
+    st.markdown("### 🚀 Quick Start")
+    st.markdown("1. Upload CSV or use sample data\n2. Ask questions\n3. Get AI insights")
+    
+    # Bottom section (spacer + status)
+    st.markdown("<br>" * 10, unsafe_allow_html=True)
+    
+    st.markdown("### Status")
+    if os.getenv("GOOGLE_GEMINI_KEY") and os.getenv("GOOGLE_GEMINI_KEY") != "your_api_key_here":
+        st.success("🔑 API Ready")
+    else:
+        st.error("🔑 API Missing")
