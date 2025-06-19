@@ -198,13 +198,41 @@ if df is not None:
     with st.container():
         st.markdown('<div class="analysis-container">', unsafe_allow_html=True)
         
-        # Sample prompts button
+        # Quick analysis buttons
+        st.markdown("**🚀 Quick Analysis:**")
+        quick_col1, quick_col2, quick_col3 = st.columns(3)
+        
+        with quick_col1:
+            if st.button("📊 Data Summary"):
+                st.session_state["quick_prompt"] = "Provide a comprehensive summary of this dataset including key insights"
+            if st.button("🔗 Correlations"):
+                st.session_state["quick_prompt"] = "Show correlation matrix and identify strong relationships between variables"
+                
+        with quick_col2:
+            if st.button("📈 Distributions"):
+                st.session_state["quick_prompt"] = "Analyze the distribution of all numeric variables and create visualizations"
+            if st.button("🎯 Outliers"):
+                st.session_state["quick_prompt"] = "Detect and analyze outliers in the data"
+                
+        with quick_col3:
+            if st.button("📋 Data Quality"):
+                st.session_state["quick_prompt"] = "Assess data quality including missing values, duplicates, and data types"
+            if st.button("🔍 Feature Analysis"):
+                st.session_state["quick_prompt"] = "Analyze individual features and their characteristics"
+        
+        st.markdown("---")
+        
+        # Custom analysis input
         col1, col2 = st.columns([3, 1])
         with col1:
             prompt = st.text_area(
                 "Ask your question:",
+                value=st.session_state.get("quick_prompt", ""),
                 placeholder="e.g., 'Show correlation matrix', 'Plot distribution of sales', 'Analyze missing values'",
             )
+            # Clear quick prompt after use
+            if "quick_prompt" in st.session_state:
+                del st.session_state["quick_prompt"]
         with col2:
             st.write("")  # Spacing
             if st.button("💡 Get Sample Prompts"):
