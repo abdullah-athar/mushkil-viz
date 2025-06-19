@@ -1,14 +1,13 @@
 .PHONY: init test clean format lint env-create env-remove env-recreate
 
+CONDA_CMD ?= conda
 # Environment name from environment.yml
-ENV_NAME := mushkil-viz
+ENV_NAME := mushkil
 
 # Detect OS and set the correct command to check if environment exists
 ifeq ($(OS),Windows_NT)
-	CONDA_CMD := conda
 	CHECK_ENV := $(CONDA_CMD) env list | findstr /B /L "$(ENV_NAME)"
 else
-	CONDA_CMD := conda
 	CHECK_ENV := $(CONDA_CMD) env list | grep -E "^$(ENV_NAME) "
 endif
 
@@ -30,9 +29,16 @@ env-create:
 # Recreate environment from scratch
 env-recreate: env-remove env-create
 
+# Install Python dependencies with uv
+install-deps:
+	@echo "Installing dependencies with uv..."
+	$(CONDA_CMD) run -n $(ENV_NAME) uv pip install -r requirements/requirements.txt
+	$(CONDA_CMD) run -n $(ENV_NAME) uv pip install -e .
+
 # Initialize project (recreate environment and install pre-commit hooks)
-init: env-recreate
+init: env-recreate install-deps
 	$(CONDA_CMD) run -n $(ENV_NAME) pre-commit install
+
 
 # Update environment
 update-env:
@@ -57,16 +63,8 @@ clean:
 	find . -type d -name "dist" -exec rm -rf {} +
 	find . -type d -name "build" -exec rm -rf {} +
 
-# Format code
-format:
-	$(CONDA_CMD) run -n $(ENV_NAME) black src/ tests/ examples/
-	$(CONDA_CMD) run -n $(ENV_NAME) isort src/ tests/ examples/
 
-# Run linting
-lint:
-	$(CONDA_CMD) run -n $(ENV_NAME) flake8 src/ tests/ examples/
-	$(CONDA_CMD) run -n $(ENV_NAME) black --check src/ tests/ examples/
-	$(CONDA_CMD) run -n $(ENV_NAME) isort --check-only src/ tests/ examples/
-
-# Run all checks (lint and test)
-check: lint test 
+# Run the Streamlit app
+run-app:
+	@echo "Starting Streamlit app..."
+	$(CONDA_CMD) run -n $(ENV_NAME) streamlit run src/mushkil_viz/streamlit/app.py --server.port=8501

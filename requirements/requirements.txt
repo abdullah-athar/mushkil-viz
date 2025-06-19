@@ -1,0 +1,9 @@
+streamlit
+langchain
+langchain-experimental
+langchain-google-genai
+python-dotenv
+pandas
+plotly
+scikit-learn
+pre-commit
