@@ -163,19 +163,34 @@ if df is not None:
     except:
         summary = df.describe()
 
-    st.markdown('<div class="section-header"><h2>📄 Data Preview</h2></div>', unsafe_allow_html=True)
-    st.dataframe(df.head(3))
-
-    st.markdown('<div class="section-header"><h2>📊 Basic Statistics</h2></div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header"><h2>📄 Data Overview</h2></div>', unsafe_allow_html=True)
     
-    col1, col2 = st.columns(2)
-    with col1:
+    tab1, tab2, tab3 = st.tabs(["📄 Preview", "📊 Statistics", "🔍 Quality"])
+    
+    with tab1:
+        st.dataframe(df.head(10))
+        
+    with tab2:
         st.dataframe(summary)
-    with col2:
-        st.markdown("**Data Quality**")
+        
+    with tab3:
         quality_info = check_data_quality(df)
-        for key, value in quality_info.items():
-            st.metric(key.replace("_", " ").title(), value)
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Rows", quality_info["rows"])
+            st.metric("Columns", quality_info["columns"])
+        with col2:
+            st.metric("Missing Values", quality_info["missing_values"])
+            st.metric("Duplicates", quality_info["duplicates"])
+        with col3:
+            st.metric("Memory Usage", quality_info["memory_usage"])
+            
+        if df.isnull().sum().sum() > 0:
+            st.markdown("**Missing Values by Column:**")
+            missing_data = df.isnull().sum()
+            missing_data = missing_data[missing_data > 0].sort_values(ascending=False)
+            st.bar_chart(missing_data)
 
     # Analysis section
     st.markdown('<div class="section-header"><h2>🤖 Multi-Agent Analysis</h2></div>', unsafe_allow_html=True)
