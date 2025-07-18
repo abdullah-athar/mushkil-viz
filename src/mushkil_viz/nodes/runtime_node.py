@@ -219,19 +219,7 @@ stderr_capture = io.StringIO()
 with contextlib.redirect_stdout(stdout_capture), contextlib.redirect_stderr(stderr_capture):
     try:
 {self._indent_code(code_bundle.code, 2)}
-
-        # Fallback result resolution
-        if 'perform_overview_analysis' in globals():
-            result = perform_overview_analysis()
-        elif 'create_visualizations' in globals():
-            result = create_visualizations()
-        elif 'analyze_categorical_data' in globals():
-            result = analyze_categorical_data()
-        elif 'perform_analysis' in globals():
-            result = perform_analysis()
-        else:
-            result = {"status": "completed", "message": "Code executed successfully"}
-
+        result = main() 
     except Exception as e:
         result = {{"status": "error", "error": str(e)}}
         raise
@@ -261,7 +249,7 @@ print("===END_EXECUTION_RESULT===")
         # Set up environment variables for sandbox
         env = os.environ.copy()
         env['PYTHONPATH'] = ':'.join([
-            str(Path(__file__).parent.parent.parent),  # Add project root to path
+            str(Path(__file__).parent.parent.parent.parent),  # Add project root to path
             env.get('PYTHONPATH', '')
         ])
         
@@ -294,7 +282,7 @@ print("===END_EXECUTION_RESULT===")
             else:
                 status = ExecutionStatus.FAILED
                 error_message = stderr_str or f"Process exited with code {process.returncode}"
-            
+       
             return {
                 'status': status,
                 'stdout': stdout_str,
