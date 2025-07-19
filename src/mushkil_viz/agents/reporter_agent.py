@@ -1,120 +1,45 @@
-"""
-Reporter agent for synthesizing final analysis reports.
-
-This agent is responsible for:
-- Collecting all analysis results and artifacts
-- Synthesizing findings into a comprehensive report
-- Generating markdown with embedded visualizations
-- Providing key insights and recommendations
-"""
-
 import json
-import os
-from typing import List, Dict, Any, Optional
-import logging
-from pathlib import Path
-
+from typing import List, Dict, Any
 from .base_agent import BaseAgent
-from ..schema import (
-    WorkflowState, AnalysisReport, ExecutionResult, GradeReport, DataSpec
-)
+from ..schema import WorkflowState, AnalysisReport
 
 
 class ReporterAgent(BaseAgent):
-    """
-    Agent responsible for creating comprehensive final reports.
-    
-    This agent collects all analysis results, artifacts, and findings
-    to create a complete markdown report with embedded visualizations
-    and insights.
-    """
-    
     def __init__(self, **kwargs):
-        """Initialize the reporter agent."""
         super().__init__(**kwargs)
         self.report_templates = self._load_report_templates()
-    
+
     def process(self, state: WorkflowState) -> WorkflowState:
-        """
-        Create comprehensive final report from all analysis results.
-        
-        Args:
-            state: Current workflow state with all analysis results
-            
-        Returns:
-            Updated workflow state with final_report populated
-        """
         self.log_info("Creating comprehensive final report")
-        
         try:
-            # Validate state
             if not self.validate_state(state):
                 raise ValueError("Invalid state for reporter agent")
-            
-            # Create comprehensive report
             final_report = self._create_final_report(state)
-            
-            # Update state
             state.final_report = final_report
             self.log_info("Successfully created final report")
-            
         except Exception as e:
             self.log_error(f"Failed to create final report: {e}")
             raise
-        
         return state
-    
+
     def validate_state(self, state: WorkflowState) -> bool:
-        """Validate that state has required analysis results."""
         return (
-            hasattr(state, 'data_spec') and 
-            state.data_spec is not None and
-            hasattr(state, 'analysis_plan') and 
-            state.analysis_plan is not None and
-            hasattr(state, 'execution_results') and 
-            len(state.execution_results) > 0
+            hasattr(state, 'data_spec') and state.data_spec is not None and
+            hasattr(state, 'analysis_plan') and state.analysis_plan is not None and
+            hasattr(state, 'execution_results') and len(state.execution_results) > 0
         )
-    
+
     def _create_final_report(self, state: WorkflowState) -> AnalysisReport:
-        """
-        Create comprehensive final report.
-        
-        Args:
-            state: Complete workflow state
-            
-        Returns:
-            Complete AnalysisReport
-        """
-        # Prepare context for LLM
         context = self._prepare_report_context(state)
-        
-        # Create system prompt
         system_prompt = self._get_system_prompt()
-        
-        # Create user prompt
         user_prompt = self._create_user_prompt(context)
-        
-        # Call LLM
         messages = self.format_messages(system_prompt, user_prompt)
         response = self.call_llm(messages)
-        
-        # Parse response and create report
-        analysis_report = self._parse_llm_response(response, state)
-        
-        return analysis_report
-    
+        return self._parse_llm_response(response, state)
+
     def _prepare_report_context(self, state: WorkflowState) -> Dict[str, Any]:
-        """
-        Prepare context for report generation.
-        
-        Args:
-            state: Workflow state
-            
-        Returns:
-            Context dictionary
-        """
-        # Collect all execution results
         execution_summary = {}
+        artifacts_by_step = {}
         for step_id, result in state.execution_results.items():
             execution_summary[step_id] = {
                 "status": result.status.value,
@@ -122,36 +47,38 @@ class ReporterAgent(BaseAgent):
                 "artifacts": result.artifacts,
                 "error_message": result.error_message
             }
-        
-        # Collect all grade reports
-        grade_summary = {}
-        for step_id, grade in state.grade_reports.items():
-            grade_summary[step_id] = {
+            artifacts_by_step[step_id] = {}
+            for art in result.artifacts:
+                t = getattr(art, "type", "unknown")
+                artifacts_by_step[step_id].setdefault(t, []).append({
+                    "path": getattr(art, "uri", getattr(art, "path", None)),
+                    "desc": getattr(art, "description", "")
+                })
+
+        grade_summary = {
+            step_id: {
                 "verdict": grade.verdict.value,
                 "score": grade.score,
                 "comments": grade.comments
             }
-        
-        # Collect key insights from successful executions
+            for step_id, grade in state.grade_reports.items()
+        }
+
         key_insights = []
-        for step_id, result in state.execution_results.items():
+        for result in state.execution_results.values():
             if result.status.value == "success" and result.return_value:
                 if isinstance(result.return_value, dict):
-                    # Extract insights from return value
-                    if "insights" in result.return_value:
-                        key_insights.extend(result.return_value["insights"])
-                    elif "key_findings" in result.return_value:
-                        key_insights.extend(result.return_value["key_findings"])
-        
-        # Collect data quality issues
+                    key_insights.extend(result.return_value.get("insights", []))
+                    key_insights.extend(result.return_value.get("key_findings", []))
+
         data_quality_issues = []
         if state.data_spec:
             for col in state.data_spec.column_schema:
                 if col.null_count > 0:
                     data_quality_issues.append(f"Column '{col.name}' has {col.null_count} null values")
-        
+
         return {
-            "dataset_name": state.data_spec.uri.split('/')[-1] if '/' in state.data_spec.uri else state.data_spec.uri,
+            "dataset_name": state.data_spec.uri.split('/')[-1],
             "dataset_info": {
                 "row_count": state.data_spec.row_count,
                 "column_count": state.data_spec.column_count,
@@ -175,20 +102,35 @@ class ReporterAgent(BaseAgent):
             "grade_summary": grade_summary,
             "key_insights": key_insights,
             "data_quality_issues": data_quality_issues,
+            "artifacts_by_step": artifacts_by_step,
             "completed_steps": state.completed_steps,
             "failed_steps": state.failed_steps,
             "total_execution_time": state.total_execution_time
         }
-    
+
+    def _format_artifact_markdown(self, step_id: str, artifacts: Dict[str, List[Dict[str, str]]]) -> str:
+        md = ""
+        for art_type, items in artifacts.items():
+            md += f"\n**{art_type.title()}s for Step {step_id}:**\n"
+            for item in items:
+                path = item["path"]
+                desc = item["desc"]
+                if art_type.lower() == "figure":
+                    md += f"![Figure – Step {step_id}]({path})  \n*{desc}*\n"
+                elif art_type.lower() == "table":
+                    md += f"<details>\n<summary>Table – Step {step_id}: {desc}</summary>\n\n```csv\n(path: {path})\n```\n</details>\n"
+                else:
+                    md += f"- {art_type.title()}: `{path}` – {desc}\n"
+        return md
+
     def _get_system_prompt(self) -> str:
-        """Get the system prompt for the reporter agent."""
         return """You are an expert data analyst and technical writer. Your task is to create a comprehensive, professional analysis report based on the results of automated data analysis.
 
 REPORT REQUIREMENTS:
 1. Create a clear, well-structured markdown report
 2. Include an executive summary with key findings
 3. Provide detailed analysis sections for each completed step
-4. Include visualizations and artifacts where available
+4. Include visualizations and artifacts where available (embed figures as ![alt](path) and wrap large tables in collapsible <details>)
 5. Highlight data quality issues and recommendations
 6. Provide actionable insights and next steps
 7. Use professional, clear language suitable for stakeholders
@@ -204,30 +146,19 @@ REPORT STRUCTURE:
 
 Return your response as a JSON object with the following structure:
 {
-    "dataset_name": "string",
-    "analysis_summary": "string (executive summary)",
-    "key_insights": ["string (list of key insights)"],
-    "statistics_summary": {"object (summary statistics)"},
-    "visualizations": ["string (list of visualization descriptions)"],
-    "data_quality_issues": ["string (list of data quality issues)"],
-    "recommendations": ["string (list of recommendations)"],
-    "markdown_content": "string (complete markdown report)",
-    "execution_summary": {"object (execution statistics)"},
-    "artifacts_directory": "string (path to artifacts)"
-}
+  "dataset_name": "string",
+  "analysis_summary": "string",
+  "key_insights": ["string"],
+  "statistics_summary": { "object" },
+  "visualizations": ["string"],
+  "data_quality_issues": ["string"],
+  "recommendations": ["string"],
+  "markdown_content": "string",
+  "execution_summary": { "object" },
+  "artifacts_directory": "string"
+}"""
 
-The markdown_content should be a complete, professional report that can be directly used."""
-    
     def _create_user_prompt(self, context: Dict[str, Any]) -> str:
-        """
-        Create user prompt for report generation.
-        
-        Args:
-            context: Report context dictionary
-            
-        Returns:
-            Formatted user prompt
-        """
         prompt = f"""Please create a comprehensive analysis report for the following dataset and analysis results:
 
 DATASET: {context['dataset_name']}
@@ -242,83 +173,41 @@ Total Steps: {context['analysis_plan']['total_steps']}
 
 COMPLETED STEPS:
 """
-        
         for step in context['analysis_plan']['steps']:
             if step['step_id'] in context['completed_steps']:
                 prompt += f"- Step {step['step_id']}: {step['title']} ({step['analysis_type']})\n"
-        
-        prompt += f"""
+                artifacts = context['artifacts_by_step'].get(step['step_id'], {})
+                if artifacts:
+                    prompt += self._format_artifact_markdown(step['step_id'], artifacts)
 
-FAILED STEPS:
-"""
-        
+        prompt += f"\nFAILED STEPS:\n"
         for step_id in context['failed_steps']:
-            if step_id in context['execution_summary']:
-                error = context['execution_summary'][step_id].get('error_message', 'Unknown error')
-                prompt += f"- Step {step_id}: {error}\n"
-        
-        prompt += f"""
+            err = context['execution_summary'].get(step_id, {}).get('error_message', 'Unknown error')
+            prompt += f"- Step {step_id}: {err}\n"
 
-EXECUTION SUMMARY:
-"""
-        
+        prompt += "\nEXECUTION SUMMARY:\n"
         for step_id, summary in context['execution_summary'].items():
             prompt += f"- Step {step_id}: {summary['status']} ({summary['execution_time']:.2f}s)\n"
-        
-        prompt += f"""
 
-KEY INSIGHTS:
-"""
-        
+        prompt += "\nKEY INSIGHTS:\n"
         for insight in context['key_insights']:
             prompt += f"- {insight}\n"
-        
-        prompt += f"""
 
-DATA QUALITY ISSUES:
-"""
-        
+        prompt += "\nDATA QUALITY ISSUES:\n"
         for issue in context['data_quality_issues']:
             prompt += f"- {issue}\n"
-        
-        prompt += f"""
 
-Please create a comprehensive, professional report that:
-1. Provides clear insights about the dataset
-2. Summarizes the analysis results
-3. Highlights key findings and patterns
-4. Identifies data quality issues
-5. Provides actionable recommendations
-6. Includes technical details for reproducibility
-
-The report should be suitable for both technical and non-technical stakeholders."""
-        
+        prompt += "\nPlease create a comprehensive, professional report suitable for both technical and non-technical stakeholders."
         return prompt
-    
+
     def _parse_llm_response(self, response: str, state: WorkflowState) -> AnalysisReport:
-        """
-        Parse LLM response into AnalysisReport object.
-        
-        Args:
-            response: LLM response string
-            state: Original workflow state
-            
-        Returns:
-            Parsed AnalysisReport
-        """
         try:
-            # Extract JSON from response
             json_start = response.find('{')
             json_end = response.rfind('}') + 1
-            
-            if json_start == -1 or json_end == 0:
-                raise ValueError("No JSON found in LLM response")
-            
             json_str = response[json_start:json_end]
             report_data = json.loads(json_str)
-            
-            # Create AnalysisReport
-            analysis_report = AnalysisReport(
+
+            return AnalysisReport(
                 dataset_name=report_data.get('dataset_name', state.data_spec.uri.split('/')[-1]),
                 analysis_summary=report_data.get('analysis_summary', 'Analysis completed'),
                 key_insights=report_data.get('key_insights', []),
@@ -330,135 +219,87 @@ The report should be suitable for both technical and non-technical stakeholders.
                 execution_summary=report_data.get('execution_summary', {}),
                 artifacts_directory="data/artifacts"
             )
-            
-            return analysis_report
-            
         except Exception as e:
             self.log_error(f"Failed to parse LLM response: {e}")
-            # Fallback to template-based report
             return self._create_fallback_report(state)
-    
+
     def _create_fallback_report(self, state: WorkflowState) -> AnalysisReport:
-        """
-        Create fallback report using templates.
-        
-        Args:
-            state: Workflow state
-            
-        Returns:
-            Fallback AnalysisReport
-        """
         self.log_warning("Using fallback report due to LLM parsing failure")
-        
-        # Generate basic markdown report
-        markdown_content = self._generate_basic_markdown(state)
-        
-        # Collect basic insights
-        key_insights = []
-        data_quality_issues = []
-        
-        if state.data_spec:
-            for col in state.data_spec.column_schema:
-                if col.null_count > 0:
-                    data_quality_issues.append(f"Column '{col.name}' has {col.null_count} null values")
-        
-        # Collect execution statistics
+        markdown = self._generate_basic_markdown(state)
+        data_quality_issues = [
+            f"Column '{col.name}' has {col.null_count} null values"
+            for col in state.data_spec.column_schema if col.null_count > 0
+        ]
         execution_summary = {
             "total_steps": len(state.analysis_plan.steps),
             "completed_steps": len(state.completed_steps),
             "failed_steps": len(state.failed_steps),
             "total_time": state.total_execution_time or 0.0
         }
-        
         return AnalysisReport(
-            dataset_name=state.data_spec.uri.split('/')[-1] if '/' in state.data_spec.uri else state.data_spec.uri,
+            dataset_name=state.data_spec.uri.split('/')[-1],
             analysis_summary="Automated analysis completed with fallback report generation",
-            key_insights=key_insights,
+            key_insights=[],
             statistics_summary={},
             visualizations=[],
             data_quality_issues=data_quality_issues,
             recommendations=["Review generated artifacts manually for detailed insights"],
-            markdown_content=markdown_content,
+            markdown_content=markdown,
             execution_summary=execution_summary,
             artifacts_directory="data/artifacts"
         )
-    
+
     def _generate_basic_markdown(self, state: WorkflowState) -> str:
-        """
-        Generate basic markdown report from workflow state.
-        
-        Args:
-            state: Workflow state
-            
-        Returns:
-            Basic markdown content
-        """
-        markdown = f"""# Data Analysis Report: {state.data_spec.uri.split('/')[-1] if '/' in state.data_spec.uri else state.data_spec.uri}
+        markdown = f"""# Data Analysis Report: {state.data_spec.uri.split('/')[-1]}
 
 ## Executive Summary
 
-This report presents the results of automated data analysis performed on the dataset. The analysis included {len(state.analysis_plan.steps)} steps covering data quality assessment, statistical analysis, and visualization.
+This report presents the results of automated data analysis including {len(state.analysis_plan.steps)} steps.
 
 ## Dataset Overview
 
-- **Dataset**: {state.data_spec.uri}
-- **Format**: {state.data_spec.format.value}
-- **Rows**: {state.data_spec.row_count:,}
-- **Columns**: {state.data_spec.column_count}
-- **Memory Usage**: {state.data_spec.memory_usage_mb:.2f} MB
+- Dataset: {state.data_spec.uri}
+- Format: {state.data_spec.format.value}
+- Rows: {state.data_spec.row_count:,}
+- Columns: {state.data_spec.column_count}
+- Memory Usage: {state.data_spec.memory_usage_mb:.2f} MB
 
 ## Analysis Results
 
-### Completed Steps ({len(state.completed_steps)}/{len(state.analysis_plan.steps)})
-
+### Completed Steps
 """
-        
         for step in state.analysis_plan.steps:
             if step.step_id in state.completed_steps:
                 markdown += f"#### Step {step.step_id}: {step.title}\n\n"
                 markdown += f"{step.description}\n\n"
-                
-                if step.step_id in state.execution_results:
-                    result = state.execution_results[step.step_id]
-                    markdown += f"- **Status**: {result.status.value}\n"
-                    markdown += f"- **Execution Time**: {result.execution_time_seconds:.2f} seconds\n"
-                    markdown += f"- **Artifacts**: {len(result.artifacts)} generated\n\n"
-        
-        markdown += "### Failed Steps\n\n"
-        
+
+        markdown += "### Failed Steps\n"
         for step_id in state.failed_steps:
-            if step_id in state.execution_results:
-                result = state.execution_results[step_id]
-                markdown += f"- **Step {step_id}**: {result.error_message or 'Unknown error'}\n\n"
-        
-        markdown += "## Data Quality Assessment\n\n"
-        
-        if state.data_spec:
-            for col in state.data_spec.column_schema:
-                if col.null_count > 0:
-                    markdown += f"- Column '{col.name}' has {col.null_count} null values\n"
-        
-        markdown += "\n## Recommendations\n\n"
-        markdown += "- Review generated artifacts in `data/artifacts/` for detailed insights\n"
-        markdown += "- Consider addressing data quality issues identified above\n"
-        markdown += "- Validate key findings with domain experts\n\n"
-        
-        markdown += "## Technical Details\n\n"
-        markdown += f"- **Total Execution Time**: {state.total_execution_time or 0.0:.2f} seconds\n"
-        markdown += f"- **Artifacts Directory**: `data/artifacts/`\n"
-        markdown += f"- **Analysis Framework**: LLM-powered agentic analysis\n\n"
-        
-        markdown += "---\n*Report generated automatically by LLM-powered analysis framework*"
-        
+            err = state.execution_results[step_id].error_message or 'Unknown error'
+            markdown += f"- Step {step_id}: {err}\n"
+
+        markdown += "\n## Data Quality Assessment\n"
+        for col in state.data_spec.column_schema:
+            if col.null_count > 0:
+                markdown += f"- Column '{col.name}' has {col.null_count} null values\n"
+
+        markdown += "\n## Recommendations\n"
+        markdown += "- Review generated artifacts in `data/artifacts/`\n"
+        markdown += "- Address data quality issues\n"
+        markdown += "- Validate key findings with domain experts\n"
+
+        markdown += "\n## Technical Details\n"
+        markdown += f"- Total Execution Time: {state.total_execution_time or 0.0:.2f} seconds\n"
+        markdown += f"- Artifacts Directory: `data/artifacts/`\n"
+        markdown += "---\n*Generated by automated analysis framework*"
         return markdown
-    
+
     def _load_report_templates(self) -> Dict[str, Any]:
-        """Load report templates."""
         return {
-            "executive_summary": "Analysis of {dataset_name} revealed key insights about data quality and patterns.",
+            "executive_summary": "Analysis of {dataset_name} revealed key insights.",
             "recommendations": [
                 "Review data quality issues",
                 "Validate findings with domain experts",
-                "Consider additional analysis based on insights"
+                "Consider additional analysis"
             ]
-        } 
+        }

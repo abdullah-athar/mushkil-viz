@@ -203,7 +203,13 @@ class AnalysisWorkflow:
         
         try:
             # Run the workflow without checkpointer
-            final_state = self.graph.invoke(initial_state, config={"recursion_limit": 50})
+            final_state_dict = self.graph.invoke(initial_state, config={"recursion_limit": 50})
+            
+            # Convert dictionary back to WorkflowState if needed
+            if isinstance(final_state_dict, dict):
+                final_state = WorkflowState(**final_state_dict)
+            else:
+                final_state = final_state_dict
             
             # Update final state
             final_state.end_time = datetime.now().isoformat()

@@ -261,7 +261,7 @@ print("===END_EXECUTION_RESULT===")
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 env=env,
-                cwd=str(artifacts_dir),
+                #cwd=str(artifacts_dir),
                 preexec_fn=self._setup_sandbox_limits
             )
             

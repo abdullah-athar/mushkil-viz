@@ -337,7 +337,7 @@ Return your response as a valid JSON object with the specified structure."""
                 raise ValueError("Missing 'code' field in LLM response")
             
             # Validate Python syntax
-            self._validate_python_syntax(code_data['code'])
+            #self._validate_python_syntax(code_data['code'])
             
             # Create CodeArtifact objects
             expected_artifacts = []
