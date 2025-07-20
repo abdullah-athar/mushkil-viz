@@ -246,15 +246,8 @@ Provide a comprehensive evaluation with specific feedback."""
             Parsed GradeReport
         """
         try:
-            # Extract JSON from response
-            json_start = response.find('{')
-            json_end = response.rfind('}') + 1
-            
-            if json_start == -1 or json_end == 0:
-                raise ValueError("No JSON found in LLM response")
-            
-            json_str = response[json_start:json_end]
-            grade_data = json.loads(json_str)
+            # Extract JSON from response using base class method
+            grade_data = self.extract_json_from_response(response)
             
             # Create GradeReport
             grade_report = GradeReport(

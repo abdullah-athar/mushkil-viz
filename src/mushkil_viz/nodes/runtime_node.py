@@ -14,10 +14,12 @@ import time
 import json
 import tempfile
 import subprocess
+import shutil
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 import logging
 import signal
+import re
 
 
 from ..schema import (
@@ -48,70 +50,130 @@ class RuntimeNode:
     
     def execute(self, state: WorkflowState) -> WorkflowState:
         """
-        Execute the code for the current analysis step.
+        Execute the current analysis step.
         
         Args:
             state: Current workflow state with code_bundle for current step
             
         Returns:
-            Updated workflow state with execution_result for current step
+            Updated workflow state with execution result
         """
         step_id = state.current_step
-        self.logger.info(f"Executing code for step {step_id}")
-
+        self.logger.info(f"Executing step {step_id}")
+        
         try:
+            # Validate state
+            if not self._validate_state(state):
+                raise ValueError("Invalid state for runtime node")
+            
             # Get code bundle for current step
-            if step_id not in state.code_bundles:
+            code_bundle = state.code_bundles.get(step_id)
+            if not code_bundle:
                 raise ValueError(f"No code bundle found for step {step_id}")
             
-            code_bundle = state.code_bundles[step_id]
+            # Extract dataset name from URI for directory organization
+            dataset_name = self._extract_dataset_name(state.dataset_uri)
             
             # Execute the code
-            execution_result = self._execute_code(code_bundle, state.data_spec.uri)
+            execution_result = self._execute_code(code_bundle, state.dataset_uri, dataset_name)
             
             # Update state
             state.execution_results[step_id] = execution_result
             
+            # Mark step as completed if successful
             if execution_result.status == ExecutionStatus.SUCCESS:
                 state.completed_steps.append(step_id)
                 self.logger.info(f"Step {step_id} executed successfully")
             else:
                 state.failed_steps.append(step_id)
-                self.logger.warning(f"Step {step_id} failed: {execution_result.error_message}")
+                self.logger.error(f"Step {step_id} execution failed: {execution_result.error_message}")
             
         except Exception as e:
             self.logger.error(f"Failed to execute step {step_id}: {e}")
-            # Create error execution result
-            error_result = ExecutionResult(
+            # Create failed execution result
+            failed_result = ExecutionResult(
                 step_id=step_id,
                 status=ExecutionStatus.FAILED,
                 stdout="",
-                stderr=str(e),
-                execution_time_seconds=0.0,
-                error_message=str(e),
+                stderr="",
+                execution_time_seconds=0,
                 artifacts=[],
-                return_value=None
+                error_message=str(e)
             )
-            state.execution_results[step_id] = error_result
+            state.execution_results[step_id] = failed_result
             state.failed_steps.append(step_id)
         
         return state
     
-    def _execute_code(self, code_bundle: CodeBundle, dataset_uri: str) -> ExecutionResult:
+    def _extract_dataset_name(self, dataset_uri: str) -> str:
+        """
+        Extract dataset name from URI for directory organization.
+        
+        Args:
+            dataset_uri: URI of the dataset
+            
+        Returns:
+            Clean dataset name for directory
+        """
+        # Extract filename from URI
+        if '/' in dataset_uri:
+            filename = dataset_uri.split('/')[-1]
+        else:
+            filename = dataset_uri
+        
+        # Remove file extension
+        if '.' in filename:
+            name = filename.rsplit('.', 1)[0]
+        else:
+            name = filename
+        
+        # Clean the name for directory use (remove special characters)
+        clean_name = re.sub(r'[^\w\-_]', '_', name)
+        
+        return clean_name or "dataset"
+    
+    def _validate_state(self, state: WorkflowState) -> bool:
+        """Validate that state has required code bundle for current step."""
+        return (
+            hasattr(state, 'current_step') and
+            state.current_step >= 0 and
+            hasattr(state, 'code_bundles') and
+            state.current_step in state.code_bundles
+        )
+    
+    def _execute_code(self, code_bundle: CodeBundle, dataset_uri: str, dataset_name: str) -> ExecutionResult:
         """
         Execute Python code in a sandbox environment.
         
         Args:
             code_bundle: Code bundle to execute
             dataset_uri: URI of the dataset to analyze
+            dataset_name: Name of the dataset for directory organization
             
         Returns:
             ExecutionResult with execution details
         """
         start_time = time.time()
         
-        # Create step-specific artifacts directory
-        step_artifacts_dir = self.artifacts_base_dir / f"step_{code_bundle.step_id}"
+        # Create dataset-specific artifacts directory
+        dataset_artifacts_dir = self.artifacts_base_dir / dataset_name
+        
+        # Create dataset directory if it doesn't exist
+        dataset_artifacts_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Create step-specific artifacts directory under dataset directory
+        step_artifacts_dir = dataset_artifacts_dir / f"step_{code_bundle.step_id}"
+        
+        # Clean up old analysis artifacts for this specific step only
+        if step_artifacts_dir.exists():
+            self.logger.info(f"Cleaning up old artifacts for step {code_bundle.step_id} in dataset '{dataset_name}'")
+            try:
+                shutil.rmtree(step_artifacts_dir)
+                self.logger.info(f"Successfully removed old step artifacts directory: {step_artifacts_dir}")
+            except Exception as e:
+                self.logger.warning(f"Failed to clean up old step artifacts: {e}")
+        
+        # Create fresh step directory
         step_artifacts_dir.mkdir(parents=True, exist_ok=True)
         
         # Create temporary file for the code
@@ -206,10 +268,21 @@ signal.signal(signal.SIGALRM, timeout_handler)
 signal.alarm({code_bundle.execution_timeout_seconds})
 set_resource_limits()
 
-ARTIFACTS_DIR = Path(r"{artifacts_dir}")
-ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
-
+# Set up artifacts directory
+DATA_ARTIFACTS_DIR = r"{artifacts_dir}"
 DATASET_URI = r"{dataset_uri}"
+
+# Ensure artifacts directory exists
+os.makedirs(DATA_ARTIFACTS_DIR, exist_ok=True)
+
+# Validate that we can write to the artifacts directory
+try:
+    test_file = os.path.join(DATA_ARTIFACTS_DIR, '.test_write')
+    with open(test_file, 'w') as f:
+        f.write('test')
+    os.remove(test_file)
+except Exception as e:
+    print(f"Warning: Cannot write to DATA_ARTIFACTS_DIR: {{e}}", file=sys.stderr)
 
 stdout_capture = io.StringIO()
 stderr_capture = io.StringIO()

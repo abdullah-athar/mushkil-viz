@@ -156,41 +156,40 @@ class PlannerAgent(BaseAgent):
     
     def _get_system_prompt(self) -> str:
         """Get the system prompt for the planner agent."""
-        return """You are an expert data analyst and data scientist. Your task is to create a simple analysis plan with exactly 3 basic plotting steps for a given dataset.
+        return """You are an expert data analyst and data scientist. Your task is to create a concise analysis plan with exactly 3 meaningful and insightful steps for a given dataset.
 
-Your analysis plan should include exactly 3 steps:
-1. Basic data overview and summary statistics
-2. Distribution plots for numeric variables (histograms, box plots)
-3. Simple visualizations for categorical variables (bar charts, pie charts)
+    Your analysis plan must still include **exactly 3 steps**, but should go beyond simple summary statistics and charts. Each step should aim to provide value through light analytical insight or pattern discovery. Here's an example of the kind of steps you could use:
+    1. Correlation and relationships between numeric variables (scatter plots, heatmaps)
+    2. Trend or time-based analysis if applicable (line plots, moving averages)
+    3. Key segment or group-level comparison (grouped bar plots, box plots by category)
 
-For each analysis step, provide:
-- A clear title and description
-- The type of analysis
-- Target columns (if applicable)
-- Expected artifacts (figures, tables, etc.)
-- Priority level (1=highest, 3=lowest)
+    For each analysis step, provide:
+    - A clear title and description
+    - The type of analysis (e.g., correlation analysis, trend analysis, segmentation, etc.)
+    - Target columns (if applicable)
+    - Expected artifacts (figures, tables, etc.)
+    - Priority level (1=highest, 3=lowest)
 
-Return your response as a JSON object with the following structure:
-{
-    "dataset_name": "string",
-    "total_steps": 3,
-    "estimated_duration_minutes": number,
-    "summary": "string",
-    "steps": [
-        {
-            "step_id": 1,
-            "title": "string",
-            "description": "string",
-            "analysis_type": "string",
-            "target_columns": ["string"],
-            "expected_artifacts": ["string"],
-            "dependencies": [],
-            "priority": 1
-        }
-    ]
-}
-
-Keep it simple and focused on basic plotting. No more than 3 steps total."""
+    Return your response as a JSON object with the following structure:
+    {
+        "dataset_name": "string",
+        "total_steps": 3,
+        "estimated_duration_minutes": number,
+        "summary": "string",
+        "steps": [
+            {
+                "step_id": 1,
+                "title": "string",
+                "description": "string",
+                "analysis_type": "string",
+                "target_columns": ["string"],
+                "expected_artifacts": ["string"],
+                "dependencies": [],
+                "priority": 1
+            }
+        ]
+    }
+    """
     
     def _create_user_prompt(self, context: Dict[str, Any]) -> str:
         """
@@ -202,7 +201,7 @@ Keep it simple and focused on basic plotting. No more than 3 steps total."""
         Returns:
             Formatted user prompt
         """
-        prompt = f"""Please create a simple analysis plan with exactly 3 basic plotting steps for the following dataset:
+        prompt = f"""Please create an analysis plan with exactly 3 steps for the following dataset:
 
 Dataset: {context['dataset_name']}
 Rows: {context['row_count']:,}
@@ -224,12 +223,7 @@ Column Types:
 Sample Data (first 3 rows):
 {json.dumps(context['sample_data'], indent=2)}
 
-Please create exactly 3 simple analysis steps focused on basic plotting:
-1. Data overview and summary statistics
-2. Distribution plots for numeric variables (if any)
-3. Simple visualizations for categorical variables (if any)
-
-Keep it simple and focused on basic plotting. No more than 3 steps total."""
+"""
         
         return prompt
     
@@ -245,15 +239,8 @@ Keep it simple and focused on basic plotting. No more than 3 steps total."""
             Parsed AnalysisPlan
         """
         try:
-            # Extract JSON from response
-            json_start = response.find('{')
-            json_end = response.rfind('}') + 1
-            
-            if json_start == -1 or json_end == 0:
-                raise ValueError("No JSON found in LLM response")
-            
-            json_str = response[json_start:json_end]
-            plan_data = json.loads(json_str)
+            # Extract JSON from response using base class method
+            plan_data = self.extract_json_from_response(response)
             
             # Create AnalysisStep objects
             steps = []

@@ -8,12 +8,11 @@ This agent is responsible for:
 - Handling different data types and analysis types
 """
 
-import json
 from typing import List, Dict, Any, Optional
 import logging
 import ast
 import re
-from json import JSONDecoder, JSONDecodeError
+import json
 
 from .base_agent import BaseAgent
 from ..schema import (
@@ -30,7 +29,10 @@ class CoderAgent(BaseAgent):
     """
     
     def __init__(self, **kwargs):
-        """Initialize the coder agent."""
+        """Initialize the coder agent with appropriate token limits for code generation."""
+        # Set higher token limit for code generation while still keeping it manageable
+        if 'max_tokens' not in kwargs:
+            kwargs['max_tokens'] = 6000
         super().__init__(**kwargs)
     
     def process(self, state: WorkflowState) -> WorkflowState:
@@ -45,24 +47,40 @@ class CoderAgent(BaseAgent):
         """
         self.log_info(f"Generating code for step {state.current_step}")
         
-        try:
-            # Validate state
-            if not self.validate_state(state):
-                raise ValueError("Invalid state for coder agent")
-            
-            # Get current analysis step
-            current_step = self._get_current_step(state)
-            
-            # Generate code using LLM
-            code_bundle = self._generate_code(current_step, state.data_spec)
-            
-            # Update state
-            state.code_bundles[state.current_step] = code_bundle
-            self.log_info(f"Generated code for step {state.current_step}: {current_step.title}")
-         
-        except Exception as e:
-            self.log_error(f"Failed to generate code for step {state.current_step}: {e}")
-            raise
+        max_retries = 3
+        retry_count = 0
+        
+        while retry_count < max_retries:
+            try:
+                # Validate state
+                if not self.validate_state(state):
+                    raise ValueError("Invalid state for coder agent")
+                
+                # Get current analysis step
+                current_step = self._get_current_step(state)
+                
+                # Generate code using LLM
+                code_bundle = self._generate_code(current_step, state.data_spec)
+                
+                # Update state
+                state.code_bundles[state.current_step] = code_bundle
+                self.log_info(f"Generated code for step {state.current_step}: {current_step.title}")
+                return state
+             
+            except (ValueError, json.JSONDecodeError) as e:
+                retry_count += 1
+                self.log_warning(f"JSON parsing failed for step {state.current_step} (attempt {retry_count}/{max_retries}): {e}")
+                
+                if retry_count >= max_retries:
+                    self.log_error(f"Failed to generate valid code after {max_retries} attempts for step {state.current_step}")
+                    raise ValueError(f"Failed to generate valid code after {max_retries} attempts: {e}")
+                
+                # Continue to retry
+                continue
+                
+            except Exception as e:
+                self.log_error(f"Failed to generate code for step {state.current_step}: {e}")
+                raise
         
         return state
     
@@ -178,7 +196,7 @@ class CoderAgent(BaseAgent):
 IMPORTANT SAFETY REQUIREMENTS:
 1. NEVER use eval(), exec(), or any code execution functions
 2. NEVER use os.system(), subprocess, or any system commands
-3. NEVER use file operations outside of data/artifacts/
+3. NEVER use file operations outside of DATA_ARTIFACTS_DIR
 4. NEVER use network requests or external API calls
 5. NEVER use any potentially dangerous libraries
 6. ALWAYS use try-except blocks for error handling
@@ -189,20 +207,30 @@ ALLOWED LIBRARIES:
 - scipy, sklearn (for analysis only)
 - json, csv, pathlib (for file operations in artifacts directory only)
 
+CRITICAL FILE SAVING REQUIREMENTS:
+1. ALWAYS use the DATA_ARTIFACTS_DIR variable for saving files - this is a global variable provided by the runtime
+2. NEVER use hardcoded paths or relative paths for saving files
+3. Use DATA_ARTIFACTS_DIR for ALL file operations (plots, CSV files, JSON files, etc.)
+4. Example correct usage:
+   - plt.savefig(os.path.join(DATA_ARTIFACTS_DIR, 'plot.png'))
+   - df.to_csv(os.path.join(DATA_ARTIFACTS_DIR, 'results.csv'))
+   - with open(os.path.join(DATA_ARTIFACTS_DIR, 'summary.txt'), 'w') as f: f.write(text)
+5. Always ensure DATA_ARTIFACTS_DIR exists before saving files
+
 CODE REQUIREMENTS:
-1. Load data from the dataset URI provided in the context
-2. Perform the specified analysis
-3. Generate visualizations and save them to data/artifacts/step_<step_id>/
-4. Save any data outputs to CSV files in the artifacts directory
-5. Include comprehensive error handling
-6. Add detailed comments explaining the analysis
-7. Return a dictionary with results and artifact paths
-8. Ensure all Python code is syntactically correct
-9. Use proper indentation and follow PEP 8 style guidelines
-10. Make sure all try-except blocks are properly closed
-11. Ensure all function definitions are complete
-12. Check that all parentheses, brackets, and braces are properly matched
-13. Should have a main() function that returns the results
+1. Keep code CONCISE and FOCUSED - avoid overly verbose or repetitive code
+2. Write efficient, readable code with clear purpose
+3. Load data from the DATASET_URI variable (provided by runtime)
+4. Perform the specified analysis efficiently
+5. Generate visualizations and save them to DATA_ARTIFACTS_DIR
+6. Save any data outputs to CSV files in DATA_ARTIFACTS_DIR
+7. Include essential error handling (not excessive)
+8. Add brief, clear comments explaining key steps
+9. Return a dictionary with results and artifact paths
+10. Ensure all Python code is syntactically correct
+11. Use proper indentation (4 spaces per level)
+12. Keep the main() function concise and focused
+13. Aim for code under 100 lines when possible
 
 SYNTAX REQUIREMENTS:
 - All code must be valid Python 3.x syntax
@@ -211,26 +239,27 @@ SYNTAX REQUIREMENTS:
 - All string literals must be properly quoted
 - All parentheses, brackets, and braces must be balanced
 - Use consistent indentation (4 spaces per level)
-- Use a triple-quoted f-string where needed for multi-line strings
 
 CRITICAL JSON FORMATTING REQUIREMENTS:
 1. Return ONLY valid JSON - no markdown formatting or extra text
 2. Use double quotes for all strings
-3. Properly escape all special characters in the code field:
-   - Newlines must be escaped as \\n
-   - Tabs must be escaped as \\t
-   - Double quotes must be escaped as \\"
-   - Backslashes must be escaped as \\\\
-4. Ensure the JSON is complete and well-formed
-5. Do not include any text before or after the JSON
-6. Make sure all brackets and braces are properly balanced
-7. Do not include trailing commas in arrays or objects
-8. The "code" field must contain complete, syntactically correct Python code
+3. Keep the total JSON response under 8000 characters to avoid truncation
+4. Properly escape special characters in the code field:
+   - Newlines: \\n
+   - Tabs: \\t  
+   - Double quotes: \\"
+   - Backslashes: \\\\
+5. Ensure the JSON is complete and well-formed
+6. Do not include any text before or after the JSON
+7. Make sure all brackets and braces are properly balanced
+8. Do not include trailing commas in arrays or objects
+9. The "code" field must contain complete, syntactically correct Python code
+10. Write CONCISE code to keep JSON response size manageable
 
 RESPONSE FORMAT:
 Return your response as a JSON object with the following structure:
 {
-    "code": "string (the Python code with proper escaping)",
+    "code": "string (concise Python code with proper escaping - keep under 6000 chars)",
     "imports": ["string (list of required imports)"],
     "expected_artifacts": [
         {
@@ -245,7 +274,41 @@ Return your response as a JSON object with the following structure:
     "safety_level": "string (low, medium, high)"
 }
 
-IMPORTANT: The "code" field should contain the actual Python code as a string, not a function call or execution."""
+IMPORTANT: Write CONCISE, FOCUSED code. Avoid verbose comments and repetitive operations. The "code" field should contain efficient Python code as a string.
+
+CODE TEMPLATE EXAMPLE:
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+def main():
+    # Load data from DATASET_URI (provided by runtime)
+    df = pd.read_csv(DATASET_URI)
+    
+    # Perform analysis
+    # ... your analysis code here ...
+    
+    # Save visualizations to DATA_ARTIFACTS_DIR
+    plt.figure(figsize=(10, 6))
+    # ... your plotting code here ...
+    plt.savefig(os.path.join(DATA_ARTIFACTS_DIR, 'analysis_plot.png'))
+    plt.close()
+    
+    # Save data to DATA_ARTIFACTS_DIR
+    results_df.to_csv(os.path.join(DATA_ARTIFACTS_DIR, 'results.csv'))
+    
+    # Return results
+    return {
+        "status": "success",
+        "artifacts": [
+            {"name": "analysis_plot.png", "path": os.path.join(DATA_ARTIFACTS_DIR, 'analysis_plot.png')},
+            {"name": "results.csv", "path": os.path.join(DATA_ARTIFACTS_DIR, 'results.csv')}
+        ],
+        "summary": "Analysis completed successfully"
+    }
+    
+```"""
     
     def _create_user_prompt(self, context: Dict[str, Any]) -> str:
         """
@@ -292,10 +355,18 @@ Dataset Schema:
 Please generate Python code that:
 1. Loads the dataset from the URI: {context.get('dataset_uri', 'dataset.csv')}
 2. Performs the specified analysis: {context['analysis_type']}
-3. Creates appropriate visualizations and saves them to data/artifacts/step_{context['step_id']}/
-4. Saves any data outputs to CSV files
+3. Creates appropriate visualizations and saves them to DATA_ARTIFACTS_DIR
+4. Saves any data outputs to CSV files in DATA_ARTIFACTS_DIR
 5. Returns a dictionary with results and artifact paths
 6. Includes comprehensive error handling and logging
+
+IMPORTANT: The runtime provides these global variables:
+- DATA_ARTIFACTS_DIR: Directory where all files should be saved
+- DATASET_URI: Path to the dataset file
+
+Use these variables for all file operations. Example:
+- plt.savefig(os.path.join(DATA_ARTIFACTS_DIR, 'plot.png'))
+- df.to_csv(os.path.join(DATA_ARTIFACTS_DIR, 'results.csv'))
 
 The code should be production-ready and follow best practices for data analysis.
 
@@ -315,89 +386,53 @@ Return your response as a valid JSON object with the specified structure."""
         Returns:
             Parsed and validated CodeBundle
         """
+        # Clean the response
+        cleaned_response = response.strip()
+        
+        # Remove markdown formatting if present
+        if cleaned_response.startswith('```json'):
+            cleaned_response = cleaned_response[7:]
+        if cleaned_response.endswith('```'):
+            cleaned_response = cleaned_response[:-3]
+        cleaned_response = cleaned_response.strip()
+        
+        # Try to extract JSON from the response
         try:
-            # Clean the response
-            cleaned_response = response.strip()
-            
-            # Remove markdown formatting if present
-            if cleaned_response.startswith('```json'):
-                cleaned_response = cleaned_response[7:]
-            if cleaned_response.endswith('```'):
-                cleaned_response = cleaned_response[:-3]
-            cleaned_response = cleaned_response.strip()
-            
-            # Try to extract JSON from the response
-            json_str = self._extract_json_from_response(cleaned_response)
-            
-            # Parse JSON
-            code_data = json.loads(json_str)
-            
-            # Validate required fields
-            if 'code' not in code_data:
-                raise ValueError("Missing 'code' field in LLM response")
-            
-            # Validate Python syntax
-            #self._validate_python_syntax(code_data['code'])
-            
-            # Create CodeArtifact objects
-            expected_artifacts = []
-            for artifact_data in code_data.get('expected_artifacts', []):
-                artifact = CodeArtifact(
-                    name=artifact_data['name'],
-                    type=artifact_data['type'],
-                    path=artifact_data['path'],
-                    description=artifact_data['description']
-                )
-                expected_artifacts.append(artifact)
-            
-            # Create CodeBundle
-            code_bundle = CodeBundle(
-                step_id=step.step_id,
-                code=code_data['code'],
-                imports=code_data.get('imports', []),
-                expected_artifacts=expected_artifacts,
-                execution_timeout_seconds=code_data.get('execution_timeout_seconds', 300),
-                memory_limit_mb=code_data.get('memory_limit_mb', 512),
-                safety_level=code_data.get('safety_level', 'medium')
+            code_data = self.extract_json_from_response(cleaned_response)
+        except (ValueError, json.JSONDecodeError) as e:
+            # Re-raise as JsonDecodeError for consistent error handling
+            raise json.JSONDecodeError(f"Failed to parse JSON from LLM response: {e}")
+        
+        # Validate required fields
+        if 'code' not in code_data:
+            raise ValueError("Missing 'code' field in LLM response")
+        
+        # Validate Python syntax
+        #self._validate_python_syntax(code_data['code'])
+        
+        # Create CodeArtifact objects
+        expected_artifacts = []
+        for artifact_data in code_data.get('expected_artifacts', []):
+            artifact = CodeArtifact(
+                name=artifact_data['name'],
+                type=artifact_data['type'],
+                path=artifact_data['path'],
+                description=artifact_data['description']
             )
-            
-            return code_bundle
-            
-        except json.JSONDecodeError as e:
-            self.log_error(f"JSON decode error for step {step.step_id}: {e}")
-            self.log_error(f"Response: {response[:500]}...")
-            raise ValueError(f"Invalid JSON response from LLM: {e}")
-        except Exception as e:
-            self.log_error(f"Failed to parse LLM response for step {step.step_id}: {e}")
-            raise
-    
-    def _extract_json_from_response(self, response: str) -> str:
-        """
-        Find and return the first valid JSON object in a possibly-marked-up LLM response.
-        """
-        # 1) Strip any leading/trailing markdown fences
-        clean = re.sub(r'```(?:json|python)?\s*|\s*```$', '', response).strip()
-
-        # 2) Try to locate the first JSON object using the JSONDecoder.raw_decode
-        decoder = JSONDecoder()
-        obj, end = decoder.raw_decode(clean)
-
-
-        # 4) Now obj is a Python dict parsed from the JSON blob.
-        #    We'll re-serialize it to make sure it's canonical and escapes everything properly.
-        #    But—before dumping—fix the code field by unescaping any errant backslashes.
-        if "code" in obj and isinstance(obj["code"], str):
-            # Decode any stray Python-style escapes, then re-escape for JSON
-            # e.g. turn "\\n" into "\n", then back into "\\n"
-            try:
-                raw = obj["code"].encode('utf-8').decode('unicode_escape')
-                obj["code"] = raw
-            except UnicodeDecodeError:
-                # If unicode escape fails, just use the original
-                pass
-
-        # 5) Dump with separators to avoid trailing commas
-        return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+            expected_artifacts.append(artifact)
+        
+        # Create CodeBundle
+        code_bundle = CodeBundle(
+            step_id=step.step_id,
+            code=code_data['code'],
+            imports=code_data.get('imports', []),
+            expected_artifacts=expected_artifacts,
+            execution_timeout_seconds=code_data.get('execution_timeout_seconds', 300),
+            memory_limit_mb=code_data.get('memory_limit_mb', 512),
+            safety_level=code_data.get('safety_level', 'medium')
+        )
+        
+        return code_bundle
     
     def _validate_python_syntax(self, code: str) -> None:
         """
