@@ -1,36 +1,44 @@
-# MushkilViz: Intelligent Tabular Data Analysis & Visualization System
+# MushkilViz: Multi-Agent Data Analysis & Visualization System
 
-MushkilViz is a powerful Python framework for automated analysis and visualization of structured datasets. It intelligently detects data types, extracts meaningful relationships, and generates domain-aware visualizations with minimal user configuration.
+MushkilViz is an intelligent, LLM-powered multi-agent system for automated analysis and visualization of structured datasets. It uses a sophisticated workflow of specialized AI agents that collaborate to understand, analyze, and visualize data with minimal human intervention.
 
-## Features
+## 🏗️ Multi-Agent Architecture
 
-- 🔍 **Automated Data Understanding**
-  - Smart column type detection
-  - Data quality assessment
-  - Statistical profiling
-  - Pattern recognition
-  - Domain classification
+MushkilViz employs a sophisticated multi-agent system built on LangGraph, where each agent has a specialized role in the analysis pipeline:
 
-- 📊 **Intelligent Visualization**
-  - Context-aware plot selection
-  - Interactive visualizations using Plotly
-  - Customizable visualization templates
-  - Multi-dimensional data exploration
+![MushkilViz Workflow](workflow_diagram.png)
 
-- 🎯 **Domain-Specific Analysis**
-  - Financial data analysis
-  - Biological data analysis (coming soon)
-  - Real estate market analysis (coming soon)
-  - Extensible plugin architecture
+### 🤖 Agent Roles
 
-- 📈 **Advanced Analytics**
-  - Correlation analysis
-  - Anomaly detection
-  - Trend identification
-  - Pattern mining
-  - Dimensionality reduction
+- **📥 Loader Agent**: Inspects and profiles datasets, extracting schema information and sample data
+- **🧠 Planner Agent**: Creates comprehensive analysis plans with ordered steps and expected outcomes
+- **💻 Coder Agent**: Generates executable Python code for each analysis step
+- **⚡ Runtime Agent**: Safely executes generated code in isolated environments
+- **📊 Grader Agent**: Evaluates execution results and code quality, providing feedback
+- **📋 Reporter Agent**: Synthesizes all findings into comprehensive reports and visualizations
+- **🔄 Router Agent**: Manages workflow control flow and decision-making
 
-## Installation
+### 🔄 Workflow Process
+
+1. **Data Loading**: The Loader Agent examines the dataset and creates a comprehensive specification
+2. **Planning**: The Planner Agent devises an analysis strategy with specific steps
+3. **Code Generation**: The Coder Agent creates executable Python code for each analysis step
+4. **Execution**: The Runtime Agent safely runs the code and captures outputs
+5. **Evaluation**: The Grader Agent assesses results and determines next actions
+6. **Routing**: The Router Agent decides whether to continue, retry, or move to reporting
+7. **Reporting**: The Reporter Agent creates final comprehensive reports
+
+## ✨ Key Features
+
+- **🤖 Multi-Agent Collaboration**: Specialized AI agents working together for comprehensive analysis
+- **🧠 Intelligent Planning**: Dynamic analysis planning based on data characteristics
+- **🔒 Safe Execution**: Isolated code execution with safety controls and resource limits
+- **📊 Quality Assurance**: Automated grading and feedback loops for continuous improvement
+- **📈 Adaptive Workflows**: Self-correcting pipelines that can replan and regenerate as needed
+- **🎯 Domain-Aware**: Context-sensitive analysis and visualization selection
+- **📋 Comprehensive Reporting**: Rich markdown reports with insights, visualizations, and recommendations
+
+## 🚀 Installation
 
 ```bash
 # Clone the repository
@@ -45,7 +53,7 @@ conda activate mushkil
 mamba env create -f environment.yml
 mamba activate mushkil
 
-# Install deps
+# Install dependencies
 uv pip install -r requirements/requirements.txt 
 
 # Copy env boilerplate and update variables
@@ -55,15 +63,15 @@ cp .env.example .env
 echo "GOOGLE_GEMINI_KEY=your_actual_api_key_here" > .env
 ```
 
-The environment includes all necessary dependencies for development and usage, including:
-- Core analysis: pandas, numpy, scikit-learn
-- Visualization: plotly, seaborn, altair
-- Machine Learning: xgboost, pycaret, umap-learn
-- Development tools: pytest, black, flake8
+## 🎯 Quick Start
 
-## Quick Start
+```python
 
-### Web Interface (Streamlit)
+python demo/test_framework.py
+
+```
+
+### Web Interface (Streamlit) - @waleed to fix TODO :D
 
 ```bash
 # Run the Streamlit application
@@ -75,30 +83,63 @@ streamlit run src/mushkil_viz/streamlit/app.py --server.port=8501
 
 Then open your browser to: **http://localhost:8501**
 
-## Project Structure
+### Programmatic Usage
+
+```python
+from mushkil_viz.main import analyze_dataset_simple
+from mushkil_viz.schema import DatasetFormat
+
+# Analyze a dataset
+result = analyze_dataset_simple(
+    dataset_uri="path/to/your/data.csv",
+    dataset_format=DatasetFormat.CSV
+)
+
+# Access the final report
+print(result.final_report.analysis_summary)
+```
+
+## 📁 Project Structure
 
 ```
 mushkil_viz/
-├── agent/
-├── streamlit/
+├── src/mushkil_viz/
+│   ├── agents/           # Multi-agent system components
+│   │   ├── loader_agent.py
+│   │   ├── planner_agent.py
+│   │   ├── coder_agent.py
+│   │   ├── grader_agent.py
+│   │   └── reporter_agent.py
+│   ├── nodes/            # Workflow orchestration nodes
+│   │   ├── runtime_node.py
+│   │   └── router_node.py
+│   ├── schema.py         # Data models and state definitions
+│   ├── main.py           # Main workflow orchestration
+│   └── streamlit/        # Web interface
+├── data/                 # Sample datasets and artifacts
+├── examples/             # Usage examples
+└── requirements/         # Dependency specifications
 ```
 
-MushkilViz uses YAML configuration files for customization:
+## 🔧 Configuration
 
-```yaml
-# configs/domain_profiles/financial.yaml
-analysis:
-  outlier_detection:
-    method: zscore
-    threshold: 3.0
-  
-visualization:
-  color_scheme:
-    positive: "#2ecc71"
-    negative: "#e74c3c"
+MushkilViz uses environment variables for configuration:
+
+```bash
+# Required: Google Gemini API key
+GOOGLE_GEMINI_KEY=your_api_key_here
+
+# Optional: Model configuration
+MUSHKIL_MODEL_NAME=gemini-2.0-flash
+MUSHKIL_TEMPERATURE=0.1
+MUSHKIL_MAX_TOKENS=4000
+
+# Optional: Execution settings
+MUSHKIL_MAX_ITERATIONS=3
+MUSHKIL_ARTIFACTS_DIR=data/artifacts
 ```
 
-## Development
+## 🧪 Development
 
 1. **Setup Development Environment**
 
@@ -110,24 +151,24 @@ conda install -c conda-forge black flake8 isort pre-commit
 pytest tests/
 
 # Check code style
-flake8 mushkil_viz/
-black mushkil_viz/
+flake8 src/mushkil_viz/
+black src/mushkil_viz/
 ```
 
-2. **Adding New Domains**
+2. **Adding New Agents**
 
-Create new domain adapters by extending base classes:
+Create new agents by extending the base agent class:
 
 ```python
-from mushkil_viz.core.analyzers import BaseAnalyzer
+from mushkil_viz.agents.base_agent import BaseAgent
 
-class CustomDomainAnalyzer(BaseAnalyzer):
-    def __init__(self):
-        super().__init__()
-        # Add domain-specific initialization
+class CustomAgent(BaseAgent):
+    def process(self, state: WorkflowState) -> WorkflowState:
+        # Implement your agent logic here
+        return state
 ```
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -135,18 +176,20 @@ class CustomDomainAnalyzer(BaseAnalyzer):
 4. Push to the branch
 5. Create a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Built with [Plotly](https://plotly.com/python/)
-- Powered by [pandas](https://pandas.pydata.org/)
-- Styled with [Rich](https://github.com/Textualize/rich)
+- Built with [LangGraph](https://github.com/langchain-ai/langgraph) for multi-agent orchestration
+- Powered by [Google Gemini](https://ai.google.dev/) for LLM capabilities
+- Visualizations with [Plotly](https://plotly.com/python/)
+- Data processing with [pandas](https://pandas.pydata.org/)
+- Rich output formatting with [Rich](https://github.com/Textualize/rich)
 
-## Contact
+## 📞 Contact
 
-- GitHub Issues: [Report a bug](https://github.com/yourusername/mushkil-viz/issues)
+- GitHub Issues: [Report a bug](https://github.com/abdullah-athar/mushkil-viz/issues)
 - Email: ama86@cantab.ac.uk / waleedhashmi@nyu.edu
 - Authors: Waleed Hashmi and Abdullah Athar
